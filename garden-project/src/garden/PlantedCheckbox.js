@@ -37,12 +37,12 @@ export default function PlantedCheckbox() {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Edit your garden</Modal.Title>
+          <Modal.Title>Plant your *plant-name*</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             <Form.Group className="mb-3" controlId="formName">
-              <Form.Label>Garden name:</Form.Label>
+              <Form.Label></Form.Label>
               <Form.Control type="name" placeholder="{current garden name}" />
             </Form.Group>
 
