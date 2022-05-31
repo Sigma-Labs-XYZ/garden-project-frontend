@@ -1,24 +1,30 @@
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import Collapse from "react-bootstrap/Collapse";
 import Form from "react-bootstrap/Form";
-import Alert from "react-bootstrap/Alert";
 import { useState } from "react";
 import React from "react";
 
 export default function PlantedCheckbox() {
   const [show, setShow] = useState(false);
-  const [open, setOpen] = useState(false);
+  const [quantity, setQuantity] = useState(1);
+  const [date, setDate] = useState(new Date());
+
+  const placeholderPlantID = 2;
+
   const handleClose = () => setShow(false);
   const handleShow = () => {
     const plantedCheckbox = document.getElementById("inline-checkbox-1");
     if (plantedCheckbox.checked) {
-      setOpen(false);
       setShow(true);
     }
   };
-
-  const handleCloseAlert = () => setOpen(false);
+  const handlePlant = async (plant_id, quantity, date) => {
+    await fetch("http://garden-project.sigmalabs.co.uk/plant-plant-in-garden", {
+      method: "POST",
+      body: { plant_id, quantity, date },
+    });
+    setShow(false);
+  };
 
   return (
     <div>
@@ -43,18 +49,32 @@ export default function PlantedCheckbox() {
           <Form>
             <Form.Group className="mb-3" controlId="formDatePlanted">
               <Form.Label>When did you plant your *plant-name*</Form.Label>
-              <Form.Control type="datePlanted" placeholder="TODO: make this a multiple select" />
+              <Form.Control
+                type="datePlanted"
+                onChange={event => setDate(event.target.value)}
+                placeholder="TODO: make this a multiple select"
+              />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formQuantity">
               <Form.Label>How many did you plant?</Form.Label>
-              <Form.Control type="quantity" placeholder="*current quantity*" />
+              <Form.Control
+                type="quantity"
+                onChange={event => setQuantity(event.target.value)}
+                placeholder="*current quantity*"
+              />
             </Form.Group>
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={handleClose}>
-            Plant seeds!
+          <Button
+            variant="primary"
+            onClick={e => {
+              e.preventDefault();
+              handlePlant(placeholderPlantID, quantity, date);
+            }}
+          >
+            Sow seeds!
           </Button>
         </Modal.Footer>
       </Modal>
