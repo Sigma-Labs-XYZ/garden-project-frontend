@@ -4,8 +4,6 @@ import Stack from "react-bootstrap/Stack";
 import "./garden.css";
 import PlantItem from "./PlantItem";
 import ListGroup from "react-bootstrap/ListGroup";
-import CreateNewGardenForm from "./CreateNewGardenForm";
-import EditGardenForm from "./EditGardenForm";
 
 export default function GardenPage() {
   return (
