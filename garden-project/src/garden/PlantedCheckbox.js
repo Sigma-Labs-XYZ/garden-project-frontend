@@ -23,7 +23,7 @@ export default function PlantedCheckbox() {
   return (
     <div>
       <Form>
-        <div key={`inline-checkbox`} className="mb-3">
+        <div className="mb-3">
           <Form.Check
             inline
             label="planted"
@@ -41,44 +41,20 @@ export default function PlantedCheckbox() {
         </Modal.Header>
         <Modal.Body>
           <Form>
-            <Form.Group className="mb-3" controlId="formName">
-              <Form.Label></Form.Label>
-              <Form.Control type="name" placeholder="{current garden name}" />
+            <Form.Group className="mb-3" controlId="formDatePlanted">
+              <Form.Label>When did you plant your *plant-name*</Form.Label>
+              <Form.Control type="datePlanted" placeholder="TODO: make this a multiple select" />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formLocation">
-              <Form.Label>Location</Form.Label>
-              <Form.Control type="location" placeholder="{current garden location}" />
-              <Form.Text className="text-muted">Enter your postcode, zipcode or city</Form.Text>
+            <Form.Group className="mb-3" controlId="formQuantity">
+              <Form.Label>How many did you plant?</Form.Label>
+              <Form.Control type="quantity" placeholder="*current quantity*" />
             </Form.Group>
-            <Button
-              variant="outline-danger"
-              onClick={() => setOpen(!open)}
-              aria-controls="collapse-text"
-              aria-expanded={open}
-            >
-              Delete garden
-            </Button>
-
-            <Collapse in={open}>
-              <div id="collapse-text">
-                <Alert variant="danger" key="danger">
-                  <p> Are you sure you want to delete this garden? </p>
-                  <p> This action is irreversible</p>
-                </Alert>
-                <Button variant="outline-danger" onClick={handleClose}>
-                  Yes delete my garden
-                </Button>
-                <Button variant="info" onClick={handleCloseAlert}>
-                  No I'll keep my garden
-                </Button>
-              </div>
-            </Collapse>
           </Form>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={handleClose}>
-            Update garden
+            Plant seeds!
           </Button>
         </Modal.Footer>
       </Modal>
