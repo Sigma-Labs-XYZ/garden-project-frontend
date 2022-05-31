@@ -1,5 +1,5 @@
 import ListGroup from "react-bootstrap/ListGroup";
-import Form from "react-bootstrap/form";
+import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 export default function PlantItem() {
@@ -11,23 +11,11 @@ export default function PlantItem() {
 
       <div className="container-check-box">
         <Form>
-          {["checkbox"].map((type) => (
+          {["checkbox"].map(type => (
             <div key={`inline-${type}`} className="mb-3">
-              <Form.Check
-                inline
-                label="planted"
-                name="group1"
-                type={type}
-                id={`inline-${type}-1`}
-              />
+              <Form.Check inline label="planted" name="group1" type={type} id={`inline-${type}-1`} />
 
-              <Form.Check
-                inline
-                label="harvested"
-                name="group1"
-                type={type}
-                id={`inline-${type}-2`}
-              />
+              <Form.Check inline label="harvested" name="group1" type={type} id={`inline-${type}-2`} />
               <Form.Text>
                 <p>Quantity: *number*</p>
               </Form.Text>
