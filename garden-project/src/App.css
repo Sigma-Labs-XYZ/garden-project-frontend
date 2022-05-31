@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+.header-container {
+  height: 60px;
+  background-color: white;
+}
+.nav-link {
+  color: #009456 !important;
+}
+
+.btn {
+  border-radius: 10px;
+}

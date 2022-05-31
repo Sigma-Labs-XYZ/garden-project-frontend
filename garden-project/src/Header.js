@@ -24,7 +24,7 @@ export default function Header() {
   }
 
   return (
-    <Navbar fixed="top">
+    <Navbar>
       <Container>
         <Navbar.Brand href="home">Logo/Name</Navbar.Brand>
         <Navbar.Brand href="plants-info">Plants</Navbar.Brand>

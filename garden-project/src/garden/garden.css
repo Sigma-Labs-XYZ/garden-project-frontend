@@ -21,9 +21,6 @@
   justify-content: space-around;
 }
 
-.btn {
-  box-shadow: 0px 3px 5px 0px rgba(216, 231, 232, 1);
-}
 .plant-items-wrapper {
   padding-top: 30px;
 }
@@ -37,7 +34,7 @@
   display: flex;
 }
 .list-group-flush {
-  border-radius: 0 !important;
+  border-radius: 30px !important;
   box-shadow: 0px 3px 5px 0px rgba(216, 231, 232, 1);
 }
 .list-group {
@@ -59,15 +56,18 @@
 h1 {
   background-color: white;
   width: 30%;
-  border-radius: 0;
+  border-radius: 30px;
   padding: 10px;
   box-shadow: 0px 3px 5px 0px rgba(216, 231, 232, 1);
 }
 
 h3 {
   background-color: white;
-  border-radius: 0;
+  border-radius: 30px;
   width: 30%;
   padding: 10px;
   box-shadow: 0px 3px 5px 0px rgba(216, 231, 232, 1);
+}
+.collapse-text {
+  padding-top: 30px;
 }
