@@ -1,8 +1,9 @@
-import { Container, Button, Accordion } from "react-bootstrap";
+import { Container, Accordion } from "react-bootstrap";
 import { fetchPlantInfo } from "./PlantsNetworking";
 import { useState, useEffect } from "react";
 import PlantsInfo from "./PlantsInfo";
 import SearchForm from "./SearchForm";
+import "./plants-info.css";
 
 export default function PlantsInfoPage() {
   const [plantInfo, setPlantInfo] = useState([]);
@@ -24,14 +25,13 @@ export default function PlantsInfoPage() {
     });
   }
   return (
-    <Container>
-      <h1>HEADER</h1>
-      <br></br>
-      <SearchForm className="align-items-center" />
-      <br></br>
-      <Accordion defaultActiveKey="0" flush>
-        {printPlantList()}
-      </Accordion>
-    </Container>
+    <div>
+      <Container>
+        <SearchForm className="align-items-center" />
+        <Accordion defaultActiveKey="0" flush>
+          {printPlantList()}
+        </Accordion>
+      </Container>
+    </div>
   );
 }

@@ -11,15 +11,15 @@ import PlantsInfoPage from "./plants-info/PlantsInfoPage";
 function App() {
   return (
     <div>
-      {<Header />}
-    <Router>
-      <Routes>
-        <Route path="/garden" element={<GardenPage />} />
-        <Route path="/plants-list" element={<PlantsInfoPage />} />
-      </Routes>
-    </Router>
-</div>
+      <div className="header-container">{<Header />}</div>
 
+      <Router>
+        <Routes>
+          <Route path="/garden" element={<GardenPage />} />
+          <Route path="/plants-info" element={<PlantsInfoPage />} />
+        </Routes>
+      </Router>
+    </div>
   );
 }
 

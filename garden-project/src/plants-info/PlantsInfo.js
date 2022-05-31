@@ -1,4 +1,5 @@
 import { Accordion, Button, ListGroup } from "react-bootstrap";
+import "./plants-info.css";
 
 export default function PlantsInfo(props) {
   const {
@@ -73,9 +74,12 @@ export default function PlantsInfo(props) {
           </ListGroup.Item>
         </ListGroup>
         <div className="d-flex justify-content-end">
-          <Button type="submit"> Add to Garden </Button>
+          <Button variant="info" type="submit">
+            {" "}
+            Add to Garden{" "}
+          </Button>
 
-          <Button type="submit">Add to Wish List</Button>
+          <Button type="submit">Add to shopping list</Button>
         </div>
       </Accordion.Body>
     </Accordion.Item>
