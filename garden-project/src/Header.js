@@ -26,21 +26,21 @@ export default function Header() {
   return (
     <Navbar fixed="top">
       <Container>
-        <Navbar.Brand href="#home">Logo/Name</Navbar.Brand>
-        <Navbar.Brand href="#plants">Plants</Navbar.Brand>
+        <Navbar.Brand href="home">Logo/Name</Navbar.Brand>
+        <Navbar.Brand href="plants-info">Plants</Navbar.Brand>
         {featureDependingOnNumOfGardens(gardenNames)}
         <NavDropdown title="Guides" id="navbarGuidesDropdown">
-          <NavDropdown.Item href="#cropRotation">
+          <NavDropdown.Item href="crop-rotation">
             Crop Rotation
           </NavDropdown.Item>
-          <NavDropdown.Item href="#weeding">Weeding </NavDropdown.Item>
-          <NavDropdown.Item href="#plantingPractices">
+          <NavDropdown.Item href="weeding">Weeding</NavDropdown.Item>
+          <NavDropdown.Item href="planting-practices">
             Planting Practices
           </NavDropdown.Item>
-          <NavDropdown.Item href="#fertilisers">Fertilisers</NavDropdown.Item>
-          <NavDropdown.Item href="#composting">Composting</NavDropdown.Item>
+          <NavDropdown.Item href="fertilisers">Fertilisers</NavDropdown.Item>
+          <NavDropdown.Item href="composting">Composting</NavDropdown.Item>
         </NavDropdown>
-        <Navbar.Brand href="#logout">Logout</Navbar.Brand>
+        <Navbar.Brand href="logout">Logout</Navbar.Brand>
       </Container>
     </Navbar>
   );
