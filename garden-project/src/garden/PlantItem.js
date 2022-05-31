@@ -1,7 +1,7 @@
 import ListGroup from "react-bootstrap/ListGroup";
-import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import PlantedCheckbox from "./PlantedCheckbox";
+import HarvestedCheckbox from "./HarvestedCheckbox";
 
 export default function PlantItem() {
   return (
@@ -9,18 +9,8 @@ export default function PlantItem() {
       <div className="container-title">
         <h5>Plant name</h5>
       </div>
-
       <PlantedCheckbox id="inline-checkbox-1" />
-      <div className="container-check-box">
-        <Form>
-          <div key={`inline-checkbox`} className="mb-3">
-            <Form.Check inline label="harvested" name="group1" type={"checkbox"} id={`inline-checkbox-2`} />
-            <Form.Text>
-              <p>Quantity: *number*</p>
-            </Form.Text>
-          </div>
-        </Form>
-      </div>
+      <HarvestedCheckbox id="inline-checkbox-2" />
       <div className="container-remove-button">
         <Button variant="outline-danger">remove</Button>
       </div>
