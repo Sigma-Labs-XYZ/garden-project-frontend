@@ -8,13 +8,15 @@ import { useState, useEffect } from "react";
 
 export default function GardenPage() {
   const [gardenInfo, setGardenInfo] = useState([]);
+  const [remove, setRemove] = useState(false);
 
   useEffect(() => {
     async function getData() {
       await fetchInfo();
     }
     getData();
-  }, []);
+    setRemove(false);
+  }, [remove]);
 
   async function fetchInfo() {
     const gardenData = await fetchGardenInfo(1); //placeholder number
@@ -23,7 +25,7 @@ export default function GardenPage() {
 
   function printGardenPlants() {
     return gardenInfo.map((plant, i) => {
-      return <PlantItem key={i} data={plant} />;
+      return <PlantItem setRemove={setRemove} key={i} data={plant} />;
     });
   }
   return (
