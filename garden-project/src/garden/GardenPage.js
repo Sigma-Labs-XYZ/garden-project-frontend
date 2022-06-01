@@ -5,6 +5,7 @@ import PlantItem from "./PlantItem";
 import ListGroup from "react-bootstrap/ListGroup";
 import { fetchGardenInfo } from "./GardenNetworking";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export default function GardenPage() {
   const [gardenInfo, setGardenInfo] = useState([]);
@@ -35,7 +36,9 @@ export default function GardenPage() {
           <h1>Garden name</h1>
 
           <Stack direction="horizontal" gap={3} className="buttons">
-            <Button variant="info">Add plants to garden</Button>
+            <Link to="/plants-info">
+              <Button variant="info">Add plants to garden</Button>
+            </Link>
             <Button variant="info">View shopping list</Button>
           </Stack>
         </div>
