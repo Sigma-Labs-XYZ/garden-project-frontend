@@ -5862,6 +5862,18 @@
   "resolved" "https://registry.npmjs.org/json-stable-stringify-without-jsonify/-/json-stable-stringify-without-jsonify-1.0.1.tgz"
   "version" "1.0.1"
 
+"json-stringify-safe@^5.0.1":
+  "integrity" "sha512-ZClg6AaYvamvYEE82d3Iyd3vSSIjQ+odgjaTzRuO3s7toCdFKczob2i0zCh7JE8kWn17yvAWhUVxvqGwUalsRA=="
+  "resolved" "https://registry.npmjs.org/json-stringify-safe/-/json-stringify-safe-5.0.1.tgz"
+  "version" "5.0.1"
+
+"json-stringify@^1.0.0":
+  "integrity" "sha512-cbfUVp5IMPNX2+WMSfHoQkpsa9ALbvNE6Mqpjrs7DEC7UwllBA2Rhil9lm6xqup9e3lC0zj3boIW5Cav48CGTQ=="
+  "resolved" "https://registry.npmjs.org/json-stringify/-/json-stringify-1.0.0.tgz"
+  "version" "1.0.0"
+  dependencies:
+    "json-stringify-safe" "^5.0.1"
+
 "json5@^1.0.1":
   "integrity" "sha512-aKS4WQjPenRxiQsC93MNfjx+nbF4PAdYzmd/1JIj8HYzqfbu86beTuNgXDzPknWk0n0uARlyewZo4s++ES36Ow=="
   "resolved" "https://registry.npmjs.org/json5/-/json5-1.0.1.tgz"
