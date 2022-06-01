@@ -3,12 +3,7 @@
   width: 85%;
   margin: auto;
 }
-.garden-background-wrapper {
-  height: 100%;
-  width: 80%;
-  margin: auto;
-  background-color: white;
-}
+
 .title-button-wrapper {
   padding-top: 30px;
   display: flex;
@@ -78,7 +73,7 @@ h1 {
 h3 {
   background-color: white;
   border-radius: 30px;
-  width: 30%;
+  width: 35%;
   padding: 10px;
   box-shadow: 0px 3px 5px 0px rgba(216, 231, 232, 1);
 }

@@ -12,3 +12,7 @@ h1 {
 .plant-list-title-wrapper {
   padding-top: 20px;
 }
+.quantity-buttons {
+  display: flex;
+  align-items: center;
+}
