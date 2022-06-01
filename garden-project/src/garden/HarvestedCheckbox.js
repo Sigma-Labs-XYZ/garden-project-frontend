@@ -3,13 +3,14 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useState } from "react";
 import React from "react";
+import { harvestPlant } from "../plants-info/PlantsNetworking";
 
 export default function HarvestedCheckbox(props) {
   let { name } = props.data;
   name = name.split(", ")[0];
   const [show, setShow] = useState(false);
   const [quantity, setQuantity] = useState(1);
-  const placeholderPlantID = 2;
+  const id = props.data.id;
   const handleClose = () => setShow(false);
   const handleShow = () => {
     const plantedCheckbox = document.getElementById("inline-checkbox-1");
@@ -19,11 +20,8 @@ export default function HarvestedCheckbox(props) {
       setShow(true);
     }
   };
-  const handleHarvest = async (plant_id, quantity) => {
-    await fetch("http://garden-project.sigmalabs.co.uk/harvest", {
-      method: "PUT",
-      body: { plant_id, quantity },
-    });
+  const handleHarvest = async plantID => {
+    harvestPlant(plantID);
     setShow(false);
   };
 
@@ -61,7 +59,7 @@ export default function HarvestedCheckbox(props) {
             variant="primary"
             onClick={e => {
               e.preventDefault();
-              handleHarvest(placeholderPlantID, quantity);
+              handleHarvest(id);
             }}
           >
             Harvest!

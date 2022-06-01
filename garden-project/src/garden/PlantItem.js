@@ -28,7 +28,7 @@ export default function PlantItem(props) {
         <h5>{name}</h5>
       </div>
       <div className="container-check-box">
-        <PlantedCheckbox data={props.data} id="inline-checkbox-1" />
+        <PlantedCheckbox data={props.data} id={`inline-checkbox-1`} />
         <HarvestedCheckbox data={props.data} id="inline-checkbox-2" />
       </div>
       <div className="container-remove-button">
