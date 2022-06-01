@@ -13,8 +13,8 @@ export default function HarvestedCheckbox(props) {
   const id = props.data.id;
   const handleClose = () => setShow(false);
   const handleShow = () => {
-    const plantedCheckbox = document.getElementById("inline-checkbox-1");
-    const harvestedCheckbox = document.getElementById("inline-checkbox-2");
+    const plantedCheckbox = document.getElementById(`inline-planted-checkbox-${id}`);
+    const harvestedCheckbox = document.getElementById(`inline-harvested-checkbox-${id}`);
 
     if (plantedCheckbox.checked && harvestedCheckbox.checked) {
       setShow(true);
@@ -34,7 +34,7 @@ export default function HarvestedCheckbox(props) {
           name="group2"
           onClick={handleShow}
           type={"checkbox"}
-          id={`inline-checkbox-2`}
+          id={`inline-harvested-checkbox-${id}`}
         />
       </Form>
 

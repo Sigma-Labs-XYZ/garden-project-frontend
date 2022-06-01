@@ -15,13 +15,13 @@ export default function PlantedCheckbox(props) {
 
   const handleClose = () => setShow(false);
   const handleShow = () => {
-    const plantedCheckbox = document.getElementById("inline-checkbox-1");
+    const plantedCheckbox = document.getElementById(`inline-planted-checkbox-${id}`);
     if (plantedCheckbox.checked) {
       setShow(true);
     }
   };
   const handlePlant = async (plantID, quantity, date) => {
-    plantPlant(id, quantity, date);
+    plantPlant(plantID, quantity, date);
     setShow(false);
   };
 
@@ -34,7 +34,7 @@ export default function PlantedCheckbox(props) {
           name="group1"
           onClick={handleShow}
           type={"checkbox"}
-          id={`inline-checkbox-1`}
+          id={`inline-planted-checkbox-${id}`}
         />
       </Form>
 
