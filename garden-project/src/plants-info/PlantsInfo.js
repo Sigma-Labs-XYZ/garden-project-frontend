@@ -1,4 +1,4 @@
-import { Accordion, Button, ListGroup } from "react-bootstrap";
+import { Accordion, Button, ListGroup, Stack } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./plants-info.css";
 
@@ -74,15 +74,17 @@ export default function PlantsInfo(props) {
             </div>
           </ListGroup.Item>
         </ListGroup>
-        <div className="d-flex justify-content-end">
-          <Button variant="info" type="submit">
-            {" "}
-            Add to Garden{" "}
-          </Button>
 
-          <Link to="/shopping-list">
-            <Button type="submit">Add to shopping list</Button>
-          </Link>
+        <div id="buttons" className="d-flex justify-content-end">
+          <Stack direction="horizontal" gap={3}>
+            <Button variant="info" type="submit">
+              {" "}
+              Add to Garden{" "}
+            </Button>
+            <Link to="/shopping-list">
+              <Button type="submit">Add to shopping list</Button>
+            </Link>
+          </Stack>
         </div>
       </Accordion.Body>
     </Accordion.Item>

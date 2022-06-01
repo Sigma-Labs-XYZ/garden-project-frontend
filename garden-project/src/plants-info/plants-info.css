@@ -16,3 +16,46 @@ h1 {
   display: flex;
   align-items: center;
 }
+.accordion {
+  border-color: transparent !important;
+}
+.accordion-button:focus {
+  z-index: 3;
+  border-color: white !important;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(176, 176, 176, 0.25) !important;
+  border-color: transparent !important;
+}
+.accordion-button:not(.collapsed) {
+  color: white !important;
+  background-color: #54bba1 !important;
+  box-shadow: inset 0 -1px 0 rgb(0 0 0 / 13%);
+}
+.accordion-collapse {
+  border-color: transparent !important;
+}
+.accordion-header {
+  border-color: transparent !important;
+}
+.list-group {
+  border: solid 1px !important;
+  border-color: rgb(233, 233, 233) !important;
+  border-radius: 30px !important;
+}
+
+.accordion-button {
+  border-radius: 30px !important;
+  border-color: transparent !important;
+}
+.accordion:not(:first-of-type):not(:last-of-type) {
+  border-bottom: none;
+  border-radius: none;
+}
+
+.accordion-item {
+  border: transparent !important;
+}
+
+#buttons {
+  padding-top: 20px;
+}
