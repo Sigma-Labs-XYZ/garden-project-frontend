@@ -10,7 +10,6 @@ export default function HarvestedCheckbox(props) {
   const [show, setShow] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const placeholderPlantID = 2;
-  console.log(name);
   const handleClose = () => setShow(false);
   const handleShow = () => {
     const plantedCheckbox = document.getElementById("inline-checkbox-1");
