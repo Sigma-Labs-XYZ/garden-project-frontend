@@ -1,4 +1,5 @@
 import { Accordion, Button, ListGroup } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import "./plants-info.css";
 
 export default function PlantsInfo(props) {
@@ -79,7 +80,9 @@ export default function PlantsInfo(props) {
             Add to Garden{" "}
           </Button>
 
-          <Button type="submit">Add to shopping list</Button>
+          <Link to="/shopping-list">
+            <Button type="submit">Add to shopping list</Button>
+          </Link>
         </div>
       </Accordion.Body>
     </Accordion.Item>
