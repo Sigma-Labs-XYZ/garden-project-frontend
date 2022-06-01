@@ -5,3 +5,9 @@ form {
   padding-top: 20px;
   padding-bottom: 20px;
 }
+.plant-list-title-wrapper {
+  padding-top: 20px;
+}
+h1 {
+  text-align: center;
+}
