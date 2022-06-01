@@ -3,7 +3,6 @@ import { Form, Button, Col, Row } from "react-bootstrap";
 export default function SearchForm() {
   return (
     <Form>
-      <h1>Plant List</h1>
       <Row className="d-flex justify-content-center">
         {" "}
         <Col xs={6}>
