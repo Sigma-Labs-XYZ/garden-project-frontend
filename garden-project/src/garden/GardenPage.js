@@ -3,8 +3,29 @@ import Stack from "react-bootstrap/Stack";
 import "./garden.css";
 import PlantItem from "./PlantItem";
 import ListGroup from "react-bootstrap/ListGroup";
+import { fetchGardenInfo } from "./GardenNetworking";
+import { useState, useEffect } from "react";
 
 export default function GardenPage() {
+  const [gardenInfo, setGardenInfo] = useState([]);
+
+  useEffect(() => {
+    async function getData() {
+      await fetchInfo();
+    }
+    getData();
+  }, []);
+
+  async function fetchInfo() {
+    const gardenData = await fetchGardenInfo(1); //placeholder number
+    setGardenInfo(gardenData);
+  }
+
+  function printGardenPlants() {
+    return gardenInfo.map((plant, i) => {
+      return <PlantItem key={i} data={plant} />;
+    });
+  }
   return (
     <div className="garden-page-wrapper">
       <Stack direction="vertical" gap={3}>
@@ -19,9 +40,7 @@ export default function GardenPage() {
 
         <div className="plant-items-wrapper">
           <h3 shadow-sm> What's in your garden... </h3>
-          <ListGroup variant="flush">
-            <PlantItem />
-          </ListGroup>
+          <ListGroup variant="flush">{printGardenPlants()}</ListGroup>
         </div>
         <div className="calendar-button">
           <Button variant="info">View calendar</Button>

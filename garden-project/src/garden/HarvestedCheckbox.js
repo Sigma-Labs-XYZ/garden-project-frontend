@@ -4,12 +4,12 @@ import Form from "react-bootstrap/Form";
 import { useState } from "react";
 import React from "react";
 
-export default function HarvestedCheckbox() {
+export default function HarvestedCheckbox(props) {
+  let { name } = props.data;
+  name = name.split(", ")[0];
   const [show, setShow] = useState(false);
   const [quantity, setQuantity] = useState(1);
-
   const placeholderPlantID = 2;
-
   const handleClose = () => setShow(false);
   const handleShow = () => {
     const plantedCheckbox = document.getElementById("inline-checkbox-1");
@@ -28,29 +28,27 @@ export default function HarvestedCheckbox() {
   return (
     <div>
       <Form>
-        <div className="mb-3">
-          <Form.Check
-            inline
-            label="harvested"
-            name="group2"
-            onClick={handleShow}
-            type={"checkbox"}
-            id={`inline-checkbox-2`}
-          />
-        </div>
+        <Form.Check
+          inline
+          label="harvested"
+          name="group2"
+          onClick={handleShow}
+          type={"checkbox"}
+          id={`inline-checkbox-2`}
+        />
       </Form>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Harvest your *plant-name*</Modal.Title>
+          <Modal.Title>Harvest your {name}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             <Form.Group className="mb-3" controlId="formQuantity">
-              <Form.Label>How many *plant-name* are you harvesting?</Form.Label>
+              <Form.Label>How many {name} are you harvesting?</Form.Label>
               <Form.Control
                 type="quantity"
-                onChange={event => setQuantity(event.target.value)}
+                onChange={(event) => setQuantity(event.target.value)}
                 placeholder="*current quantity*"
               />
             </Form.Group>
@@ -59,7 +57,7 @@ export default function HarvestedCheckbox() {
         <Modal.Footer>
           <Button
             variant="primary"
-            onClick={e => {
+            onClick={(e) => {
               e.preventDefault();
               handleHarvest(placeholderPlantID, quantity);
             }}
