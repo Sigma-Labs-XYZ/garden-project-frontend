@@ -13,7 +13,9 @@ export default function HarvestedCheckbox(props) {
   const handleClose = () => setShow(false);
   const handleShow = () => {
     const plantedCheckbox = document.getElementById("inline-checkbox-1");
-    if (plantedCheckbox.checked) {
+    const harvestedCheckbox = document.getElementById("inline-checkbox-2");
+
+    if (plantedCheckbox.checked && harvestedCheckbox.checked) {
       setShow(true);
     }
   };
@@ -48,7 +50,7 @@ export default function HarvestedCheckbox(props) {
               <Form.Label>How many {name} are you harvesting?</Form.Label>
               <Form.Control
                 type="quantity"
-                onChange={(event) => setQuantity(event.target.value)}
+                onChange={event => setQuantity(event.target.value)}
                 placeholder="*current quantity*"
               />
             </Form.Group>
@@ -57,7 +59,7 @@ export default function HarvestedCheckbox(props) {
         <Modal.Footer>
           <Button
             variant="primary"
-            onClick={(e) => {
+            onClick={e => {
               e.preventDefault();
               handleHarvest(placeholderPlantID, quantity);
             }}
