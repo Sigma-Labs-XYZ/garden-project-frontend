@@ -4,11 +4,12 @@ import Form from "react-bootstrap/Form";
 import { useState } from "react";
 import React from "react";
 
-export default function PlantedCheckbox() {
+export default function PlantedCheckbox(props) {
   const [show, setShow] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [date, setDate] = useState(new Date());
-
+  let { name } = props.data;
+  name = name.split(", ")[0];
   const placeholderPlantID = 2;
 
   const handleClose = () => setShow(false);
@@ -29,29 +30,27 @@ export default function PlantedCheckbox() {
   return (
     <div>
       <Form>
-        <div className="mb-3">
-          <Form.Check
-            inline
-            label="planted"
-            name="group1"
-            onClick={handleShow}
-            type={"checkbox"}
-            id={`inline-checkbox-1`}
-          />
-        </div>
+        <Form.Check
+          inline
+          label="planted"
+          name="group1"
+          onClick={handleShow}
+          type={"checkbox"}
+          id={`inline-checkbox-1`}
+        />
       </Form>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Plant your *plant-name*</Modal.Title>
+          <Modal.Title>Plant your {name}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             <Form.Group className="mb-3" controlId="formDatePlanted">
-              <Form.Label>When did you plant your *plant-name*</Form.Label>
+              <Form.Label>When did you plant your {name}?</Form.Label>
               <Form.Control
                 type="datePlanted"
-                onChange={event => setDate(event.target.value)}
+                onChange={(event) => setDate(event.target.value)}
                 placeholder="TODO: make this a multiple select"
               />
             </Form.Group>
@@ -60,7 +59,7 @@ export default function PlantedCheckbox() {
               <Form.Label>How many did you plant?</Form.Label>
               <Form.Control
                 type="quantity"
-                onChange={event => setQuantity(event.target.value)}
+                onChange={(event) => setQuantity(event.target.value)}
                 placeholder="*current quantity*"
               />
             </Form.Group>
@@ -69,7 +68,7 @@ export default function PlantedCheckbox() {
         <Modal.Footer>
           <Button
             variant="primary"
-            onClick={e => {
+            onClick={(e) => {
               e.preventDefault();
               handlePlant(placeholderPlantID, quantity, date);
             }}
