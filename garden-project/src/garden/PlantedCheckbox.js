@@ -20,7 +20,7 @@ export default function PlantedCheckbox(props) {
     }
   };
   const handlePlant = async (plant_id, quantity, date) => {
-    await fetch("http://garden-project.sigmalabs.co.uk/plant-plant-in-garden", {
+    await fetch("http://garden-project.sigmalabs.co.uk/update-plant-status", {
       method: "POST",
       body: { plant_id, quantity, date },
     });
@@ -50,7 +50,7 @@ export default function PlantedCheckbox(props) {
               <Form.Label>When did you plant your {name}?</Form.Label>
               <Form.Control
                 type="datePlanted"
-                onChange={(event) => setDate(event.target.value)}
+                onChange={event => setDate(event.target.value)}
                 placeholder="TODO: make this a multiple select"
               />
             </Form.Group>
@@ -59,7 +59,7 @@ export default function PlantedCheckbox(props) {
               <Form.Label>How many did you plant?</Form.Label>
               <Form.Control
                 type="quantity"
-                onChange={(event) => setQuantity(event.target.value)}
+                onChange={event => setQuantity(event.target.value)}
                 placeholder="*current quantity*"
               />
             </Form.Group>
@@ -68,7 +68,7 @@ export default function PlantedCheckbox(props) {
         <Modal.Footer>
           <Button
             variant="primary"
-            onClick={(e) => {
+            onClick={e => {
               e.preventDefault();
               handlePlant(placeholderPlantID, quantity, date);
             }}
