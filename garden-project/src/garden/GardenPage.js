@@ -6,6 +6,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import { fetchGardenInfo } from "./GardenNetworking";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import EditGardenForm from "./EditGardenForm";
 
 export default function GardenPage() {
   const [gardenInfo, setGardenInfo] = useState([]);
@@ -49,6 +50,9 @@ export default function GardenPage() {
         </div>
         <div className="calendar-button">
           <Button variant="info">View calendar</Button>
+        </div>
+        <div className="edit-garden-button">
+          <EditGardenForm />
         </div>
       </Stack>
     </div>

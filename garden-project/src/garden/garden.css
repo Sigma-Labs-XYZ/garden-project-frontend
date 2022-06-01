@@ -64,6 +64,11 @@
   display: flex;
   justify-content: center;
 }
+.edit-garden-button {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 30px;
+}
 h1 {
   background-color: white;
   width: 30%;

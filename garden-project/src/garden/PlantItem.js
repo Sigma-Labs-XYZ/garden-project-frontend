@@ -2,7 +2,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Stack from "react-bootstrap/Stack";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import PlantedCheckbox from "./PlantedCheckbox";
 import HarvestedCheckbox from "./HarvestedCheckbox";
 import { deletePlant } from "./GardenNetworking";
@@ -28,8 +28,8 @@ export default function PlantItem(props) {
         <h5>{name}</h5>
       </div>
       <div className="container-check-box">
-        <PlantedCheckbox data={props.data} id="inline-checkbox-1" />
-        <HarvestedCheckbox data={props.data} id="inline-checkbox-2" />
+        <PlantedCheckbox data={props.data} id={`inline-planted-checkbox-${props.data.id}`} />
+        <HarvestedCheckbox data={props.data} id={`inline-harvested-checkbox-${props.data.id}`} />
       </div>
       <div className="container-remove-button">
         <Button variant="outline-danger" onClick={handleShow}>
