@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useState } from "react";
 import React from "react";
+import { plantPlant } from "../plants-info/PlantsNetworking";
 
 export default function PlantedCheckbox(props) {
   const [show, setShow] = useState(false);
@@ -10,20 +11,17 @@ export default function PlantedCheckbox(props) {
   const [date, setDate] = useState(new Date());
   let { name } = props.data;
   name = name.split(", ")[0];
-  const placeholderPlantID = 2;
+  const id = props.data.id;
 
   const handleClose = () => setShow(false);
   const handleShow = () => {
-    const plantedCheckbox = document.getElementById("inline-checkbox-1");
+    const plantedCheckbox = document.getElementById(`inline-planted-checkbox-${id}`);
     if (plantedCheckbox.checked) {
       setShow(true);
     }
   };
-  const handlePlant = async (plant_id, quantity, date) => {
-    await fetch("http://garden-project.sigmalabs.co.uk/update-plant-status", {
-      method: "POST", // TODO: change to put after everyone's merged, pulled etc.
-      body: { plant_id, quantity, date },
-    });
+  const handlePlant = async (plantID, quantity, date) => {
+    plantPlant(plantID, quantity, date);
     setShow(false);
   };
 
@@ -36,7 +34,7 @@ export default function PlantedCheckbox(props) {
           name="group1"
           onClick={handleShow}
           type={"checkbox"}
-          id={`inline-checkbox-1`}
+          id={`inline-planted-checkbox-${id}`}
         />
       </Form>
 
@@ -70,7 +68,7 @@ export default function PlantedCheckbox(props) {
             variant="primary"
             onClick={e => {
               e.preventDefault();
-              handlePlant(placeholderPlantID, quantity, date);
+              handlePlant(id, quantity, date);
             }}
           >
             Sow seeds!
