@@ -21,7 +21,7 @@ export default function PlantedCheckbox(props) {
   };
   const handlePlant = async (plant_id, quantity, date) => {
     await fetch("http://garden-project.sigmalabs.co.uk/update-plant-status", {
-      method: "POST",
+      method: "POST", // TODO: change to put after everyone's merged, pulled etc.
       body: { plant_id, quantity, date },
     });
     setShow(false);

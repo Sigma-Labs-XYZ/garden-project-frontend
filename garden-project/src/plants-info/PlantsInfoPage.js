@@ -27,6 +27,9 @@ export default function PlantsInfoPage() {
   return (
     <div>
       <Container>
+        <div className="plant-list-title-wrapper">
+          <h1>Plant List</h1>
+        </div>
         <SearchForm className="align-items-center" />
         <Accordion defaultActiveKey="0" flush>
           {printPlantList()}

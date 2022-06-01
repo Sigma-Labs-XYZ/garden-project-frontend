@@ -1,13 +1,26 @@
 import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import Stack from "react-bootstrap/Stack";
+import { useState } from "react";
 import PlantedCheckbox from "./PlantedCheckbox";
 import HarvestedCheckbox from "./HarvestedCheckbox";
+import { deletePlant } from "./GardenNetworking";
 
 export default function PlantItem(props) {
-  let { name, planted_at, harvested, estimated_harvest_date, quantity } =
-    props.data;
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  let { name, id } = props.data;
 
   name = name.split(", ")[0];
+
+  async function handleDelete() {
+    await deletePlant(id);
+    setShow(false);
+    props.setRemove(true);
+  }
 
   return (
     <ListGroup.Item>
@@ -19,7 +32,23 @@ export default function PlantItem(props) {
         <HarvestedCheckbox data={props.data} id="inline-checkbox-2" />
       </div>
       <div className="container-remove-button">
-        <Button variant="outline-danger">remove</Button>
+        <Button variant="outline-danger" onClick={handleShow}>
+          {" "}
+          remove
+        </Button>
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Body>
+            <p> Are you sure you want to delete this plant?</p>
+            <Stack direction="horizontal" gap={3}>
+              <Button variant="outline-danger" onClick={handleDelete}>
+                Delete
+              </Button>
+              <Button variant="primary" onClick={handleClose}>
+                No I'll keep it
+              </Button>
+            </Stack>
+          </Modal.Body>
+        </Modal>
       </div>
     </ListGroup.Item>
   );

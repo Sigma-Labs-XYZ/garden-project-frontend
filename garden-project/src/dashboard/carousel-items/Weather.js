@@ -49,7 +49,7 @@ export default function Weather() {
   return (
     <div>
       <h3>The forecast in {city}:</h3>
-      <h4>{displayWeatherData()}</h4>
+      {displayWeatherData()}
     </div>
   );
 }
