@@ -92,16 +92,6 @@ export default function PlantsInfo(props) {
               <Button type="submit">Add to shopping list</Button>
             </Link>
           </Stack>
-
-          <div className="d-flex justify-content-end">
-            <Button variant="info" type="button" onClick={handleAddToGarden}>
-              Add to Garden
-            </Button>
-
-            <Link to="/shopping-list">
-              <Button type="button">Add to shopping list</Button>
-            </Link>
-          </div>
         </div>
       </Accordion.Body>
     </Accordion.Item>
