@@ -2,7 +2,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Stack from "react-bootstrap/Stack";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import PlantedCheckbox from "./PlantedCheckbox";
 import HarvestedCheckbox from "./HarvestedCheckbox";
 import { deletePlant } from "./GardenNetworking";
