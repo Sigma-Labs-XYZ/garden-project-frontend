@@ -1,3 +1,7 @@
 export default function Tips() {
-  return <h1>The tip of the day is:</h1>;
+  return (
+    <div className="tips-slide">
+      <h1>The tip of the day is:</h1>
+    </div>
+  );
 }
