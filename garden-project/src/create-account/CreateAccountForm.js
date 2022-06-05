@@ -27,12 +27,13 @@ export default function CreateAccountForm() {
     );
   }
   return (
-    <Container>
+    <div className="create-account-container">
       <h1>Website name</h1>
       <h2>Welcome</h2>
-      <h4> Create an account</h4>
-      <Form>
+
+      <Form className="create-account-form">
         <Form.Group className="mb-3" controlId="formBasicEmail">
+          <h4 className="create-account-title"> Create an account</h4>
           <Form.Label>Username</Form.Label>
           <Form.Control
             type="username"
@@ -86,6 +87,6 @@ export default function CreateAccountForm() {
           </Stack>
         </div>
       </Form>
-    </Container>
+    </div>
   );
 }

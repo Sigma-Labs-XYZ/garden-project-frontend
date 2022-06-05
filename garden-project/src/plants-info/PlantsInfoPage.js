@@ -34,6 +34,7 @@ export default function PlantsInfoPage() {
           <h1 id="plant-list-h1">Plant List</h1>
         </div>
         <SearchForm className="align-items-center" />
+
         <Accordion defaultActiveKey="0">{printPlantList()}</Accordion>
       </Container>
     </div>
