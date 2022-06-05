@@ -28,11 +28,9 @@ export default function PlantItem(props) {
     <ListGroup.Item>
       <div className="container-title">
         <HashLink to={`/plants-info#${plant_info_id}`}>
-          {" "}
           <h5> {name}</h5>
         </HashLink>
       </div>
-
       <div className="container-check-box">
         <PlantedCheckbox
           data={props.data}
