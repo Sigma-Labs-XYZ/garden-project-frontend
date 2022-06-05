@@ -1,4 +1,4 @@
-import { Accordion, Button, ListGroup, Stack } from "react-bootstrap";
+import { Accordion, Button, ListGroup, Stack, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./plants-info.css";
 import { addPlantToGarden } from "./PlantsNetworking";
@@ -84,9 +84,8 @@ export default function PlantsInfo(props) {
 
         <div id="buttons" className="d-flex justify-content-end">
           <Stack direction="horizontal" gap={3}>
-            <Button variant="info" type="submit">
-              {" "}
-              Add to Garden{" "}
+            <Button variant="info" type="submit" onClick={handleAddToGarden}>
+              Add to Garden
             </Button>
             <Link to="/shopping-list">
               <Button type="submit">Add to shopping list</Button>
