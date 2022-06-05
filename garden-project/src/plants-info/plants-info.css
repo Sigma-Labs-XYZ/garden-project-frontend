@@ -61,4 +61,8 @@ h1 {
 }
 a {
   color: #0f4c48 !important;
+  text-decoration: none !important;
+}
+a:hover {
+  text-decoration: underline !important;
 }
