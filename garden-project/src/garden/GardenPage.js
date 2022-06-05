@@ -7,6 +7,7 @@ import { fetchGardenInfo } from "./GardenNetworking";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import EditGardenForm from "./EditGardenForm";
+import Header from "../Header";
 
 export default function GardenPage() {
   const [gardenInfo, setGardenInfo] = useState([]);
@@ -31,30 +32,33 @@ export default function GardenPage() {
     });
   }
   return (
-    <div className="garden-page-wrapper">
-      <Stack direction="vertical" gap={3}>
-        <div className="title-button-wrapper">
-          <h1>Garden name</h1>
+    <div>
+      <div className="header-container">{<Header />}</div>
+      <div className="garden-page-wrapper">
+        <Stack direction="vertical" gap={3}>
+          <div className="title-button-wrapper">
+            <h1 id="garden-h1">Garden name</h1>
 
-          <Stack direction="horizontal" gap={3} className="buttons">
-            <Link to="/plants-info">
-              <Button variant="info">Add plants to garden</Button>
-            </Link>
-            <Button variant="info">View shopping list</Button>
-          </Stack>
-        </div>
+            <Stack direction="horizontal" gap={3} className="buttons">
+              <Link to="/plants-info">
+                <Button variant="info">Add plants to garden</Button>
+              </Link>
+              <Button variant="info">View shopping list</Button>
+            </Stack>
+          </div>
 
-        <div className="plant-items-wrapper">
-          <h3 shadow-sm> What's in your garden... </h3>
-          <ListGroup variant="flush">{printGardenPlants()}</ListGroup>
-        </div>
-        <div className="calendar-button">
-          <Button variant="info">View calendar</Button>
-        </div>
-        <div className="edit-garden-button">
-          <EditGardenForm />
-        </div>
-      </Stack>
+          <div className="plant-items-wrapper">
+            <h3 shadow-sm> What's in your garden... </h3>
+            <ListGroup variant="flush">{printGardenPlants()}</ListGroup>
+          </div>
+          <div className="calendar-button">
+            <Button variant="info">View calendar</Button>
+          </div>
+          <div className="edit-garden-button">
+            <EditGardenForm />
+          </div>
+        </Stack>
+      </div>
     </div>
   );
 }

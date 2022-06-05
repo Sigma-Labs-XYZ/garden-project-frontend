@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import PlantsInfo from "./PlantsInfo";
 import SearchForm from "./SearchForm";
 import "./plants-info.css";
+import Header from "../Header";
 
 export default function PlantsInfoPage() {
   const [plantInfo, setPlantInfo] = useState([]);
@@ -25,10 +26,12 @@ export default function PlantsInfoPage() {
     });
   }
   return (
-    <div>
+    <div className="header-container">
+      {<Header />}
+
       <Container>
         <div className="plant-list-title-wrapper">
-          <h1>Plant List</h1>
+          <h1 id="plant-list-h1">Plant List</h1>
         </div>
         <SearchForm className="align-items-center" />
         <Accordion defaultActiveKey="0">{printPlantList()}</Accordion>

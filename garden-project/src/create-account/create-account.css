@@ -1,0 +1,26 @@
+.create-account-wrapper {
+  height: 100%;
+  margin: auto;
+  width: 80%;
+}
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+form {
+  width: 400px;
+}
+#inlineFormInput {
+  background-color: white;
+}
+#formBasicEmail {
+  background-color: white;
+}
+
+#formBasicPassword {
+  background-color: white;
+}
