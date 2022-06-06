@@ -1,5 +1,5 @@
 import { Container, Accordion } from "react-bootstrap";
-import { fetchPlantInfo, searchFilter } from "./PlantsNetworking";
+import { fetchPlantInfo } from "./PlantsNetworking";
 import { useState, useEffect } from "react";
 import PlantsInfo from "./PlantsInfo";
 import SearchForm from "./SearchForm";
@@ -38,11 +38,7 @@ export default function PlantsInfoPage() {
           <h1 id="plant-list-h1">Plant List</h1>
         </div>
 
-        <SearchForm
-          className="align-items-center"
-          searchFilter={searchFilter}
-          getFilterPlants={getFilterPlants}
-        />
+        <SearchForm className="align-items-center" getFilterPlants={getFilterPlants} />
         <Accordion defaultActiveKey="0" flush>
           {printPlantList()}
         </Accordion>
