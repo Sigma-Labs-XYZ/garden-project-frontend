@@ -88,7 +88,7 @@ export default function PlantsInfo(props) {
         </ListGroup>
 
         <div id="buttons" className="d-flex justify-content-end">
-          <Stack direction="horizontal" gap={3}>
+          <Stack className="button-stack" direction="horizontal" gap={3}>
             <Button variant="info" type="submit" onClick={handleAddToGarden}>
               Add to Garden
             </Button>

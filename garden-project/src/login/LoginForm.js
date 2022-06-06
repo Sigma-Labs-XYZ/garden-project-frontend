@@ -45,7 +45,7 @@ export default function LoginForm() {
           <Form.Control type="password" placeholder="Password" />
         </Form.Group>
         <Stack direction="vertical" gap={3}>
-          <Button variant="info" type="submit">
+          <Button className="login-btn" variant="info" type="submit">
             Login
           </Button>
           <p id="or">or</p>
