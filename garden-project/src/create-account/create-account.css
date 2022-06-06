@@ -1,0 +1,34 @@
+.create-account-wrapper {
+  height: 100%;
+  margin: auto;
+  width: 80%;
+}
+.create-account-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+.create-account-form {
+  width: 400px;
+  background-color: #c9e7e9;
+  padding: 20px;
+  border: 1px solid #b2d3d5;
+  border-radius: 20px;
+  box-shadow: 0 0 0 0.25rem rgba(210, 210, 210, 0.25) !important;
+}
+#inlineFormInput {
+  background-color: white;
+}
+#formBasicEmail {
+  background-color: white;
+}
+
+#formBasicPassword {
+  background-color: white;
+}
+.create-account-title {
+  text-align: center;
+}
