@@ -5,7 +5,6 @@ export async function fetchPlantInfo() {
 }
 
 export async function addPlantToGarden(plantInfoID, gardenID) {
-  console.log(plantInfoID, gardenID);
   const response = await fetch(
     "http://garden-project.sigmalabs.co.uk/new-plant",
     {

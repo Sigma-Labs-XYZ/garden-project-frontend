@@ -1,9 +1,15 @@
-import { Accordion, Button, ListGroup, Stack, Alert } from "react-bootstrap";
+import { Accordion, Button, ListGroup, Stack, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./plants-info.css";
 import { addPlantToGarden } from "./PlantsNetworking";
+import { useState } from "react";
 
 export default function PlantsInfo(props) {
+  const [show, setShow] = useState(false);
+  const [avoid, setAvoid] = useState();
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   const {
     id,
     name,
@@ -18,11 +24,17 @@ export default function PlantsInfo(props) {
   async function handleAddToGarden() {
     const gardenID = 1; // TEST VALUE: to be derived from session data in future
     await addPlantToGarden(id, gardenID);
+    setAvoid(props.checkAvoidInstructions(props.index));
+    console.log(avoid);
+    if (avoid.length) {
+      handleShow();
+    }
   }
 
   return (
     <Accordion.Item eventKey={props.activeKey}>
       <Accordion.Header>
+        <h1>{props.gardenID} </h1>
         <div className="link-to-plants" id={id}>
           {" "}
           {name}{" "}
@@ -97,6 +109,20 @@ export default function PlantsInfo(props) {
             </Link>
           </Stack>
         </div>
+
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Body>
+            Be careful, don't grow these near your: {avoid}!
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant="primary" onClick={handleClose}>
+              Save Changes
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </Accordion.Body>
     </Accordion.Item>
   );
