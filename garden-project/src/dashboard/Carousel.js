@@ -6,20 +6,17 @@ import "./dashboard.css";
 
 export default function CarouselForDashboard() {
   return (
-    <Carousel>
+    <Carousel className="carousel-mother">
       <Carousel.Item className="carousel">
         <Weather />
-        <Carousel.Caption></Carousel.Caption>
       </Carousel.Item>
 
       <Carousel.Item className="carousel">
         <Tips />
-        <Carousel.Caption></Carousel.Caption>
       </Carousel.Item>
 
       <Carousel.Item className="carousel">
         <Notices />
-        <Carousel.Caption></Carousel.Caption>
       </Carousel.Item>
     </Carousel>
   );

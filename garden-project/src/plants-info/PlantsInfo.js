@@ -31,55 +31,41 @@ export default function PlantsInfo(props) {
       {/* Make this into bold text*/}
       <Accordion.Body>
         <ListGroup as="ol">
-          <ListGroup.Item
-            as="li"
-            className="d-flex justify-content-between align-items-start"
-          >
+          <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start">
             <div className="ms-2 me-auto">
               <div className="fw-bold">Sowing instructions</div>
               {sow_instructions}
             </div>
           </ListGroup.Item>
-          <ListGroup.Item
-            as="li"
-            className="d-flex justify-content-between align-items-start"
-          >
+          <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start">
             <div className="ms-2 me-auto">
               <div className="fw-bold">Spacing instructions</div>
               {space_instructions}
             </div>
           </ListGroup.Item>
-          <ListGroup.Item
-            as="li"
-            className="d-flex justify-content-between align-items-start"
-          >
+          <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start">
             <div className="ms-2 me-auto">
               <div className="fw-bold">Harvest instructions</div>
               {harvest_instructions}
             </div>
           </ListGroup.Item>
-          <ListGroup.Item
-            as="li"
-            className="d-flex justify-content-between align-items-start"
-          >
-            <div className="ms-2 me-auto">
-              <div className="fw-bold">Compatible plants</div>
-              {compatible_plants}
-            </div>
-          </ListGroup.Item>
-          <ListGroup.Item
-            as="li"
-            className="d-flex justify-content-between align-items-start"
-          >
-            <div className="ms-2 me-auto">
-              <div className="fw-bold">Avoid instructions</div>
-              {avoid_instructions}
-            </div>
-          </ListGroup.Item>
-          <ListGroup.Item
-            as="li"
-            className="d-flex justify-content-between align-items-start"
-          >
+          {compatible_plants && (
+            <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start">
+              <div className="ms-2 me-auto">
+                <div className="fw-bold">Compatible plants</div>
+                {compatible_plants}
+              </div>
+            </ListGroup.Item>
+          )}
+          {avoid_instructions && (
+            <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start">
+              <div className="ms-2 me-auto">
+                <div className="fw-bold">Avoid instructions</div>
+                {avoid_instructions}
+              </div>
+            </ListGroup.Item>
+          )}
+          <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start">
             <div className="ms-2 me-auto">
               <div className="fw-bold">Culinary hints</div>
               {culinary_hints}
