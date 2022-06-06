@@ -64,6 +64,7 @@ export default function SearchForm(props) {
             />
             <datalist id="harvestPeriodOptions">
               <option value="< 4 Weeks" />
+              <option value="< 6 Weeks" />
               <option value="< 8 Weeks" />
               <option value="< 12 Weeks" />
               <option value="< 16 Weeks" />
