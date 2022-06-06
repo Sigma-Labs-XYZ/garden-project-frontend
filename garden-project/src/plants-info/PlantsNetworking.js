@@ -1,7 +1,25 @@
 export async function fetchPlantInfo(name, classification = undefined, sowingSeason = undefined) {
   let path = "http://garden-project.sigmalabs.co.uk/plants";
-  if (name) path += `?name=${name}`;
+
+  let firstFilterAdded = false;
+  const addFilterChar = () => {
+    if (!firstFilterAdded) {
+      path += "?";
+      firstFilterAdded = true;
+    } else path += "&";
+  };
+
+  if (name) {
+    addFilterChar();
+    path += `name=${name}`;
+  }
+  if (classification) {
+    addFilterChar();
+    path += `classification=${classification}`;
+  }
+
   console.log(path);
+
   const response = await fetch(path);
   const data = await response.json();
   return data;
