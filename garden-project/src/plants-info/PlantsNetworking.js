@@ -5,17 +5,27 @@ export async function fetchPlantInfo() {
 }
 
 export async function addPlantToGarden(plantInfoID, gardenID) {
-  await fetch("http://garden-project.sigmalabs.co.uk/new-plant", {
-    method: "POST",
-    headers: { "Access-Control-Allow-Origin": "*", "Content-Type": "application/json" },
-    body: JSON.stringify({ plantInfoID, gardenID }),
-  });
+  console.log(plantInfoID, gardenID);
+  const response = await fetch(
+    "http://garden-project.sigmalabs.co.uk/new-plant",
+    {
+      method: "POST",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ plantInfoID, gardenID }),
+    }
+  );
 }
 
 export async function harvestPlant(plantID) {
   await fetch("http://garden-project.sigmalabs.co.uk/harvest", {
     method: "PATCH",
-    headers: { "Access-Control-Allow-Origin": "*", "Content-Type": "application/json" },
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify({ plantID }),
   });
 }
@@ -23,7 +33,18 @@ export async function harvestPlant(plantID) {
 export async function plantPlant(plantID, quantity, date) {
   await fetch("http://garden-project.sigmalabs.co.uk/update-plant-status", {
     method: "PATCH",
-    headers: { "Access-Control-Allow-Origin": "*", "Content-Type": "application/json" },
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify({ plantID, quantity, date }),
   });
+}
+
+export async function searchFilter(name) {
+  const response = await fetch(
+    `http://garden-project.sigmalabs.co.uk/plants?name=${name}`
+  );
+  const json = response.json();
+  return json;
 }

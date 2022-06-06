@@ -6,13 +6,15 @@ import { useState } from "react";
 import PlantedCheckbox from "./PlantedCheckbox";
 import HarvestedCheckbox from "./HarvestedCheckbox";
 import { deletePlant } from "./GardenNetworking";
+import { Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 
 export default function PlantItem(props) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  let { name, id } = props.data;
+  let { name, id, plant_info_id } = props.data;
 
   name = name.split(", ")[0];
 
@@ -25,11 +27,19 @@ export default function PlantItem(props) {
   return (
     <ListGroup.Item>
       <div className="container-title">
-        <h5>{name}</h5>
+        <HashLink to={`/plants-info#${plant_info_id}`}>
+          <h5> {name}</h5>
+        </HashLink>
       </div>
       <div className="container-check-box">
-        <PlantedCheckbox data={props.data} id={`inline-planted-checkbox-${props.data.id}`} />
-        <HarvestedCheckbox data={props.data} id={`inline-harvested-checkbox-${props.data.id}`} />
+        <PlantedCheckbox
+          data={props.data}
+          id={`inline-planted-checkbox-${props.data.id}`}
+        />
+        <HarvestedCheckbox
+          data={props.data}
+          id={`inline-harvested-checkbox-${props.data.id}`}
+        />
       </div>
       <div className="container-remove-button">
         <Button variant="outline-danger" onClick={handleShow}>
