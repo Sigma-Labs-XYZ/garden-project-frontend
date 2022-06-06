@@ -1,4 +1,9 @@
-export async function fetchPlantInfo(name, classification = undefined, timeUntilHarvest = undefined) {
+export async function fetchPlantInfo(
+  name,
+  classification = undefined,
+  timeUntilHarvest = undefined,
+  spacing = undefined
+) {
   let path = "http://garden-project.sigmalabs.co.uk/plants";
 
   let firstFilterAdded = false;
@@ -20,6 +25,10 @@ export async function fetchPlantInfo(name, classification = undefined, timeUntil
   if (timeUntilHarvest) {
     addFilterChar();
     path += `timeUntilHarvest=${timeUntilHarvest}`;
+  }
+  if (spacing) {
+    addFilterChar();
+    path += `spacing=${spacing}`;
   }
 
   console.log(path);

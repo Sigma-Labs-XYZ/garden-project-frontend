@@ -6,10 +6,11 @@ export default function SearchForm(props) {
   const [name, setName] = useState("");
   const [classification, setClassification] = useState(undefined);
   const [timeUntilHarvest, setTimeUntilHarvest] = useState(undefined);
+  const [spacing, setSpacing] = useState(undefined);
   const [err, setErr] = useState(false);
 
   async function handleSearchFilter(e) {
-    const result = await fetchPlantInfo(name, classification, timeUntilHarvest);
+    const result = await fetchPlantInfo(name, classification, timeUntilHarvest, spacing);
     if (result.length > 0) {
       console.log(result);
       setErr(false);
@@ -68,6 +69,25 @@ export default function SearchForm(props) {
               <option value="< 16 Weeks" />
               <option value="< 24 Weeks" />
               <option value="> 24 Weeks" />
+            </datalist>
+          </div>
+          <div>
+            <input
+              class="form-control"
+              list="spacingOptions"
+              id="spacingList"
+              onChange={e => {
+                let desiredSpacing = e.target.value.replace(/[^0-9]/g, "");
+                if (e.target.value[0] === ">") desiredSpacing = "g" + desiredSpacing;
+                setSpacing(desiredSpacing);
+              }}
+              placeholder="Search by how close together plants can be sown..."
+            />
+            <datalist id="spacingOptions">
+              <option value='< 12" apart' />
+              <option value='< 24" apart' />
+              <option value='< 36" apart' />
+              <option value='> 36" apart' />
             </datalist>
           </div>
         </Col>
