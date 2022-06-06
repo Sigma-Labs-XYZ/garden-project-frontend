@@ -2,12 +2,10 @@ import React, { useState, useEffect } from "react";
 
 export default function Weather() {
   const [forecastData, setForecastData] = useState([]);
-  const [gardenData, setGardenData] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
       await fetchLocationOfUser(1); // hardcoded at the moment
-      await fetchWeatherData();
     }
     fetchData();
   }, []);
@@ -15,21 +13,21 @@ export default function Weather() {
   async function fetchLocationOfUser(id) {
     const response = await fetch(`http://localhost:8080/gardens/${id}`); //need to change once backend is pushed to heroku
     const data = await response.json();
-    await setGardenData(data);
+    await fetchWeatherData(data);
   }
 
-  async function fetchWeatherData() {
+  async function fetchWeatherData(gardenData) {
     const forecastForEachGarden = [];
-    gardenData.forEach(async (garden) => {
+    for (let garden of gardenData) {
       const response = await fetch(
         `https://goweather.herokuapp.com/weather/${garden.location}`
       );
       const data = await response.json();
       const forecastObject = { city: garden.location, forecast: data };
       forecastForEachGarden.push(forecastObject);
-    });
+    }
+
     await setForecastData(forecastForEachGarden);
-    console.log(forecastData);
   }
 
   function getTwoDaysLater() {
