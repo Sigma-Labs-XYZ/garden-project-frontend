@@ -61,6 +61,14 @@ h1 {
 #buttons {
   padding-top: 20px;
 }
+
+a {
+  color: #0f4c48 !important;
+  text-decoration: none !important;
+}
+a:hover {
+  text-decoration: underline !important;
+
 #plant-list-h1 {
   background-color: white;
   width: 30%;
@@ -69,4 +77,5 @@ h1 {
   border-radius: 30px;
   padding: 10px;
   box-shadow: 0px 3px 5px 0px rgba(216, 231, 232, 1);
+
 }

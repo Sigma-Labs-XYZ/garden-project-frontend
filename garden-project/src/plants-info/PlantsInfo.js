@@ -22,7 +22,12 @@ export default function PlantsInfo(props) {
 
   return (
     <Accordion.Item eventKey={props.activeKey}>
-      <Accordion.Header>{name}</Accordion.Header>{" "}
+      <Accordion.Header>
+        <div className="link-to-plants" id={id}>
+          {" "}
+          {name}{" "}
+        </div>{" "}
+      </Accordion.Header>{" "}
       {/* Make this into bold text*/}
       <Accordion.Body>
         <ListGroup as="ol">
