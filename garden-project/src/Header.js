@@ -5,15 +5,23 @@ const gardenNames = ["My Garden 1", "My Garden 2", "My Garden 3"];
 
 export default function Header() {
   function mappingGardenNameDropdown(gardens) {
-    const gardenDropdown = gardens.map((garden) => {
-      return <NavDropdown.Item href={garden}>{garden}</NavDropdown.Item>;
+    const gardenDropdown = gardens.map((garden, i) => {
+      return (
+        <NavDropdown.Item href={garden} key={i}>
+          {garden}
+        </NavDropdown.Item>
+      );
     });
     return gardenDropdown;
   }
 
-  function featureDependingOnNumOfGardens(gardens) {
+  function featureDependingOnNumOfGardens(gardens, i) {
     if (gardens.length === 1) {
-      return <Navbar.Brand href={gardens}>My Garden</Navbar.Brand>;
+      return (
+        <Navbar.Brand href={gardens} key={i}>
+          My Garden
+        </Navbar.Brand>
+      );
     } else if (gardens.length > 1) {
       return (
         <NavDropdown title="My Gardens" id="gardensDropdown">
