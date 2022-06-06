@@ -44,13 +44,17 @@ export default function LoginForm() {
           <Form.Label>Password</Form.Label>
           <Form.Control type="password" placeholder="Password" />
         </Form.Group>
-        <Stack direction="vertical" gap={3}>
+        <Stack id="login-btn-stack" direction="vertical" gap={3}>
           <Button className="login-btn" variant="info" type="submit">
             Login
           </Button>
           <p id="or">or</p>
           <Link to="/sign-up">
-            <Button variant="primary" type="submit">
+            <Button
+              className=" create-account-btn"
+              variant="primary"
+              type="submit"
+            >
               Create Account
             </Button>
           </Link>
