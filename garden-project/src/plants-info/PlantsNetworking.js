@@ -1,4 +1,4 @@
-export async function fetchPlantInfo(name, classification = undefined, sowingSeason = undefined) {
+export async function fetchPlantInfo(name, classification = undefined, timeUntilHarvest = undefined) {
   let path = "http://garden-project.sigmalabs.co.uk/plants";
 
   let firstFilterAdded = false;
@@ -16,6 +16,10 @@ export async function fetchPlantInfo(name, classification = undefined, sowingSea
   if (classification) {
     addFilterChar();
     path += `classification=${classification}`;
+  }
+  if (timeUntilHarvest) {
+    addFilterChar();
+    path += `timeUntilHarvest=${timeUntilHarvest}`;
   }
 
   console.log(path);
