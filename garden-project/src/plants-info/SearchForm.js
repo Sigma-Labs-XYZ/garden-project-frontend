@@ -1,12 +1,13 @@
 import { Form, Button, Col, Row, Alert } from "react-bootstrap";
 import { useState } from "react";
+import { fetchPlantInfo } from "./PlantsNetworking";
 
 export default function SearchForm(props) {
   const [filter, setFilter] = useState("");
   const [err, setErr] = useState(false);
 
   async function handleSearchFilter(e) {
-    const result = await props.searchFilter(filter);
+    const result = await fetchPlantInfo(filter);
     if (result.length > 0) {
       console.log(result);
       setErr(false);
@@ -25,7 +26,7 @@ export default function SearchForm(props) {
             id="inlineFormInput"
             size="lg"
             placeholder="Search for a plant ..."
-            onChange={(e) => setFilter(e.target.value)}
+            onChange={e => setFilter(e.target.value)}
           />
         </Col>
         <Col xs="auto">
