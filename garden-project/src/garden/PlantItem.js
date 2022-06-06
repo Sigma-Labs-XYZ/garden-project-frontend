@@ -11,8 +11,11 @@ import { HashLink } from "react-router-hash-link";
 
 export default function PlantItem(props) {
   const [show, setShow] = useState(false);
+  const [harvestBoxDisabled, setHarvestBoxDisabled] = useState(true);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const handleEnableHarvest = () => setHarvestBoxDisabled(false);
+  const handleDisableHarvest = () => setHarvestBoxDisabled(true);
 
   let { name, id, plant_info_id } = props.data;
 
@@ -34,10 +37,13 @@ export default function PlantItem(props) {
       <div className="container-check-box">
         <PlantedCheckbox
           data={props.data}
+          enableHarvest={handleEnableHarvest}
           id={`inline-planted-checkbox-${props.data.id}`}
         />
         <HarvestedCheckbox
           data={props.data}
+          disabled={harvestBoxDisabled}
+          disableHarvest={handleDisableHarvest}
           id={`inline-harvested-checkbox-${props.data.id}`}
         />
       </div>

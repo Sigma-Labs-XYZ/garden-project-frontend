@@ -1,7 +1,7 @@
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import React from "react";
 import { harvestPlant } from "../plants-info/PlantsNetworking";
 
@@ -22,7 +22,8 @@ export default function HarvestedCheckbox(props) {
   };
   const handleHarvest = async plantID => {
     harvestPlant(plantID);
-    setShow(false);
+    props.disableHarvest();
+    handleClose();
   };
 
   return (
@@ -32,6 +33,7 @@ export default function HarvestedCheckbox(props) {
           inline
           label="harvested"
           name="group2"
+          disabled={props.disabled}
           onClick={handleShow}
           type={"checkbox"}
           id={`inline-harvested-checkbox-${id}`}
