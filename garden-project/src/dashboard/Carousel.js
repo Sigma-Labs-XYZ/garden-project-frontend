@@ -11,13 +11,13 @@ export default function CarouselForDashboard() {
         <Weather />
       </Carousel.Item>
 
-      <Carousel.Item className="carousel">
+      {/* <Carousel.Item className="carousel">
         <Tips />
       </Carousel.Item>
 
       <Carousel.Item className="carousel">
         <Notices />
-      </Carousel.Item>
+      </Carousel.Item> */}
     </Carousel>
   );
 }
