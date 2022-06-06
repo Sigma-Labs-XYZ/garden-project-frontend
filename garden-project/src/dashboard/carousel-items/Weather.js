@@ -11,7 +11,7 @@ export default function Weather() {
   }, []);
 
   async function fetchLocationOfUser(id) {
-    const response = await fetch(`http://localhost:8080/gardens/${id}`); //need to change once backend is pushed to heroku
+    const response = await fetch(`http://garden-project.sigmalabs.co.uk/${id}`); //need to change once backend is pushed to heroku
     const data = await response.json();
     await fetchWeatherData(data);
   }
