@@ -5,18 +5,26 @@ import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
 import { useState } from "react";
 import React from "react";
+import { updateGarden } from "./GardenNetworking";
 
 export default function EditGardenForm() {
   const [show, setShow] = useState(false);
   const [open, setOpen] = useState(false);
+  const [name, setName] = useState("");
+  const [location, setLocation] = useState("");
   const handleClose = () => setShow(false);
   const handleShow = () => {
     setOpen(false);
     setShow(true);
   };
-
   const handleCloseAlert = () => setOpen(false);
 
+  async function handleUpdateGarden() {
+    await updateGarden(name, location, 1);
+    setShow(false);
+  }
+
+  console.log(name, location);
   return (
     <div>
       <Button variant="primary" onClick={handleShow}>
@@ -31,7 +39,13 @@ export default function EditGardenForm() {
           <Form>
             <Form.Group className="mb-3" controlId="formName">
               <Form.Label>Garden name:</Form.Label>
-              <Form.Control type="name" placeholder="{current garden name}" />
+              <Form.Control
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
+                type="name"
+                placeholder="{current garden name}"
+              />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formLocation">
@@ -39,6 +53,9 @@ export default function EditGardenForm() {
               <Form.Control
                 type="location"
                 placeholder="{current garden location}"
+                onChange={(e) => {
+                  setLocation(e.target.value);
+                }}
               />
               <Form.Text className="text-muted">
                 Enter your postcode, zipcode or city
@@ -70,7 +87,7 @@ export default function EditGardenForm() {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={handleUpdateGarden}>
             Update garden
           </Button>
         </Modal.Footer>

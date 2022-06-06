@@ -42,6 +42,7 @@ export default function PlantsInfoPage() {
         <Accordion defaultActiveKey="0" flush>
           {printPlantList()}
         </Accordion>
+
       </Container>
     </div>
   );

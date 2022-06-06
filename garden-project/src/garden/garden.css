@@ -3,12 +3,7 @@
   width: 85%;
   margin: auto;
 }
-.garden-background-wrapper {
-  height: 100%;
-  width: 80%;
-  margin: auto;
-  background-color: white;
-}
+
 .title-button-wrapper {
   padding-top: 30px;
   display: flex;
@@ -37,6 +32,8 @@
   border-radius: 30px !important;
   box-shadow: 0px 3px 5px 0px rgba(216, 231, 232, 1);
   display: flex;
+  border: solid 1px;
+  border-color: rgb(233, 233, 233);
 }
 .list-group {
   width: 100%;
@@ -51,7 +48,7 @@
   align-items: center;
 }
 .container-check-box {
-  width: 50%;
+  width: 30%;
   align-items: end;
 }
 .container-remove-button {
@@ -67,18 +64,27 @@
   display: flex;
   justify-content: center;
 }
+.edit-garden-button {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 30px;
+}
 h1 {
   background-color: white;
   width: 30%;
+  border: solid 1px;
+  border-color: rgb(233, 233, 233);
   border-radius: 30px;
   padding: 10px;
   box-shadow: 0px 3px 5px 0px rgba(216, 231, 232, 1);
 }
 
 h3 {
-  background-color: white;
+  background-color: rgb(255, 255, 255);
+  border: solid 1px;
+  border-color: rgb(233, 233, 233);
   border-radius: 30px;
-  width: 30%;
+  width: 35%;
   padding: 10px;
   box-shadow: 0px 3px 5px 0px rgba(216, 231, 232, 1);
 }

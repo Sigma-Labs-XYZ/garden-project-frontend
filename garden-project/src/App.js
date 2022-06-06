@@ -6,14 +6,15 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "./Header.js";
 import PlantsInfoPage from "./plants-info/PlantsInfoPage";
 import ShoppingListPage from "./shopping-list/ShoppingListPage";
+import DashboardPage from "./dashboard/DashboardPage.js";
 
 function App() {
   return (
     <div>
       <div className="header-container">{<Header />}</div>
-
       <Router>
         <Routes>
+          <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/garden" element={<GardenPage />} />
           <Route path="/plants-info" element={<PlantsInfoPage />} />
           <Route path="shopping-list" element={<ShoppingListPage />} />

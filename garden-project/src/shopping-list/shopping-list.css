@@ -1,0 +1,57 @@
+.shopping-list-page-wrapper {
+  height: 100%;
+  width: 85%;
+  margin: auto;
+}
+.shopping-items-wrapper {
+  padding-top: 30px;
+}
+.list-group-item {
+  width: 100%;
+  display: flex !important;
+  justify-content: space-around;
+}
+.form {
+  display: flex;
+}
+.list-group-flush {
+  border-radius: 30px !important;
+  box-shadow: 0px 3px 5px 0px rgba(216, 231, 232, 1);
+  display: flex;
+}
+.list-group {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.arrows-wrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.quantity-buttons {
+  display: flex;
+  align-items: center;
+  width: 20%;
+}
+.container-title {
+  display: flex;
+  width: 50%;
+  align-items: center;
+}
+.container-check-box {
+  width: 30%;
+  align-items: center;
+  justify-items: center;
+}
+svg {
+  box-shadow: 0px 3px 5px 0px rgba(216, 231, 232, 1);
+}
+.down-arrow {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.up-arrow {
+  padding-right: 10px;
+}
