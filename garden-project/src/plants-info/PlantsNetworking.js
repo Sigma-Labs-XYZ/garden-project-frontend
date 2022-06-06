@@ -39,15 +39,19 @@ export async function fetchPlantInfo(
 }
 
 export async function addPlantToGarden(plantInfoID, gardenID) {
-  console.log(plantInfoID, gardenID);
-  const response = await fetch("http://garden-project.sigmalabs.co.uk/new-plant", {
-    method: "POST",
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ plantInfoID, gardenID }),
-  });
+
+  const response = await fetch(
+    "http://garden-project.sigmalabs.co.uk/new-plant",
+    {
+      method: "POST",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ plantInfoID, gardenID }),
+    }
+  );
+
 }
 
 export async function harvestPlant(plantID) {
