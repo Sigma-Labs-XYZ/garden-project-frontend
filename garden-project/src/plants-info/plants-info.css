@@ -59,6 +59,7 @@ h1 {
 }
 
 #buttons {
+  display: flex;
   padding-top: 20px;
 }
 
@@ -69,6 +70,7 @@ a {
 a:hover {
   text-decoration: underline !important;
 }
+
 #plant-list-h1 {
   background-color: white;
   width: 30%;
@@ -77,4 +79,9 @@ a:hover {
   border-radius: 30px;
   padding: 10px;
   box-shadow: 0px 3px 5px 0px rgba(216, 231, 232, 1);
+}
+.hstack {
+  display: flex;
+  justify-content: space-between !important;
+  align-self: center !important;
 }
