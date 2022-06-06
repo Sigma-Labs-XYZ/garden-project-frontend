@@ -33,7 +33,6 @@ export default function HarvestedCheckbox(props) {
           label="harvested"
           name="group2"
           onClick={handleShow}
-          disabled={true}
           type={"checkbox"}
           id={`inline-harvested-checkbox-${id}`}
         />
