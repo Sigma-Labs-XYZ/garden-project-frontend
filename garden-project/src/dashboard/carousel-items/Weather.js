@@ -52,35 +52,37 @@ export default function Weather() {
     return new Intl.DateTimeFormat("en-GB", options).format(day3);
   }
 
-  function displayWeatherData(garden) {
-    return (
-      <div>
-        <h3>The forecast in {garden.city}:</h3>
-        <div className="forecast-card-mother">
-          <div className="forecast-card day0">
-            <h2>Today:</h2>
-            <h4>{garden.forecast.description}</h4>
-            <h4>Temperature: {garden.forecast.temperature}</h4>
-            <h4>Wind: {garden.forecast.wind}</h4>
-          </div>
-          <div className="forecast-card day1">
-            <h2>Tomorrow:</h2>
-            <h4>Temperature: {garden.forecast.forecast[0].temperature}</h4>
-            <h4>Wind: {garden.forecast.forecast[0].wind}</h4>
-          </div>
-          <div className="forecast-card day2">
-            <h2>{getTwoDaysLater()}:</h2>
-            <h4>Temperature: {garden.forecast.forecast[1].temperature}</h4>
-            <h4>Wind: {garden.forecast.forecast[1].wind}</h4>
-          </div>
-          <div className="forecast-card day3">
-            <h2>{getThreeDaysLater()}:</h2>
-            <h4>Temperature: {garden.forecast.forecast[2].temperature}</h4>
-            <h4>Wind: {garden.forecast.forecast[2].wind}</h4>
+  function displayWeatherData() {
+    return forecastData.map((garden) => {
+      return (
+        <div>
+          <h3>The forecast in {garden.city}:</h3>
+          <div className="forecast-card-mother">
+            <div className="forecast-card day0">
+              <h2>Today:</h2>
+              <h4>{garden.forecast.description}</h4>
+              <h4>Temperature: {garden.forecast.temperature}</h4>
+              <h4>Wind: {garden.forecast.wind}</h4>
+            </div>
+            <div className="forecast-card day1">
+              <h2>Tomorrow:</h2>
+              <h4>Temperature: {garden.forecast.forecast[0].temperature}</h4>
+              <h4>Wind: {garden.forecast.forecast[0].wind}</h4>
+            </div>
+            <div className="forecast-card day2">
+              <h2>{getTwoDaysLater()}:</h2>
+              <h4>Temperature: {garden.forecast.forecast[1].temperature}</h4>
+              <h4>Wind: {garden.forecast.forecast[1].wind}</h4>
+            </div>
+            <div className="forecast-card day3">
+              <h2>{getThreeDaysLater()}:</h2>
+              <h4>Temperature: {garden.forecast.forecast[2].temperature}</h4>
+              <h4>Wind: {garden.forecast.forecast[2].wind}</h4>
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    });
   }
 
   //   async function convertFromPostCodesToCities(city) {
@@ -103,9 +105,5 @@ export default function Weather() {
   //     }
   //   }
 
-  return (
-    <div className="forecast-slide">
-      {/* {displayWeatherData(forecastData[0])} */}
-    </div>
-  );
+  return <div className="forecast-slide">{displayWeatherData()}</div>;
 }
