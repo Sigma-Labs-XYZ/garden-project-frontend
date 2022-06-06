@@ -20,7 +20,6 @@ export default function PlantsInfoPage() {
     setPlantInfo(plantData);
   }
   function printPlantList() {
-    console.log(plantInfo);
     return plantInfo.map((plant, i) => {
       return <PlantsInfo key={i} activeKey={i} data={plant} />;
     });
