@@ -22,7 +22,8 @@ export default function HarvestedCheckbox(props) {
   };
   const handleHarvest = async plantID => {
     harvestPlant(plantID);
-    setShow(false);
+    props.disableHarvest();
+    handleClose();
   };
 
   return (
@@ -32,6 +33,8 @@ export default function HarvestedCheckbox(props) {
           inline
           label="harvested"
           name="group2"
+          disabled={props.disabled}
+          defaultChecked={props.checked}
           onClick={handleShow}
           type={"checkbox"}
           id={`inline-harvested-checkbox-${id}`}

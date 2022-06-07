@@ -2,15 +2,17 @@ import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Stack from "react-bootstrap/Stack";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PlantedCheckbox from "./PlantedCheckbox";
 import HarvestedCheckbox from "./HarvestedCheckbox";
 import { deletePlant } from "./GardenNetworking";
-import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 
 export default function PlantItem(props) {
   const [show, setShow] = useState(false);
+  const [harvestDisabled, setHarvestDisabled] = useState(props.data.planted_at == null || props.data.harvested);
+  const enableHarvest = () => setHarvestDisabled(false);
+  const disableHarvest = () => setHarvestDisabled(true);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -21,7 +23,7 @@ export default function PlantItem(props) {
   async function handleDelete() {
     await deletePlant(id);
     setShow(false);
-    props.setRemove(true);
+    window.location.reload(false);
   }
 
   return (
@@ -35,9 +37,15 @@ export default function PlantItem(props) {
         <PlantedCheckbox
           data={props.data}
           id={`inline-planted-checkbox-${props.data.id}`}
+          disabled={props.data.planted_at != null}
+          checked={props.data.planted_at != null}
+          enableHarvest={enableHarvest}
         />
         <HarvestedCheckbox
           data={props.data}
+          disabled={harvestDisabled}
+          checked={props.data.harvested}
+          disableHarvest={disableHarvest}
           id={`inline-harvested-checkbox-${props.data.id}`}
         />
       </div>

@@ -22,9 +22,7 @@ export default function Weather() {
   async function fetchWeatherData(gardenData) {
     const forecastForEachGarden = [];
     for (let garden of gardenData) {
-      const response = await fetch(
-        `https://goweather.herokuapp.com/weather/${garden.location}`
-      );
+      const response = await fetch(`https://goweather.herokuapp.com/weather/${garden.location}`);
       const data = await response.json();
       const forecastObject = { city: garden.location, forecast: data };
       forecastForEachGarden.push(forecastObject);
@@ -54,7 +52,7 @@ export default function Weather() {
   }
 
   function displayWeatherData() {
-    return forecastData.map((garden) => {
+    return forecastData.map(garden => {
       return (
         <Stack direction="vertical" gap={2}>
           <h3>The weather in {garden.city} is...</h3>

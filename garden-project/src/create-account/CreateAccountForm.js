@@ -1,4 +1,4 @@
-import { Container, Form, Button, Alert, Stack } from "react-bootstrap";
+import { Form, Button, Alert, Stack } from "react-bootstrap";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import "./create-account.css";
@@ -74,7 +74,7 @@ export default function CreateAccountForm() {
             <Button variant="info" type="submit" onClick={handleSubmit}>
               Create Account
             </Button>
-
+            <p id="or">or</p>
             <Button
               variant="primary"
               type="submit"

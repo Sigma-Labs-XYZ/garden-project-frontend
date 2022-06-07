@@ -4,7 +4,7 @@ export async function fetchPlantInfo(
   timeUntilHarvest = undefined,
   spacing = undefined
 ) {
-  let path = "http://garden-project.sigmalabs.co.uk/plants";
+  let path = "https://garden-project.sigmalabs.co.uk/plants";
 
   let firstFilterAdded = false;
   const addFilterChar = () => {
@@ -39,8 +39,7 @@ export async function fetchPlantInfo(
 }
 
 export async function addPlantToGarden(plantInfoID, gardenID) {
-  console.log(plantInfoID, gardenID);
-  const response = await fetch("http://garden-project.sigmalabs.co.uk/new-plant", {
+  const response = await fetch("https://garden-project.sigmalabs.co.uk/new-plant", {
     method: "POST",
     headers: {
       "Access-Control-Allow-Origin": "*",
@@ -51,7 +50,7 @@ export async function addPlantToGarden(plantInfoID, gardenID) {
 }
 
 export async function harvestPlant(plantID) {
-  await fetch("http://garden-project.sigmalabs.co.uk/harvest", {
+  await fetch("https://garden-project.sigmalabs.co.uk/harvest", {
     method: "PATCH",
     headers: {
       "Access-Control-Allow-Origin": "*",
@@ -62,7 +61,7 @@ export async function harvestPlant(plantID) {
 }
 
 export async function plantPlant(plantID, quantity, date) {
-  await fetch("http://garden-project.sigmalabs.co.uk/update-plant-status", {
+  await fetch("https://garden-project.sigmalabs.co.uk/update-plant-status", {
     method: "PATCH",
     headers: {
       "Access-Control-Allow-Origin": "*",
