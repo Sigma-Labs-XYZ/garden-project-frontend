@@ -3,7 +3,7 @@ import { fetchPlantInfo } from "./PlantsNetworking";
 import { useState, useEffect } from "react";
 import PlantsInfo from "./PlantsInfo";
 import SearchForm from "./SearchForm";
-import { validateSession } from "../networking";
+import { checkCookiesAndRedirect } from "../networking";
 import { useNavigate } from "react-router-dom";
 import "./plants-info.css";
 import Header from "../Header";
@@ -22,21 +22,8 @@ export default function PlantsInfoPage() {
   }, []);
 
   useEffect(() => {
-    checkCookiesAndRedirect();
+    checkCookiesAndRedirect(navigate);
   }, []);
-
-  async function checkCookiesAndRedirect() {
-    const cookies = document.cookie;
-    if (!cookies.includes("session")) navigate("/login");
-    else {
-      const sessionID = cookies
-        .split("; ")
-        .find(row => row.startsWith("session="))
-        .split("=")[1];
-
-      if (!(await validateSession(sessionID))) navigate("/login");
-    }
-  }
 
   async function fetchInfo() {
     const plantData = await fetchPlantInfo();

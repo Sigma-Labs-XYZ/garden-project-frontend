@@ -3,6 +3,8 @@ import Stack from "react-bootstrap/Stack";
 import "./garden.css";
 import PlantItem from "./PlantItem";
 import ListGroup from "react-bootstrap/ListGroup";
+import { checkCookiesAndRedirect } from "../networking";
+import { useNavigate } from "react-router-dom";
 import { fetchGardenInfo } from "./GardenNetworking";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -11,8 +13,13 @@ import Header from "../Header";
 import { propTypes } from "react-bootstrap/esm/Image";
 
 export default function GardenPage() {
+  const navigate = useNavigate();
   const [gardenInfo, setGardenInfo] = useState([]);
   const [remove, setRemove] = useState(false);
+
+  useEffect(() => {
+    checkCookiesAndRedirect(navigate);
+  }, []);
 
   useEffect(() => {
     async function getData() {

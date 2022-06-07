@@ -3,10 +3,19 @@ import Stack from "react-bootstrap/Stack";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import ListGroup from "react-bootstrap/ListGroup";
+import { checkCookiesAndRedirect } from "../networking";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./shopping-list.css";
 import Header from "../Header";
 
 export default function ShoppingListPage() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    checkCookiesAndRedirect(navigate);
+  }, []);
+
   //  function printShoppingListPlants() {
   //     return gardenInfo.map((plant, i) => {
   //       return <ShoppingPlants />;

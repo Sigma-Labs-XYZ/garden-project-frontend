@@ -2,11 +2,18 @@ import CarouselForDashboard from "./Carousel.js";
 import "./dashboard.css";
 import Header from "./../Header.js";
 import { useState, useEffect } from "react";
+import { checkCookiesAndRedirect } from "../networking";
+import { useNavigate } from "react-router-dom";
 import CreateGarden from "./CreateGarden.js";
 
 export default function DashboardPage() {
+  const navigate = useNavigate();
   const [gardenExists, setGardenExists] = useState();
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    checkCookiesAndRedirect(navigate);
+  }, []);
 
   useEffect(() => {
     async function fetchData() {
@@ -16,9 +23,7 @@ export default function DashboardPage() {
   }, []);
 
   async function fetchGardenInfo(id) {
-    const response = await fetch(
-      `https://garden-project.sigmalabs.co.uk/gardens/${id}`
-    ); //need to change once backend is pushed to heroku
+    const response = await fetch(`https://garden-project.sigmalabs.co.uk/gardens/${id}`); //need to change once backend is pushed to heroku
     const data = await response.json();
     checkIfGardenExists(data);
   }
