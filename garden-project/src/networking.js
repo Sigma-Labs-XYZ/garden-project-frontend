@@ -6,5 +6,6 @@ export async function validateSession(sessionID) {
       sessionID: sessionID,
     }),
   });
-  return response.response;
+  const jsonObj = await response.json();
+  return jsonObj.response;
 }

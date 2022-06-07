@@ -31,8 +31,6 @@ export async function fetchPlantInfo(
     path += `spacing=${spacing}`;
   }
 
-  console.log(path);
-
   const response = await fetch(path);
   const data = await response.json();
   return data;

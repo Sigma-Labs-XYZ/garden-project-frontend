@@ -25,7 +25,7 @@ export default function PlantsInfoPage() {
     checkCookiesAndRedirect();
   }, []);
 
-  function checkCookiesAndRedirect() {
+  async function checkCookiesAndRedirect() {
     const cookies = document.cookie;
     if (!cookies.includes("session")) navigate("/login");
     else {
@@ -34,7 +34,7 @@ export default function PlantsInfoPage() {
         .find(row => row.startsWith("session="))
         .split("=")[1];
 
-      if (!validateSession(sessionID)) navigate("/login");
+      if (!(await validateSession(sessionID))) navigate("/login");
     }
   }
 
