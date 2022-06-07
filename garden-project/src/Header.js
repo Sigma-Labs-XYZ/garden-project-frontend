@@ -1,9 +1,19 @@
 import Navbar from "react-bootstrap/Navbar";
 import { Container, NavDropdown } from "react-bootstrap";
+import { useEffect, useState } from "react";
 
-const gardenNames = ["My Garden 1", "My Garden 2", "My Garden 3"];
+// const gardenNames = ["My Garden 1", "My Garden 2", "My Garden 3"];
 
 export default function Header() {
+  const [gardenNames, setGardenNames] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      await fetchGardensOfUser(1); // hardcoded at the moment
+    }
+    fetchData();
+  }, []);
+
   function mappingGardenNameDropdown(gardens) {
     const gardenDropdown = gardens.map((garden, i) => {
       return (
@@ -13,6 +23,25 @@ export default function Header() {
       );
     });
     return gardenDropdown;
+  }
+
+  async function fetchGardensOfUser(id) {
+    const response = await fetch(
+      `http://garden-project.sigmalabs.co.uk/gardens/${id}`
+    );
+
+    const data = await response.json();
+    await fetchGardenData(data);
+  }
+
+  async function fetchGardenData(gardenData) {
+    const listOfGardenNames = [];
+
+    for (let garden of gardenData) {
+      listOfGardenNames.push(garden.garden_name);
+    }
+
+    await setGardenNames(listOfGardenNames);
   }
 
   function featureDependingOnNumOfGardens(gardens, i) {
