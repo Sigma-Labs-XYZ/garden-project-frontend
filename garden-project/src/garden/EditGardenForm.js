@@ -12,6 +12,7 @@ export default function EditGardenForm() {
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
+  const [error, setError] = useState("");
   const handleClose = () => setShow(false);
   const handleShow = () => {
     setOpen(false);
@@ -20,8 +21,17 @@ export default function EditGardenForm() {
   const handleCloseAlert = () => setOpen(false);
 
   async function handleUpdateGarden() {
-    await updateGarden(name, location, 1);
-    setShow(false);
+    if (name === "" || location === "") {
+      updateError("Name or location can't be empty");
+    } else if (name === "" && location === "") {
+      updateError("Location and name can't be empty");
+    } else {
+      await updateGarden(name, location, 1);
+      setShow(false);
+    }
+  }
+  async function updateError(error) {
+    setError(error);
   }
 
   console.log(name, location);
@@ -42,6 +52,7 @@ export default function EditGardenForm() {
               <Form.Control
                 onChange={(e) => {
                   setName(e.target.value);
+                  updateError("");
                 }}
                 type="name"
                 placeholder="{current garden name}"
@@ -55,11 +66,18 @@ export default function EditGardenForm() {
                 placeholder="{current garden location}"
                 onChange={(e) => {
                   setLocation(e.target.value);
+                  updateError("");
                 }}
               />
               <Form.Text className="text-muted">
                 Enter your postcode, zipcode or city
               </Form.Text>
+              {error ? (
+                <Alert key="danger" variant="danger">
+                  {" "}
+                  {error}{" "}
+                </Alert>
+              ) : null}
             </Form.Group>
             <Button
               variant="outline-danger"
