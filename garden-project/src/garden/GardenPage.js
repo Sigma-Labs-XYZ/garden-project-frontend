@@ -49,7 +49,10 @@ export default function GardenPage() {
           </div>
 
           <div className="plant-items-wrapper">
-            <h3 shadow-sm> What's in your garden... </h3>
+            <h3 id="garden-h3" shadow-sm>
+              {" "}
+              What's in your garden...{" "}
+            </h3>
             <ListGroup variant="flush">{printGardenPlants()}</ListGroup>
           </div>
           <div className="calendar-button">
