@@ -1,3 +1,6 @@
+.dashboard-wrapper {
+  height: 100%;
+}
 #carousel-for-dashboard {
   color: black;
   text-align: center;
@@ -16,6 +19,9 @@
   height: 600px;
 }
 
+.card {
+  border-radius: 10px !important;
+}
 .carousel-mother {
   display: flex;
   height: 100%;
@@ -23,16 +29,62 @@
 
 .forecast-card-mother {
   display: flex;
+  align-items: center;
+  align-content: center;
   width: 100%;
 }
 
 .forecast-card {
   flex: 1;
 }
-
+.forecast-slide {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 .forecast-slide,
 .tips-slide,
 .notice-slide {
   margin-left: 3%;
   margin-right: 3%;
+}
+.carousel-control-next-icon {
+  background-color: #54bba1 !important;
+  border: solid 1px #54bba1;
+  border-radius: 20px;
+}
+
+.carousel-control-prev-icon {
+  background-color: #54bba1 !important;
+  border: solid 1px #54bba1;
+  border-radius: 20px;
+}
+.carousel-indicators [data-bs-target] {
+  background-color: #54bba1 !important;
+}
+.tips-slide {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#tips-h1 {
+  text-align: center;
+  padding: 300px !important;
+}
+.tip-of-the-day {
+  text-align: center;
+  padding: 30px !important;
+  width: 50%;
+}
+.image-div {
+  height: 100%;
+}
+.carousel-item.active {
+}
+.carousel-item-next {
+}
+.carousel-item-prev {
 }

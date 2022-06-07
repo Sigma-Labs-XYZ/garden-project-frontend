@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import EditGardenForm from "./EditGardenForm";
 import Header from "../Header";
+import { propTypes } from "react-bootstrap/esm/Image";
 
 export default function GardenPage() {
   const [gardenInfo, setGardenInfo] = useState([]);
@@ -28,7 +29,7 @@ export default function GardenPage() {
 
   function printGardenPlants() {
     return gardenInfo.map((plant, i) => {
-      return <PlantItem setRemove={setRemove} key={i} data={plant} />;
+      return <PlantItem setRemove={setRemove} remove={remove} key={i} data={plant} />;
     });
   }
   return (
@@ -48,7 +49,10 @@ export default function GardenPage() {
           </div>
 
           <div className="plant-items-wrapper">
-            <h3 shadow-sm> What's in your garden... </h3>
+            <h3 id="garden-h3" shadow-sm>
+              {" "}
+              What's in your garden...{" "}
+            </h3>
             <ListGroup variant="flush">{printGardenPlants()}</ListGroup>
           </div>
           <div className="calendar-button">
