@@ -28,7 +28,7 @@ export default function CreateAccountForm() {
       passwordConfirmation: passwordConfirmation,
     };
 
-    const result = await fetch(
+    const response = await fetch(
       `https://garden-project.sigmalabs.co.uk/sign-up`,
       {
         method: "POST",
@@ -36,15 +36,25 @@ export default function CreateAccountForm() {
         body: JSON.stringify(newUserDetails),
       }
     );
-    if (result.status === 200) {
-      navigate("/dashboard");
-    } else {
-      setErrUsername(result.response);
-    }
+    const res = await response.json();
+    return res;
   }
 
-  function handleSubmit() {
-    registerNewUser(firstName, lastName, email, password, passwordConfirmation);
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const result = await registerNewUser(
+      firstName,
+      lastName,
+      email,
+      password,
+      passwordConfirmation
+    );
+
+    if (result.response) {
+      navigate("/dashboard");
+    } else {
+      setErrUsername(result.error);
+    }
   }
 
   function getErrMessage(err) {
@@ -86,10 +96,10 @@ export default function CreateAccountForm() {
             type="username"
             placeholder="Enter username"
             onChange={(e) => {
+              setEmail(e.target.value);
               e.target.value === ""
                 ? setErrUsername("Empty Username!")
                 : setErrUsername(false);
-              setEmail(e.target.value);
             }}
           />
           <Form.Text className="text-muted">
