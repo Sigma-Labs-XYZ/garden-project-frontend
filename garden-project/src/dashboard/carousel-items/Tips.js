@@ -1,4 +1,5 @@
 import { listOfTips } from "./listOfTips.js";
+import "../dashboard.css";
 
 export default function Tips() {
   function chooseRandomTip() {
@@ -10,8 +11,8 @@ export default function Tips() {
 
   return (
     <div className="tips-slide">
-      <h1>The tip of the day is:</h1>
-      <h4 className="tip-of-the-day">{chooseRandomTip()}</h4>
+      <h1 id="tip-h1">tip of the day:</h1>
+      <p className="tip-of-the-day">{chooseRandomTip()}</p>
     </div>
   );
 }

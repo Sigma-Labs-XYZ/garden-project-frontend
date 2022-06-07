@@ -11,7 +11,9 @@ export default function Weather() {
   }, []);
 
   async function fetchLocationOfUser(id) {
-    const response = await fetch(`http://garden-project.sigmalabs.co.uk/${id}`); //need to change once backend is pushed to heroku
+    const response = await fetch(
+      `http://garden-project.sigmalabs.co.uk/gardens/${id}`
+    ); //need to change once backend is pushed to heroku
     const data = await response.json();
     await fetchWeatherData(data);
   }
@@ -82,26 +84,6 @@ export default function Weather() {
       );
     });
   }
-
-  //   async function convertFromPostCodesToCities(city) {
-  //     if (parseInt(city).isNaN === true) {
-  //       //check if uk postcode or if just city
-  //     } else {
-  //       if (
-  //         parseInt(city).toString().length === 5 &&
-  //         parseInt(city) >= 1 &&
-  //         parseInt(city) <= 99950
-  //       ) {
-  //         //convert from US zip code to city
-  //         //DOESNT WORK YET AS NEED AN API KEY
-  //         const response = await fetch(
-  //           `http://maps.googleapis.com/maps/api/geocode/json?address=${city}&sensor=false`
-  //         );
-  //         const data = await response.json();
-  //         setCity(data);
-  //       }
-  //     }
-  //   }
 
   return <div className="forecast-slide">{displayWeatherData()}</div>;
 }

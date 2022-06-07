@@ -36,3 +36,41 @@
   margin-left: 3%;
   margin-right: 3%;
 }
+.carousel-control-next-icon {
+  background-color: #54bba1 !important;
+  border: solid 1px #54bba1;
+  border-radius: 20px;
+}
+
+.carousel-control-prev-icon {
+  background-color: #54bba1 !important;
+  border: solid 1px #54bba1;
+  border-radius: 20px;
+}
+.carousel-indicators [data-bs-target] {
+  background-color: #54bba1 !important;
+}
+.tips-slide {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#tips-h1 {
+  text-align: center;
+  padding: 300px !important;
+}
+.tip-of-the-day {
+  text-align: center;
+  padding: 30px !important;
+  width: 50%;
+}
+.image-div {
+  height: 100%;
+}
+.carousel-item.active {
+}
+.carousel-item-next {
+}
+.carousel-item-prev {
+}
