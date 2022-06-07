@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 
 export default function PlantsInfo(props) {
   const [show, setShow] = useState(false);
-  const [avoid, setAvoid] = useState();
+  const [avoid, setAvoid] = useState([]);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
