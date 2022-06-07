@@ -15,6 +15,13 @@ export default function Header() {
     return gardenDropdown;
   }
 
+  async function handleLogout() {
+    await fetch("https://garden-project.sigmalabs.co.uk/logout", {
+      method: "DELETE",
+      headers: { "Access-Control-Allow-Origin": "*", "Content-Type": "application/json", credentials: "include" },
+    });
+  }
+
   function featureDependingOnNumOfGardens(gardens, i) {
     if (gardens.length === 1) {
       return (
@@ -38,17 +45,13 @@ export default function Header() {
         <Navbar.Brand href="plants-info">Plants</Navbar.Brand>
         {featureDependingOnNumOfGardens(gardenNames)}
         <NavDropdown title="Guides" id="navbarGuidesDropdown">
-          <NavDropdown.Item href="crop-rotation">
-            Crop Rotation
-          </NavDropdown.Item>
+          <NavDropdown.Item href="crop-rotation">Crop Rotation</NavDropdown.Item>
           <NavDropdown.Item href="weeding">Weeding</NavDropdown.Item>
-          <NavDropdown.Item href="planting-practices">
-            Planting Practices
-          </NavDropdown.Item>
+          <NavDropdown.Item href="planting-practices">Planting Practices</NavDropdown.Item>
           <NavDropdown.Item href="fertilisers">Fertilisers</NavDropdown.Item>
           <NavDropdown.Item href="composting">Composting</NavDropdown.Item>
         </NavDropdown>
-        <Navbar.Brand href="logout">Logout</Navbar.Brand>
+        <Navbar.Brand onClick={handleLogout}>Logout</Navbar.Brand>
       </Container>
     </Navbar>
   );
