@@ -13,7 +13,7 @@ export default function CreateAccountForm() {
   function handleSubmit(props) {
     //    const result =   /// need to fill in with fetch request
     // if (result.status === 200) {
-    //   navigate("/");
+    //   navigate("/dashboard");
     // } else {
     //   setErrUsername(result.response);
     // }
@@ -26,6 +26,7 @@ export default function CreateAccountForm() {
       </Alert>
     );
   }
+
   return (
     <div className="create-account-container">
       <h1>Website name</h1>
@@ -45,6 +46,10 @@ export default function CreateAccountForm() {
               setCreateUsername(e.target.value);
             }}
           />
+          <Form.Text className="text-muted">
+            Please enter an email address. We will never share this with anyone
+            else.
+          </Form.Text>
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
