@@ -11,7 +11,7 @@ export default function Weather() {
   }, []);
 
   async function fetchLocationOfUser(id) {
-    const response = await fetch(`http://garden-project.sigmalabs.co.uk/${id}`); //need to change once backend is pushed to heroku
+    const response = await fetch(`https://garden-project.sigmalabs.co.uk/${id}`); //need to change once backend is pushed to heroku
     const data = await response.json();
     await fetchWeatherData(data);
   }
@@ -19,9 +19,7 @@ export default function Weather() {
   async function fetchWeatherData(gardenData) {
     const forecastForEachGarden = [];
     for (let garden of gardenData) {
-      const response = await fetch(
-        `https://goweather.herokuapp.com/weather/${garden.location}`
-      );
+      const response = await fetch(`https://goweather.herokuapp.com/weather/${garden.location}`);
       const data = await response.json();
       const forecastObject = { city: garden.location, forecast: data };
       forecastForEachGarden.push(forecastObject);
@@ -51,7 +49,7 @@ export default function Weather() {
   }
 
   function displayWeatherData() {
-    return forecastData.map((garden) => {
+    return forecastData.map(garden => {
       return (
         <div>
           <h3>The forecast in {garden.city}:</h3>
