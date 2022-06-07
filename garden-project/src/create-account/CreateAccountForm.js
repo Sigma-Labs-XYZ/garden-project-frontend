@@ -79,7 +79,7 @@ export default function CreateAccountForm() {
               variant="primary"
               type="submit"
               onClick={() => {
-                navigate("/");
+                navigate("/login");
               }}
             >
               Log In
