@@ -3,11 +3,14 @@ import { fetchPlantInfo } from "./PlantsNetworking";
 import { useState, useEffect } from "react";
 import PlantsInfo from "./PlantsInfo";
 import SearchForm from "./SearchForm";
+import { checkCookiesAndRedirect } from "../networking";
+import { useNavigate } from "react-router-dom";
 import "./plants-info.css";
 import Header from "../Header";
 import { fetchGardenInfo } from "../garden/GardenNetworking";
 
 export default function PlantsInfoPage() {
+  const navigate = useNavigate();
   const [plantInfo, setPlantInfo] = useState([]);
   const [gardenInfo, setGardenInfo] = useState([]);
 
@@ -16,6 +19,10 @@ export default function PlantsInfoPage() {
       await fetchInfo();
     }
     getData();
+  }, []);
+
+  useEffect(() => {
+    checkCookiesAndRedirect(navigate);
   }, []);
 
   async function fetchInfo() {
@@ -31,9 +38,7 @@ export default function PlantsInfoPage() {
     let samePlants = [];
     avoidInstructions = avoidInstructions.split(", ");
 
-    gardenInfo.forEach((plant) =>
-      listOfGardenPlants.push(plant.name.split(", "))
-    );
+    gardenInfo.forEach(plant => listOfGardenPlants.push(plant.name.split(", ")));
 
     listOfGardenPlants = listOfGardenPlants.flat();
     for (let i = 0; i < listOfGardenPlants.length; i++) {
@@ -49,13 +54,7 @@ export default function PlantsInfoPage() {
   function printPlantList() {
     return plantInfo.map((plant, i) => {
       return (
-        <PlantsInfo
-          key={i}
-          index={i}
-          activeKey={i}
-          data={plant}
-          checkAvoidInstructions={checkAvoidInstructions}
-        />
+        <PlantsInfo key={i} index={i} activeKey={i} data={plant} checkAvoidInstructions={checkAvoidInstructions} />
       );
     });
   }
