@@ -1,3 +1,6 @@
+.dashboard-wrapper {
+  height: 100%;
+}
 #carousel-for-dashboard {
   color: black;
   text-align: center;
@@ -16,6 +19,9 @@
   height: 600px;
 }
 
+.card {
+  border-radius: 10px !important;
+}
 .carousel-mother {
   display: flex;
   height: 100%;
@@ -23,13 +29,21 @@
 
 .forecast-card-mother {
   display: flex;
+  align-items: center;
+  align-content: center;
   width: 100%;
 }
 
 .forecast-card {
   flex: 1;
 }
-
+.forecast-slide {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 .forecast-slide,
 .tips-slide,
 .notice-slide {

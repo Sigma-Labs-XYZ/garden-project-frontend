@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Card, Stack } from "react-bootstrap";
 
 export default function Weather() {
   const [forecastData, setForecastData] = useState([]);
@@ -55,35 +56,77 @@ export default function Weather() {
   function displayWeatherData() {
     return forecastData.map((garden) => {
       return (
-        <div>
-          <h3>The forecast in {garden.city}:</h3>
+        <Stack direction="vertical" gap={2}>
+          <h3>The weather in {garden.city} is...</h3>
           <div className="forecast-card-mother">
             <div className="forecast-card day0">
-              <h2>Today:</h2>
-              <h4>{garden.forecast.description}</h4>
-              <h4>Temperature: {garden.forecast.temperature}</h4>
-              <h4>Wind: {garden.forecast.wind}</h4>
+              <Card style={{ width: "13rem" }}>
+                <Card.Img variant="top" src="holder.js/100px180" />
+                <Card.Body>
+                  <Card.Title>Today:</Card.Title>
+                  <Card.Subtitle className="mb-2 text-muted">
+                    Temperature: {garden.forecast.temperature}
+                  </Card.Subtitle>
+                  <Card.Subtitle className="mb-2 text-muted">
+                    Wind: {garden.forecast.wind}
+                  </Card.Subtitle>
+                  <Card.Text>{garden.forecast.description}</Card.Text>
+                </Card.Body>
+              </Card>
             </div>
             <div className="forecast-card day1">
-              <h2>Tomorrow:</h2>
-              <h4>Temperature: {garden.forecast.forecast[0].temperature}</h4>
-              <h4>Wind: {garden.forecast.forecast[0].wind}</h4>
+              <Card style={{ width: "13rem" }}>
+                <Card.Img variant="top" src="holder.js/100px180" />
+                <Card.Body>
+                  <Card.Title>Tomorrow:</Card.Title>
+                  <Card.Subtitle className="mb-2 text-muted">
+                    Temperature: {garden.forecast.forecast[0].temperature}
+                  </Card.Subtitle>
+                  <Card.Subtitle className="mb-2 text-muted">
+                    Wind: {garden.forecast.forecast[0].wind}
+                  </Card.Subtitle>
+                </Card.Body>
+              </Card>
             </div>
             <div className="forecast-card day2">
-              <h2>{getTwoDaysLater()}:</h2>
-              <h4>Temperature: {garden.forecast.forecast[1].temperature}</h4>
-              <h4>Wind: {garden.forecast.forecast[1].wind}</h4>
+              <Card style={{ width: "13rem" }}>
+                <Card.Img variant="top" src="holder.js/100px180" />
+                <Card.Body>
+                  <Card.Title>{getTwoDaysLater()}:</Card.Title>
+                  <Card.Subtitle className="mb-2 text-muted">
+                    Temperature: {garden.forecast.forecast[1].temperature}
+                  </Card.Subtitle>
+                  <Card.Subtitle className="mb-2 text-muted">
+                    Wind: {garden.forecast.forecast[1].wind}
+                  </Card.Subtitle>
+                </Card.Body>
+              </Card>
             </div>
+
             <div className="forecast-card day3">
-              <h2>{getThreeDaysLater()}:</h2>
-              <h4>Temperature: {garden.forecast.forecast[2].temperature}</h4>
-              <h4>Wind: {garden.forecast.forecast[2].wind}</h4>
+              <Card style={{ width: "13rem" }}>
+                <Card.Img variant="top" src="holder.js/100px180" />
+                <Card.Body>
+                  <Card.Title>{getThreeDaysLater()}:</Card.Title>
+                  <Card.Subtitle className="mb-2 text-muted">
+                    Temperature: {garden.forecast.forecast[2].temperature}
+                  </Card.Subtitle>
+                  <Card.Subtitle className="mb-2 text-muted">
+                    Wind: {garden.forecast.forecast[2].wind}
+                  </Card.Subtitle>
+                </Card.Body>
+              </Card>
             </div>
           </div>
-        </div>
+        </Stack>
       );
     });
   }
 
-  return <div className="forecast-slide">{displayWeatherData()}</div>;
+  return (
+    <div className="forecast-slide">
+      <h1> Hi *username* </h1>
+      {displayWeatherData()}
+    </div>
+  );
 }
