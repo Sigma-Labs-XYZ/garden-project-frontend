@@ -9,7 +9,7 @@ export default function PlantedCheckbox(props) {
   const [show, setShow] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [date, setDate] = useState(new Date());
-  const [disabled, setDisabled] = useState(false);
+  const [disabled, setDisabled] = useState(props.disabled);
   let { name } = props.data;
   name = name.split(", ")[0];
   const id = props.data.id;
@@ -24,6 +24,7 @@ export default function PlantedCheckbox(props) {
   const handlePlant = async (plantID, quantity, date) => {
     plantPlant(plantID, quantity, date);
     setDisabled(true);
+    props.enableHarvest();
     setShow(false);
   };
 
@@ -35,9 +36,9 @@ export default function PlantedCheckbox(props) {
           label="planted"
           name="group1"
           disabled={disabled}
+          defaultChecked={props.checked}
           onClick={() => {
             handleShow();
-            props.enableHarvest();
           }}
           type={"checkbox"}
           id={`inline-planted-checkbox-${id}`}
