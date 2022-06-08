@@ -22,3 +22,14 @@ export async function checkCookiesAndRedirect(navigate) {
     if (!(await validateSession(sessionID))) navigate("/login");
   }
 }
+
+export async function getUserIDFromSession() {
+  const cookies = document.cookie;
+  const sessionID = cookies
+    .split("; ")
+    .find(row => row.startsWith("session="))
+    .split("=")[1];
+  const response = await fetch(`http://localhost:8080/get-user/${sessionID}`);
+  const userID = (await response.json()).userID;
+  return userID;
+}

@@ -1,11 +1,27 @@
 import Navbar from "react-bootstrap/Navbar";
 import { Container, NavDropdown } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { getUserIDFromSession } from "./networking";
 
 const gardenNames = ["My Garden 1", "My Garden 2", "My Garden 3"];
 
 export default function Header() {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    async function fetchData() {
+      const userID = await getUserIDFromSession();
+      await fetchGardenInfo(userID);
+    }
+    fetchData();
+  }, []);
+
+  async function fetchGardenInfo(id) {
+    const response = await fetch(`http://garden-project.sigmalabs.co.uk/allGardens/${id}`);
+    const data = await response.json();
+    console.log(data);
+  }
 
   function mappingGardenNameDropdown(gardens) {
     const gardenDropdown = gardens.map((garden, i) => {

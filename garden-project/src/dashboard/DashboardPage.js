@@ -10,15 +10,13 @@ export default function DashboardPage() {
 
   useEffect(() => {
     async function fetchData() {
-      await fetchGardenInfo(0); // hardcoded at the moment
+      await fetchGardenInfo(1); // hardcoded at the moment
     }
     fetchData();
   }, []);
 
   async function fetchGardenInfo(id) {
-    const response = await fetch(
-      `http://garden-project.sigmalabs.co.uk/gardens/${id}`
-    ); //need to change once backend is pushed to heroku
+    const response = await fetch(`http://garden-project.sigmalabs.co.uk/allGardens/${id}`); //need to change once backend is pushed to heroku
     const data = await response.json();
     checkIfGardenExists(data);
   }
@@ -30,7 +28,6 @@ export default function DashboardPage() {
     setLoading(false);
   }
 
-  console.log(gardenExists);
   return (
     <div className="dashboard-wrapper">
       <Header />
