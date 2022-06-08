@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 
 export default function Header() {
   const [gardenNames, setGardenNames] = useState([]);
-
   const navigate = useNavigate();
 
   useEffect(() => {
