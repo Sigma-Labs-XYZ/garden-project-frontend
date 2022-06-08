@@ -118,7 +118,8 @@ export default function PlantsInfo(props) {
 
         <Modal show={show} onHide={handleClose}>
           <Modal.Body>
-            Be careful, don't grow these near your: {avoid}!
+            <h6> Be careful, don't grow these near your: </h6>
+            <p>{avoid}! </p>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
