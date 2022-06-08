@@ -46,12 +46,19 @@ export default function PlantsInfoPage() {
     listOfGardenPlants = listOfGardenPlants.flat();
     for (let i = 0; i < listOfGardenPlants.length; i++) {
       for (let j = 0; j < avoidInstructions.length; j++) {
-        if (listOfGardenPlants[i].includes(avoidInstructions[j])) {
-          samePlants.push(listOfGardenPlants[i]);
+        if (
+          listOfGardenPlants[i]
+            .toLowerCase()
+            .includes(avoidInstructions[j].toLowerCase())
+        ) {
+          samePlants.push(" " + listOfGardenPlants[i]);
+          samePlants.push(" or");
         }
       }
     }
-    return samePlants.toString();
+
+    let noDuplicatesInSamePlantList = [...new Set(samePlants)];
+    return noDuplicatesInSamePlantList.shift();
   }
 
   function printPlantList() {

@@ -58,12 +58,14 @@ export default function GardenPage() {
                   </Stack>
                 </Button>
               </Link>
-
+            <Link to="/shopping-list"
               <Button className="add-to-shopping-list" variant="info">
                 <Stack direction="horizontal" gap={2}>
                   <ListTask /> <span>View shopping list </span>
                 </Stack>
               </Button>
+            </Link>
+
             </Stack>
           </div>
 
