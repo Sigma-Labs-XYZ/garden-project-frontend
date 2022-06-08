@@ -16,9 +16,18 @@ export default function Header() {
   }
 
   async function handleLogout() {
+    const cookies = document.cookie;
+    const sessionID = cookies
+      .split("; ")
+      .find(row => row.startsWith("session="))
+      .split("=")[1];
+
     await fetch("https://garden-project.sigmalabs.co.uk/logout", {
       method: "DELETE",
-      headers: { "Access-Control-Allow-Origin": "*", "Content-Type": "application/json", credentials: "include" },
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        sessionID: sessionID,
+      }),
     });
   }
 
