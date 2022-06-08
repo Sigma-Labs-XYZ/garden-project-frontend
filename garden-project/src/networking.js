@@ -29,7 +29,7 @@ export async function getUserIDFromSession() {
     .split("; ")
     .find(row => row.startsWith("session="))
     .split("=")[1];
-  const response = await fetch(`http://localhost:8080/get-user/${sessionID}`);
+  const response = await fetch(`https://garden-project.sigmalabs.co.uk/get-user/${sessionID}`);
   const userID = (await response.json()).userID;
   return userID;
 }
