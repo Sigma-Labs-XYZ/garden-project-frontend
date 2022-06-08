@@ -8,15 +8,41 @@ export default function Weather() {
 
   useEffect(() => {
     async function fetchData() {
-      await fetchLocationOfUser(1); // hardcoded at the moment
+      await getUUID();
     }
     fetchData();
   }, []);
 
+  async function getUUID() {
+    const cookies = await document.cookie;
+
+    const sessionID = cookies
+      .split("; ")
+      .find((row) => row.startsWith("session="))
+      .split("=")[1];
+
+    await fetchUserID(sessionID);
+  }
+
+  async function fetchUserID(sessionID) {
+    const response = await fetch(
+      `https://garden-project.sigmalabs.co.uk/allGardens`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sessionID: sessionID }),
+      }
+    );
+    const data = await response.json();
+    if (data.length) {
+      await fetchLocationOfUser(data[0].user_id);
+    }
+  }
+
   async function fetchLocationOfUser(id) {
     const response = await fetch(
       `http://garden-project.sigmalabs.co.uk/allGardens/${id}`
-    ); //need to change once backend is pushed to heroku
+    );
     const data = await response.json();
     await fetchWeatherData(data);
     setLoading(false);
@@ -24,34 +50,39 @@ export default function Weather() {
 
   async function fetchWeatherData(gardenData) {
     const forecastForEachGarden = [];
-    const cityOfEachGarden = [];
+
     for (let garden of gardenData) {
       const response = await fetch(
         `https://goweather.herokuapp.com/weather/${garden.location}`
       );
       const data = await response.json();
       const forecastObject = { city: garden.location, forecast: data };
+
+      forecastForEachGarden.push(forecastObject);
+    }
+    checkingForMultipleLocations(forecastForEachGarden);
+  }
+
+  async function checkingForMultipleLocations(gardenData) {
+    const forecastForEachGarden = [];
+    const cityOfEachGarden = [];
+
+    for (let garden of gardenData) {
+      cityOfEachGarden.push(garden.city);
+    }
+
+    const uniq = [...new Set(cityOfEachGarden)];
+
+    for (let city of uniq) {
+      const response = await fetch(
+        `https://goweather.herokuapp.com/weather/${city}`
+      );
+
+      const data = await response.json();
+      const forecastObject = { city: city, forecast: data };
       forecastForEachGarden.push(forecastObject);
     }
 
-    for (let garden of gardenData) {
-      cityOfEachGarden.push(garden.location);
-      for (let i = 0; i < cityOfEachGarden.length; i++) {
-        if (garden !== cityOfEachGarden[i]) {
-          cityOfEachGarden.push(garden.location);
-
-          const response = await fetch(
-            `https://goweather.herokuapp.com/weather/${cityOfEachGarden[i]}`
-          );
-
-          const data = await response.json();
-
-          const forecastObject = { city: cityOfEachGarden[i], forecast: data };
-
-          forecastForEachGarden.push(forecastObject);
-        }
-      }
-    }
     await setForecastData(forecastForEachGarden);
   }
 
