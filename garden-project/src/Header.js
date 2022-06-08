@@ -55,7 +55,7 @@ export default function Header() {
   return (
     <Navbar>
       <Container>
-        <Navbar.Brand href="dashboard">Logo/Name</Navbar.Brand>
+        <Navbar.Brand href="dashboard">GRDN</Navbar.Brand>
         <Navbar.Brand href="plants-info">Plants</Navbar.Brand>
         {featureDependingOnNumOfGardens(gardenNames)}
         <NavDropdown title="Guides" id="navbarGuidesDropdown">

@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import "./plants-info.css";
 import Header from "../Header";
 import { fetchGardenInfo } from "../garden/GardenNetworking";
+import { ListTask } from "react-bootstrap-icons/";
 
 export default function PlantsInfoPage() {
   const navigate = useNavigate();

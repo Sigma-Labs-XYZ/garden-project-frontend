@@ -75,9 +75,8 @@
   justify-content: center;
   padding-bottom: 30px;
 }
-#garden-h1 {
+#garden-h2 {
   background-color: white;
-  width: 30%;
   border: solid 1px;
   border-color: rgb(233, 233, 233);
   border-radius: 30px;
@@ -96,4 +95,14 @@
 }
 .collapse-text {
   padding-top: 30px;
+}
+.add-to-garden {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+.add-to-shopping-list {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
 }
