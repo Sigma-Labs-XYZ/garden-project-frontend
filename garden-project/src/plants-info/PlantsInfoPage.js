@@ -35,26 +35,38 @@ export default function PlantsInfoPage() {
   function checkAvoidInstructions(index) {
     let listOfGardenPlants = [];
     let avoidInstructions = plantInfo[index].avoid_instructions.split(":")[1];
+
     let samePlants = [];
     avoidInstructions = avoidInstructions.split(", ");
 
-    gardenInfo.forEach(plant => listOfGardenPlants.push(plant.name.split(", ")));
+    gardenInfo.forEach((plant) =>
+      listOfGardenPlants.push(plant.name.split(", "))
+    );
 
     listOfGardenPlants = listOfGardenPlants.flat();
     for (let i = 0; i < listOfGardenPlants.length; i++) {
       for (let j = 0; j < avoidInstructions.length; j++) {
         if (listOfGardenPlants[i].includes(avoidInstructions[j])) {
-          samePlants.push(listOfGardenPlants[i]);
+          samePlants.push(" " + listOfGardenPlants[i]);
+          samePlants.push(" or");
         }
       }
     }
-    return samePlants.toString();
+
+    let noDuplicatesInSamePlantList = [...new Set(samePlants)];
+    return noDuplicatesInSamePlantList.shift();
   }
 
   function printPlantList() {
     return plantInfo.map((plant, i) => {
       return (
-        <PlantsInfo key={i} index={i} activeKey={i} data={plant} checkAvoidInstructions={checkAvoidInstructions} />
+        <PlantsInfo
+          key={i}
+          index={i}
+          activeKey={i}
+          data={plant}
+          checkAvoidInstructions={checkAvoidInstructions}
+        />
       );
     });
   }
@@ -71,7 +83,10 @@ export default function PlantsInfoPage() {
           <h1 id="plant-list-h1">Plant List</h1>
         </div>
 
-        <SearchForm className="align-items-center" getFilterPlants={getFilterPlants} />
+        <SearchForm
+          className="align-items-center"
+          getFilterPlants={getFilterPlants}
+        />
         <Accordion defaultActiveKey="0" flush>
           {printPlantList()}
         </Accordion>
