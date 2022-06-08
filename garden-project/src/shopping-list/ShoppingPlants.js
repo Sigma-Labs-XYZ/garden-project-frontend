@@ -1,8 +1,9 @@
-import { ListGroup, Button, Modal, Stack } from "react-bootstrap";
+import { ListGroup, Button, Modal, Stack, Image } from "react-bootstrap";
 import { useState } from "react";
 import BoughtCheckBox from "./BoughtCheckBox";
 import QuantityButtons from "./QuantityButtons";
 import { fetchPlantName, deleteItem } from "./ShoppingListNetworking";
+import image from "./shopping-list-images/icons8-buying-26.png";
 
 export default function ShoppingPlants(props) {
   const [show, setShow] = useState(false);
@@ -26,7 +27,10 @@ export default function ShoppingPlants(props) {
   return (
     <ListGroup.Item>
       <div className="container-title">
-        <h5>{plantName}</h5>
+        <Stack direction="horizontal" gap={3}>
+          <Image src={image} />
+          <h5>{plantName}</h5>
+        </Stack>
       </div>
       <div className="quantity-buttons">
         <QuantityButtons

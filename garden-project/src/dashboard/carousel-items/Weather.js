@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Card, Stack } from "react-bootstrap";
+import CreateGardenForm from "../../garden/CreateNewGardenForm.js";
 
 export default function Weather() {
   const [forecastData, setForecastData] = useState([]);
@@ -138,8 +139,9 @@ export default function Weather() {
           <p> Loading weather...</p>
         </div>
       ) : (
-        <div className="forecast-slide">
+        <div className="forecast-slide overflow-auto">
           <h1> Hi *username* </h1>
+          <CreateGardenForm />
           {displayWeatherData()}{" "}
         </div>
       )}
