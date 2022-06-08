@@ -3,10 +3,15 @@ import { fetchShoppingList } from "./ShoppingListNetworking";
 import { Stack, Button, ListGroup } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { checkCookiesAndRedirect } from "../networking";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import "./shopping-list.css";
 import Header from "../Header";
 
 export default function ShoppingListPage() {
+
   const [shoppingList, setShoppingList] = useState([]);
   const [change, setChange] = useState(false);
 
@@ -27,6 +32,19 @@ export default function ShoppingListPage() {
       return <ShoppingPlants key={i} data={plant} setChange={setChange} />;
     });
   }
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    checkCookiesAndRedirect(navigate);
+  }, []);
+
+  //  function printShoppingListPlants() {
+  //     return gardenInfo.map((plant, i) => {
+  //       return <ShoppingPlants />;
+  //     });
+  // }
+
   return (
     <div className="header-container">
       {<Header />}

@@ -1,7 +1,11 @@
-#carouselForDashboard {
+.dashboard-wrapper {
+  height: 100%;
+}
+#carousel-for-dashboard {
   color: black;
   text-align: center;
   width: 100%;
+  height: 100%;
 }
 
 .carousel {
@@ -9,10 +13,88 @@
   padding-left: 2%;
   padding-right: 2%;
   padding-bottom: 2%;
+  flex: 1;
+  margin-left: 3%;
+  margin-right: 3%;
+  height: 600px;
 }
 
-.forecastCardMother {
+.card {
+  border-radius: 10px !important;
+}
+.carousel-mother {
   display: flex;
+  height: 100%;
+}
+
+.forecast-card-mother {
+  display: flex;
+  align-items: center;
+  align-content: center;
   width: 100%;
-  justify-content: space-evenly;
+}
+
+.forecast-card {
+  flex: 1;
+}
+.forecast-slide {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.forecast-slide,
+.tips-slide,
+.notice-slide {
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+}
+.carousel-control-next-icon {
+  background-color: #54bba1 !important;
+  border: solid 1px #54bba1;
+  border-radius: 20px;
+}
+
+.carousel-control-prev-icon {
+  background-color: #54bba1 !important;
+  border: solid 1px #54bba1;
+  border-radius: 20px;
+}
+.carousel-indicators [data-bs-target] {
+  background-color: #54bba1 !important;
+}
+.tips-slide {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin: auto;
+  width: 80%;
+}
+#tip-h1 {
+  text-align: center;
+  padding-bottom: 40px;
+}
+.tip-of-the-day {
+  text-align: center !important;
+  width: 50%;
+  margin: 0 !important;
+}
+.image-div {
+  height: 100%;
+}
+.alert-primary {
+  display: flex;
+  justify-content: center;
+  text-align: center !important;
+}
+.carousel-item.active {
+}
+.carousel-item-next {
+}
+.carousel-item-prev {
 }

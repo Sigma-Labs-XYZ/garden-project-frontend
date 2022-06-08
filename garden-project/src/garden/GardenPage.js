@@ -3,15 +3,23 @@ import Stack from "react-bootstrap/Stack";
 import "./garden.css";
 import PlantItem from "./PlantItem";
 import ListGroup from "react-bootstrap/ListGroup";
+import { checkCookiesAndRedirect } from "../networking";
+import { useNavigate } from "react-router-dom";
 import { fetchGardenInfo } from "./GardenNetworking";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import EditGardenForm from "./EditGardenForm";
 import Header from "../Header";
+import { propTypes } from "react-bootstrap/esm/Image";
 
 export default function GardenPage() {
+  const navigate = useNavigate();
   const [gardenInfo, setGardenInfo] = useState([]);
   const [remove, setRemove] = useState(false);
+
+  useEffect(() => {
+    checkCookiesAndRedirect(navigate);
+  }, []);
 
   useEffect(() => {
     async function getData() {
@@ -28,7 +36,7 @@ export default function GardenPage() {
 
   function printGardenPlants() {
     return gardenInfo.map((plant, i) => {
-      return <PlantItem setRemove={setRemove} key={i} data={plant} />;
+      return <PlantItem setRemove={setRemove} remove={remove} key={i} data={plant} />;
     });
   }
   return (
@@ -50,7 +58,10 @@ export default function GardenPage() {
           </div>
 
           <div className="plant-items-wrapper">
-            <h3 shadow-sm> What's in your garden... </h3>
+            <h3 id="garden-h3" shadow-sm>
+              {" "}
+              What's in your garden...{" "}
+            </h3>
             <ListGroup variant="flush">{printGardenPlants()}</ListGroup>
           </div>
           <div className="calendar-button">
