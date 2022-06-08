@@ -7,6 +7,7 @@ import PlantedCheckbox from "./PlantedCheckbox";
 import HarvestedCheckbox from "./HarvestedCheckbox";
 import { deletePlant } from "./GardenNetworking";
 import { HashLink } from "react-router-hash-link";
+import { DashCircleFill, Flower3 } from "react-bootstrap-icons";
 
 export default function PlantItem(props) {
   const [show, setShow] = useState(false);
@@ -38,7 +39,12 @@ export default function PlantItem(props) {
     <ListGroup.Item>
       <div className="container-title">
         <HashLink to={`/plants-info#${plant_info_id}`}>
-          <h5> {name}</h5>
+          <h5>
+            <Stack direction="horizontal" gap={2}>
+              <Flower3 />
+              <span>{name}</span>
+            </Stack>
+          </h5>
         </HashLink>
       </div>
       <div className="container-check-box">
@@ -59,9 +65,14 @@ export default function PlantItem(props) {
       </div>
       <div className="container-planted-at">{getPlantedAtDate()}</div>
       <div className="container-remove-button">
-        <Button variant="outline-danger" onClick={handleShow}>
-          {" "}
-          remove
+        <Button
+          className="remove-from-list"
+          variant="outline-danger"
+          onClick={handleShow}
+        >
+          <Stack direction="horizontal" gap={2}>
+            <DashCircleFill /> <span> Remove </span>
+          </Stack>
         </Button>
         <Modal show={show} onHide={handleClose}>
           <Modal.Body>

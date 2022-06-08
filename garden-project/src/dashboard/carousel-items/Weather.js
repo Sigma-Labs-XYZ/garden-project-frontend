@@ -63,7 +63,7 @@ export default function Weather() {
           <div className="forecast-card-mother">
             <div className="forecast-card day0">
               <Card style={{ width: "13rem" }}>
-                <Card.Img variant="top" src="holder.js/100px180" />
+                {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
                 <Card.Body>
                   <Card.Title>Today:</Card.Title>
                   <Card.Subtitle className="mb-2 text-muted">
@@ -78,7 +78,7 @@ export default function Weather() {
             </div>
             <div className="forecast-card day1">
               <Card style={{ width: "13rem" }}>
-                <Card.Img variant="top" src="holder.js/100px180" />
+                {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
                 <Card.Body>
                   <Card.Title>Tomorrow:</Card.Title>
                   <Card.Subtitle className="mb-2 text-muted">
@@ -92,7 +92,7 @@ export default function Weather() {
             </div>
             <div className="forecast-card day2">
               <Card style={{ width: "13rem" }}>
-                <Card.Img variant="top" src="holder.js/100px180" />
+                {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
                 <Card.Body>
                   <Card.Title>{getTwoDaysLater()}:</Card.Title>
                   <Card.Subtitle className="mb-2 text-muted">
@@ -107,7 +107,7 @@ export default function Weather() {
 
             <div className="forecast-card day3">
               <Card style={{ width: "13rem" }}>
-                <Card.Img variant="top" src="holder.js/100px180" />
+                {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
                 <Card.Body>
                   <Card.Title>{getThreeDaysLater()}:</Card.Title>
                   <Card.Subtitle className="mb-2 text-muted">

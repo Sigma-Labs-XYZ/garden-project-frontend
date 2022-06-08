@@ -10,7 +10,12 @@ export default function SearchForm(props) {
   const [err, setErr] = useState(false);
 
   async function handleSearchFilter(e) {
-    const result = await fetchPlantInfo(name, classification, timeUntilHarvest, spacing);
+    const result = await fetchPlantInfo(
+      name,
+      classification,
+      timeUntilHarvest,
+      spacing
+    );
     if (result.length > 0) {
       console.log(result);
       setErr(false);
@@ -28,15 +33,15 @@ export default function SearchForm(props) {
           <Form.Control
             id="inlineFormInput"
             size="lg"
-            placeholder="Search for a plant by name..."
-            onChange={e => setName(e.target.value)}
+            placeholder="Search for a plant..."
+            onChange={(e) => setName(e.target.value)}
           />
           <div>
             <input
               class="form-control"
               list="classificationOptions"
               id="classificationList"
-              onChange={e => setClassification(e.target.value.split(" ")[0])}
+              onChange={(e) => setClassification(e.target.value.split(" ")[0])}
               placeholder="Search by family..."
             />
             <datalist id="classificationOptions">
@@ -55,7 +60,7 @@ export default function SearchForm(props) {
               class="form-control"
               list="harvestPeriodOptions"
               id="harvestPeriodList"
-              onChange={e => {
+              onChange={(e) => {
                 let timeInWeeks = e.target.value.replace(/[^0-9]/g, "");
                 if (e.target.value[0] === ">") timeInWeeks = "g" + timeInWeeks;
                 setTimeUntilHarvest(timeInWeeks);
@@ -77,9 +82,10 @@ export default function SearchForm(props) {
               class="form-control"
               list="spacingOptions"
               id="spacingList"
-              onChange={e => {
+              onChange={(e) => {
                 let desiredSpacing = e.target.value.replace(/[^0-9]/g, "");
-                if (e.target.value[0] === ">") desiredSpacing = "g" + desiredSpacing;
+                if (e.target.value[0] === ">")
+                  desiredSpacing = "g" + desiredSpacing;
                 setSpacing(desiredSpacing);
               }}
               placeholder="Search by how close together plants can be sown..."
@@ -94,7 +100,7 @@ export default function SearchForm(props) {
         </Col>
         <Col xs="auto">
           <Button type="button" size="lg" onClick={handleSearchFilter}>
-            Filter
+            Search
           </Button>
         </Col>
         {err ? (

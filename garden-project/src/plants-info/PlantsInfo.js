@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./plants-info.css";
 import { addPlantToGarden } from "./PlantsNetworking";
 import { useState, useEffect } from "react";
+import { PlusCircleFill, ListTask } from "react-bootstrap-icons/";
 
 export default function PlantsInfo(props) {
   const [show, setShow] = useState(false);
@@ -107,11 +108,22 @@ export default function PlantsInfo(props) {
 
         <div id="buttons" className="d-flex justify-content-end">
           <Stack className="button-stack" direction="horizontal" gap={3}>
-            <Button variant="info" type="submit" onClick={handleAddToGarden}>
-              Add to Garden
+            <Button
+              className="add-to-garden"
+              variant="info"
+              type="submit"
+              onClick={handleAddToGarden}
+            >
+              <Stack direction="horizontal" gap={2}>
+                <PlusCircleFill /> <span>Add to garden</span>
+              </Stack>
             </Button>
             <Link to="/shopping-list">
-              <Button type="submit">Add to shopping list</Button>
+              <Button className="add-to-shopping-list" type="submit">
+                <Stack direction="horizontal" gap={2}>
+                  <ListTask /> <span>Add to shopping list</span>
+                </Stack>
+              </Button>
             </Link>
           </Stack>
         </div>
