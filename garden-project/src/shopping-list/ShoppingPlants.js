@@ -2,8 +2,7 @@ import { ListGroup, Button, Modal, Stack } from "react-bootstrap";
 import { useState } from "react";
 import BoughtCheckBox from "./BoughtCheckBox";
 import QuantityButtons from "./QuantityButtons";
-import { fetchPlantName } from "./ShoppingListNetworking";
-import { deleteItem } from "./ShoppingListNetworking";
+import { fetchPlantName, deleteItem } from "./ShoppingListNetworking";
 
 export default function ShoppingPlants(props) {
   const [show, setShow] = useState(false);
@@ -16,6 +15,7 @@ export default function ShoppingPlants(props) {
     await deleteItem(props.data.id);
     setShow(false);
     props.setChange(true);
+    window.location.reload(false);
   }
 
   async function getName() {
@@ -36,7 +36,11 @@ export default function ShoppingPlants(props) {
         />
       </div>
       <div className="container-check-box">
-        <BoughtCheckBox />
+        <BoughtCheckBox
+          setChange={props.setChange}
+          id={props.data.id}
+          bought={props.data.bought}
+        />
       </div>
 
       <div className="container-remove-button">
