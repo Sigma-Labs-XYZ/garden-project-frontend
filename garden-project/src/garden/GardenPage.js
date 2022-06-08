@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import EditGardenForm from "./EditGardenForm";
 import Header from "../Header";
 import { propTypes } from "react-bootstrap/esm/Image";
+import { PinMap, PlusCircleFill, ListTask } from "react-bootstrap-icons/";
 
 export default function GardenPage() {
   const navigate = useNavigate();
@@ -36,7 +37,9 @@ export default function GardenPage() {
 
   function printGardenPlants() {
     return gardenInfo.map((plant, i) => {
-      return <PlantItem setRemove={setRemove} remove={remove} key={i} data={plant} />;
+      return (
+        <PlantItem setRemove={setRemove} remove={remove} key={i} data={plant} />
+      );
     });
   }
   return (
@@ -45,13 +48,23 @@ export default function GardenPage() {
       <div className="garden-page-wrapper">
         <Stack direction="vertical" gap={3}>
           <div className="title-button-wrapper">
-            <h1 id="garden-h1">Garden name</h1>
+            <h2 id="garden-h2">**Garden name** @ **location** </h2>
 
             <Stack direction="horizontal" gap={3} className="buttons">
               <Link to="/plants-info">
-                <Button variant="info">Add plants to garden</Button>
+                <Button className="add-to-garden" variant="info">
+                  <Stack direction="horizontal" gap={2}>
+                    <PlusCircleFill /> <span>Add to plants to garden</span>
+                  </Stack>
+                </Button>
               </Link>
-              <Button variant="info">View shopping list</Button>
+              <Link to="/shopping-list">
+                <Button className="add-to-shopping-list" variant="info">
+                  <Stack direction="horizontal" gap={2}>
+                    <ListTask /> <span>View shopping list </span>
+                  </Stack>
+                </Button>
+              </Link>
             </Stack>
           </div>
 

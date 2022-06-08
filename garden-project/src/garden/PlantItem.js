@@ -7,17 +7,26 @@ import PlantedCheckbox from "./PlantedCheckbox";
 import HarvestedCheckbox from "./HarvestedCheckbox";
 import { deletePlant } from "./GardenNetworking";
 import { HashLink } from "react-router-hash-link";
+import { DashCircleFill, Flower3 } from "react-bootstrap-icons";
 
 export default function PlantItem(props) {
   const [show, setShow] = useState(false);
-  const [harvestDisabled, setHarvestDisabled] = useState(props.data.planted_at == null || props.data.harvested);
+  const [harvestDisabled, setHarvestDisabled] = useState(
+    props.data.planted_at == null || props.data.harvested
+  );
   const enableHarvest = () => setHarvestDisabled(false);
   const disableHarvest = () => setHarvestDisabled(true);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  let { name, id, plant_info_id } = props.data;
+  let { name, id, plant_info_id, planted_at } = props.data;
 
+  function getPlantedAtDate() {
+    if (planted_at) {
+      const plantedAt = planted_at.toString().slice(0, 10);
+      return "Planted at: " + plantedAt;
+    }
+  }
   name = name.split(", ")[0];
 
   async function handleDelete() {
@@ -30,7 +39,12 @@ export default function PlantItem(props) {
     <ListGroup.Item>
       <div className="container-title">
         <HashLink to={`/plants-info#${plant_info_id}`}>
-          <h5> {name}</h5>
+          <h5>
+            <Stack direction="horizontal" gap={2}>
+              <Flower3 />
+              <span>{name}</span>
+            </Stack>
+          </h5>
         </HashLink>
       </div>
       <div className="container-check-box">
@@ -49,10 +63,16 @@ export default function PlantItem(props) {
           id={`inline-harvested-checkbox-${props.data.id}`}
         />
       </div>
+      <div className="container-planted-at">{getPlantedAtDate()}</div>
       <div className="container-remove-button">
-        <Button variant="outline-danger" onClick={handleShow}>
-          {" "}
-          remove
+        <Button
+          className="remove-from-list"
+          variant="outline-danger"
+          onClick={handleShow}
+        >
+          <Stack direction="horizontal" gap={2}>
+            <DashCircleFill /> <span> Remove </span>
+          </Stack>
         </Button>
         <Modal show={show} onHide={handleClose}>
           <Modal.Body>

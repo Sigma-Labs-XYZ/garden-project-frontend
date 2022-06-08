@@ -25,6 +25,7 @@
 .carousel-mother {
   display: flex;
   height: 100%;
+  background-color: #c9e7e9;
 }
 
 .forecast-card-mother {
@@ -39,16 +40,18 @@
 }
 .forecast-slide {
   height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 }
 .forecast-slide,
 .tips-slide,
 .notice-slide {
-  margin-left: 3%;
-  margin-right: 3%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
 }
 .carousel-control-next-icon {
   background-color: #54bba1 !important;
@@ -69,18 +72,28 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  margin: auto;
+  width: 80%;
 }
-#tips-h1 {
+#tip-h1 {
   text-align: center;
-  padding: 300px !important;
+  padding-bottom: 40px;
 }
 .tip-of-the-day {
-  text-align: center;
-  padding: 30px !important;
+  text-align: center !important;
   width: 50%;
+  margin: 0 !important;
+  font-size: 1.1rem;
 }
 .image-div {
   height: 100%;
+}
+.alert-info {
+  display: flex;
+  justify-content: center;
+  text-align: center !important;
+  box-shadow: 0px 3px 5px 0px rgba(140, 119, 119, 0.25) !important;
 }
 .carousel-item.active {
 }
