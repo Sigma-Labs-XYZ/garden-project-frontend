@@ -131,15 +131,14 @@ export default function PlantsInfo(props) {
               </Stack>
             </Button>
             <Link to="/shopping-list">
-
-              <Button className="add-to-shopping-list" type="submit">
+              <Button
+                className="add-to-shopping-list"
+                type="submit"
+                onClick={handleAddToShoppingList}
+              >
                 <Stack direction="horizontal" gap={2}>
                   <ListTask /> <span>Add to shopping list</span>
                 </Stack>
-
-              <Button type="submit" onClick={handleAddToShoppingList}>
-                Add to shopping list
-
               </Button>
             </Link>
           </Stack>
