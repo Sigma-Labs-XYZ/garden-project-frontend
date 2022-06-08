@@ -1,6 +1,5 @@
 import { ArrowUpSquare, ArrowDownSquare } from "react-bootstrap-icons";
 import { patchQuantity } from "./ShoppingListNetworking";
-import { useState } from "react";
 
 export default function QuantityButtons(props) {
   async function handleQuantityChange(upOrDown) {

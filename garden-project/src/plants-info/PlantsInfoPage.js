@@ -35,7 +35,6 @@ export default function PlantsInfoPage() {
   function checkAvoidInstructions(index) {
     let listOfGardenPlants = [];
     let avoidInstructions = plantInfo[index].avoid_instructions.split(":")[1];
-
     let samePlants = [];
     avoidInstructions = avoidInstructions.split(", ");
 
@@ -46,7 +45,11 @@ export default function PlantsInfoPage() {
     listOfGardenPlants = listOfGardenPlants.flat();
     for (let i = 0; i < listOfGardenPlants.length; i++) {
       for (let j = 0; j < avoidInstructions.length; j++) {
-        if (listOfGardenPlants[i].includes(avoidInstructions[j])) {
+        if (
+          listOfGardenPlants[i]
+            .toLowerCase()
+            .includes(avoidInstructions[j].toLowerCase())
+        ) {
           samePlants.push(" " + listOfGardenPlants[i]);
           samePlants.push(" or");
         }
