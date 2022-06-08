@@ -48,6 +48,10 @@
   align-items: center;
   justify-content: space-between;
 }
+
+/* .card {
+  background-image: url("https://mdbgo.io/ascensus/mdb-advanced/img/clouds.gif") !important;
+} */
 .forecast-slide,
 .tips-slide,
 .notice-slide {

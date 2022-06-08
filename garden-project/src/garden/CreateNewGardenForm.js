@@ -1,10 +1,8 @@
-import Modal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import Alert from "react-bootstrap/Alert";
+import { Modal, Button, Form, Alert } from "react-bootstrap";
 import { useState } from "react";
 import React from "react";
 import "../dashboard/create-garden-form.css";
+import { addGarden } from "./GardenNetworking";
 
 export default function CreateNewGardenForm() {
   const [show, setShow] = useState(false);
@@ -15,12 +13,16 @@ export default function CreateNewGardenForm() {
   const [location, setLocation] = useState("");
 
   async function createNewGarden() {
+    const cookies = document.cookie;
+    const sessionID = cookies
+      .split("; ")
+      .find((row) => row.startsWith("session="))
+      .split("=")[1];
+
     if (gardenName === "" || location === "") {
       updateError("Name or location can't be empty");
-    } else if (gardenName === "" && location === "") {
-      updateError("Location and name can't be empty");
     } else {
-      // fetch request
+      await addGarden(location, gardenName, sessionID);
       setShow(false);
     }
   }
