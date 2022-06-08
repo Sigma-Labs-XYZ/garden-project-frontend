@@ -2,12 +2,14 @@ import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Stack from "react-bootstrap/Stack";
+import Image from "react-bootstrap/Image";
 import { useEffect, useState } from "react";
 import PlantedCheckbox from "./PlantedCheckbox";
 import HarvestedCheckbox from "./HarvestedCheckbox";
 import { deletePlant } from "./GardenNetworking";
 import { HashLink } from "react-router-hash-link";
 import { DashCircleFill, Flower3 } from "react-bootstrap-icons";
+import plant from "./plant-images/icons8-sprout-30.png";
 
 export default function PlantItem(props) {
   const [show, setShow] = useState(false);
@@ -27,6 +29,7 @@ export default function PlantItem(props) {
       return "Planted at: " + plantedAt;
     }
   }
+
   name = name.split(", ")[0];
 
   async function handleDelete() {
@@ -40,8 +43,8 @@ export default function PlantItem(props) {
       <div className="container-title">
         <HashLink to={`/plants-info#${plant_info_id}`}>
           <h5>
-            <Stack direction="horizontal" gap={2}>
-              <Flower3 />
+            <Stack direction="horizontal" gap={3}>
+              <Image src={plant} />
               <span>{name}</span>
             </Stack>
           </h5>
