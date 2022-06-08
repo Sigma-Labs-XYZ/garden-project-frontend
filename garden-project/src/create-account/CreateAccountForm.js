@@ -67,10 +67,10 @@ export default function CreateAccountForm() {
 
   return (
     <div className="create-account-container">
-      <h1>Website name</h1>
-      <h2>Welcome</h2>
-      <h4 className="create-account-title"> Create an account</h4>
+      <h1>GRDN</h1>
+
       <Form className="create-account-form">
+        <h4 className="create-account-title"> Create an account</h4>
         <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridFirstName">
             <Form.Label>First name</Form.Label>
