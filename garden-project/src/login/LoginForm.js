@@ -11,7 +11,6 @@ export default function LoginForm() {
   const navigate = useNavigate();
 
   async function checkUserDetails(email, password) {
-    const submittedUserDetails = { email: email, password: password };
     if (email === "" && password === "") {
       await updateError("Please enter a username and password");
     } else if (email === "") {
@@ -24,7 +23,7 @@ export default function LoginForm() {
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ submittedUserDetails }),
+          body: JSON.stringify({ email: email, password: password }),
         }
       );
       const result = await response.json();
