@@ -1,6 +1,7 @@
 import { Modal, Button, Form, Alert } from "react-bootstrap";
 import { useState } from "react";
 import React from "react";
+import "../dashboard/create-garden-form.css";
 import { addGarden } from "./GardenNetworking";
 
 export default function CreateNewGardenForm() {
@@ -29,7 +30,7 @@ export default function CreateNewGardenForm() {
     setError(error);
   }
   return (
-    <div>
+    <div className="create-garden-form-wrapper">
       <Button variant="primary" onClick={handleShow}>
         Create a new garden
       </Button>
@@ -56,15 +57,13 @@ export default function CreateNewGardenForm() {
               <Form.Label>Location</Form.Label>
               <Form.Control
                 type="location"
-                placeholder="{current garden location}"
+                placeholder="Enter a location"
                 onChange={(e) => {
                   setLocation(e.target.value);
                   updateError("");
                 }}
               />
-              <Form.Text className="text-muted">
-                Enter your postcode, zipcode or city
-              </Form.Text>
+              <Form.Text className="text-muted">Enter your city name</Form.Text>
               {error ? (
                 <Alert key="danger" variant="danger">
                   {" "}

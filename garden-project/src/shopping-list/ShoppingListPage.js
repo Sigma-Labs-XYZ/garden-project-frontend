@@ -51,7 +51,7 @@ export default function ShoppingListPage() {
           </div>
 
           <div className="shopping-items-wrapper">
-            <h3> What's in your shopping list... </h3>
+            <h3 id="shopping-list-h3"> What's in your shopping list... </h3>
             <ListGroup variant="flush">{printShoppingList()}</ListGroup>
           </div>
         </Stack>
