@@ -3,6 +3,7 @@ import { Card, Stack } from "react-bootstrap";
 
 export default function Weather() {
   const [forecastData, setForecastData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
@@ -17,12 +18,15 @@ export default function Weather() {
     ); //need to change once backend is pushed to heroku
     const data = await response.json();
     await fetchWeatherData(data);
+    setLoading(false);
   }
 
   async function fetchWeatherData(gardenData) {
     const forecastForEachGarden = [];
     for (let garden of gardenData) {
-      const response = await fetch(`https://goweather.herokuapp.com/weather/${garden.location}`);
+      const response = await fetch(
+        `https://goweather.herokuapp.com/weather/${garden.location}`
+      );
       const data = await response.json();
       const forecastObject = { city: garden.location, forecast: data };
       forecastForEachGarden.push(forecastObject);
@@ -52,7 +56,7 @@ export default function Weather() {
   }
 
   function displayWeatherData() {
-    return forecastData.map(garden => {
+    return forecastData.map((garden) => {
       return (
         <Stack direction="vertical" gap={2}>
           <h3>The weather in {garden.city} is...</h3>
@@ -123,8 +127,22 @@ export default function Weather() {
 
   return (
     <div className="forecast-slide">
-      <h1> Hi *username* </h1>
-      {displayWeatherData()}
+      {loading ? (
+        <div className="loading-spinner-wrapper">
+          <div className="lds-ring">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+          <p> Loading weather...</p>
+        </div>
+      ) : (
+        <div className="forecast-slide">
+          <h1> Hi *username* </h1>
+          {displayWeatherData()}{" "}
+        </div>
+      )}
     </div>
   );
 }
