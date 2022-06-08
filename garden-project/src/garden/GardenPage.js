@@ -43,7 +43,9 @@ export default function GardenPage() {
               <Link to="/plants-info">
                 <Button variant="info">Add plants to garden</Button>
               </Link>
-              <Button variant="info">View shopping list</Button>
+              <Link to="/shopping-list">
+                <Button variant="info">View shopping list</Button>
+              </Link>
             </Stack>
           </div>
 

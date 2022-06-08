@@ -1,7 +1,7 @@
-import { Accordion, Button, ListGroup, Stack, Alert } from "react-bootstrap";
+import { Accordion, Button, ListGroup, Stack } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./plants-info.css";
-import { addPlantToGarden } from "./PlantsNetworking";
+import { addPlantToGarden, addPlantToShoppingList } from "./PlantsNetworking";
 
 export default function PlantsInfo(props) {
   const {
@@ -18,6 +18,10 @@ export default function PlantsInfo(props) {
   async function handleAddToGarden() {
     const gardenID = 1; // TEST VALUE: to be derived from session data in future
     await addPlantToGarden(id, gardenID);
+  }
+  async function handleAddToShoppingList() {
+    const gardenID = 1;
+    await addPlantToShoppingList(id, gardenID, 1);
   }
 
   return (
@@ -93,7 +97,9 @@ export default function PlantsInfo(props) {
               Add to Garden
             </Button>
             <Link to="/shopping-list">
-              <Button type="submit">Add to shopping list</Button>
+              <Button type="submit" onClick={handleAddToShoppingList}>
+                Add to shopping list
+              </Button>
             </Link>
           </Stack>
         </div>
