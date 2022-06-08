@@ -1,9 +1,12 @@
 import Navbar from "react-bootstrap/Navbar";
 import { Container, NavDropdown } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const gardenNames = ["My Garden 1", "My Garden 2", "My Garden 3"];
 
 export default function Header() {
+  const navigate = useNavigate();
+
   function mappingGardenNameDropdown(gardens) {
     const gardenDropdown = gardens.map((garden, i) => {
       return (
@@ -29,6 +32,8 @@ export default function Header() {
         sessionID: sessionID,
       }),
     });
+    document.cookie = "session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    navigate("/login");
   }
 
   function featureDependingOnNumOfGardens(gardens, i) {
