@@ -1,8 +1,6 @@
-import Button from "react-bootstrap/Button";
-import Stack from "react-bootstrap/Stack";
+import { Button, Stack, ListGroup } from "react-bootstrap";
 import "./garden.css";
 import PlantItem from "./PlantItem";
-import ListGroup from "react-bootstrap/ListGroup";
 import { checkCookiesAndRedirect } from "../networking";
 import { useNavigate } from "react-router-dom";
 import { fetchGardenInfo } from "./GardenNetworking";
@@ -10,7 +8,6 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import EditGardenForm from "./EditGardenForm";
 import Header from "../Header";
-import { propTypes } from "react-bootstrap/esm/Image";
 import { PinMap, PlusCircleFill, ListTask } from "react-bootstrap-icons/";
 
 export default function GardenPage() {
