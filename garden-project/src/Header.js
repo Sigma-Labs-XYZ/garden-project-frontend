@@ -1,12 +1,14 @@
 import Navbar from "react-bootstrap/Navbar";
 import { Container, NavDropdown } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getUserIDFromSession } from "./networking";
 
 const gardenNames = ["My Garden 1", "My Garden 2", "My Garden 3"];
 
 export default function Header() {
+  const [usersGardens, setUsersGardens] = useState([]);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,18 +22,22 @@ export default function Header() {
   async function fetchGardenInfo(id) {
     const response = await fetch(`http://garden-project.sigmalabs.co.uk/allGardens/${id}`);
     const data = await response.json();
-    console.log(data);
+    setUsersGardens(data);
   }
 
   function mappingGardenNameDropdown(gardens) {
     const gardenDropdown = gardens.map((garden, i) => {
       return (
-        <NavDropdown.Item href={garden} key={i}>
-          {garden}
+        <NavDropdown.Item onClick={handleNavToGarden} gardenName={garden.gardenName} key={i}>
+          {garden.garden_name}
         </NavDropdown.Item>
       );
     });
     return gardenDropdown;
+  }
+
+  function handleNavToGarden(e) {
+    console.log(e.target.gardenName);
   }
 
   async function handleLogout() {
@@ -62,7 +68,7 @@ export default function Header() {
     } else if (gardens.length > 1) {
       return (
         <NavDropdown title="My Gardens" id="gardensDropdown">
-          {mappingGardenNameDropdown(gardenNames)}
+          {mappingGardenNameDropdown(usersGardens)}
         </NavDropdown>
       );
     }
