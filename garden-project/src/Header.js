@@ -3,18 +3,43 @@ import { Container, NavDropdown } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-// const gardenNames = ["My Garden 1", "My Garden 2", "My Garden 3"];
-
 export default function Header() {
   const [gardenNames, setGardenNames] = useState([]);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     async function fetchData() {
-      await fetchGardensOfUser(1); // hardcoded at the moment
+      await getUUID();
     }
     fetchData();
   }, []);
-  const navigate = useNavigate();
+
+  async function getUUID() {
+    const cookies = await document.cookie;
+
+    const sessionID = cookies
+      .split("; ")
+      .find((row) => row.startsWith("session="))
+      .split("=")[1];
+
+    await fetchUserID(sessionID);
+  }
+
+  async function fetchUserID(sessionID) {
+    const response = await fetch(
+      `https://garden-project.sigmalabs.co.uk/gardens`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sessionID: sessionID }),
+      }
+    );
+    const data = await response.json();
+    if (data.length) {
+      await fetchGardensOfUser(data[0].user_id);
+    }
+  }
 
   function mappingGardenNameDropdown(gardens) {
     const gardenDropdown = gardens.map((garden, i) => {
@@ -27,9 +52,9 @@ export default function Header() {
     return gardenDropdown;
   }
 
-  async function fetchGardensOfUser(id) {
+  async function fetchGardensOfUser(userID) {
     const response = await fetch(
-      `http://garden-project.sigmalabs.co.uk/gardens/${id}`
+      `https://garden-project.sigmalabs.co.uk/gardens/${userID}`
     );
 
     const data = await response.json();
@@ -38,11 +63,9 @@ export default function Header() {
 
   async function fetchGardenData(gardenData) {
     const listOfGardenNames = [];
-
     for (let garden of gardenData) {
       listOfGardenNames.push(garden.garden_name);
     }
-
     await setGardenNames(listOfGardenNames);
   }
 
