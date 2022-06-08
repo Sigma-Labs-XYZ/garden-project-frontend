@@ -1,8 +1,9 @@
-import { Accordion, Button, ListGroup, Stack, Modal } from "react-bootstrap";
+import { Accordion, Button, ListGroup, Stack } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./plants-info.css";
-import { addPlantToGarden } from "./PlantsNetworking";
+import { addPlantToGarden, addPlantToShoppingList } from "./PlantsNetworking";
 import { useState, useEffect } from "react";
+
 
 export default function PlantsInfo(props) {
   const [show, setShow] = useState(false);
@@ -27,11 +28,17 @@ export default function PlantsInfo(props) {
     setAvoid(props.checkAvoidInstructions(props.index));
     console.log(avoid);
   }
+  async function handleAddToShoppingList() {
+    const gardenID = 1;
+    await addPlantToShoppingList(id, gardenID, 1);
+  }
+
   useEffect(() => {
     if (avoid.length) {
       handleShow();
     }
   }, [avoid]);
+
 
   return (
     <Accordion.Item eventKey={props.activeKey}>
@@ -111,7 +118,9 @@ export default function PlantsInfo(props) {
               Add to Garden
             </Button>
             <Link to="/shopping-list">
-              <Button type="submit">Add to shopping list</Button>
+              <Button type="submit" onClick={handleAddToShoppingList}>
+                Add to shopping list
+              </Button>
             </Link>
           </Stack>
         </div>

@@ -1,15 +1,38 @@
 import ShoppingPlants from "./ShoppingPlants";
-import Stack from "react-bootstrap/Stack";
-import Button from "react-bootstrap/Button";
+import { fetchShoppingList } from "./ShoppingListNetworking";
+import { Stack, Button, ListGroup } from "react-bootstrap";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import ListGroup from "react-bootstrap/ListGroup";
 import { checkCookiesAndRedirect } from "../networking";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+
 import "./shopping-list.css";
 import Header from "../Header";
 
 export default function ShoppingListPage() {
+
+  const [shoppingList, setShoppingList] = useState([]);
+  const [change, setChange] = useState(false);
+
+  useEffect(() => {
+    async function getData() {
+      await fetchInfo();
+    }
+    getData();
+    setChange(false);
+  }, [change]);
+
+  async function fetchInfo() {
+    const shoppingData = await fetchShoppingList();
+    setShoppingList(shoppingData);
+  }
+  function printShoppingList() {
+    return shoppingList.map((plant, i) => {
+      return <ShoppingPlants key={i} data={plant} setChange={setChange} />;
+    });
+  }
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,6 +44,7 @@ export default function ShoppingListPage() {
   //       return <ShoppingPlants />;
   //     });
   // }
+
   return (
     <div className="header-container">
       {<Header />}
@@ -36,9 +60,7 @@ export default function ShoppingListPage() {
 
           <div className="shopping-items-wrapper">
             <h3> What's in your shopping list... </h3>
-            <ListGroup variant="flush">
-              <ShoppingPlants />
-            </ListGroup>
+            <ListGroup variant="flush">{printShoppingList()}</ListGroup>
           </div>
         </Stack>
       </div>
