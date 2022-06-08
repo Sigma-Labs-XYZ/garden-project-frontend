@@ -1,14 +1,18 @@
 import { Accordion, Button, ListGroup, Stack, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./plants-info.css";
-import { addPlantToGarden } from "./PlantsNetworking";
+import { addPlantToGarden, addPlantToShoppingList } from "./PlantsNetworking";
 import { useState, useEffect } from "react";
+import { PlusCircleFill, ListTask } from "react-bootstrap-icons/";
 
 export default function PlantsInfo(props) {
   const [show, setShow] = useState(false);
   const [avoid, setAvoid] = useState([]);
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false);
+    setAvoid([]);
+  };
   const handleShow = () => setShow(true);
   const {
     id,
@@ -24,9 +28,18 @@ export default function PlantsInfo(props) {
   async function handleAddToGarden() {
     const gardenID = 1; // TEST VALUE: to be derived from session data in future
     await addPlantToGarden(id, gardenID);
-    setAvoid(props.checkAvoidInstructions(props.index));
+    setAvoid(
+      props.checkAvoidInstructions(props.index)
+        ? props.checkAvoidInstructions(props.index)
+        : []
+    );
     console.log(avoid);
   }
+  async function handleAddToShoppingList() {
+    const gardenID = 1;
+    await addPlantToShoppingList(id, gardenID, 1);
+  }
+
   useEffect(() => {
     if (avoid.length) {
       handleShow();
@@ -107,25 +120,38 @@ export default function PlantsInfo(props) {
 
         <div id="buttons" className="d-flex justify-content-end">
           <Stack className="button-stack" direction="horizontal" gap={3}>
-            <Button variant="info" type="submit" onClick={handleAddToGarden}>
-              Add to Garden
+            <Button
+              className="add-to-garden"
+              variant="info"
+              type="submit"
+              onClick={handleAddToGarden}
+            >
+              <Stack direction="horizontal" gap={2}>
+                <PlusCircleFill /> <span>Add to garden</span>
+              </Stack>
             </Button>
             <Link to="/shopping-list">
-              <Button type="submit">Add to shopping list</Button>
+              <Button
+                className="add-to-shopping-list"
+                type="submit"
+                onClick={handleAddToShoppingList}
+              >
+                <Stack direction="horizontal" gap={2}>
+                  <ListTask /> <span>Add to shopping list</span>
+                </Stack>
+              </Button>
             </Link>
           </Stack>
         </div>
 
         <Modal show={show} onHide={handleClose}>
           <Modal.Body>
-            Be careful, don't grow these near your: {avoid}!
+            <h6> Be careful, don't grow these near your: </h6>
+            <p>{avoid}! </p>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
               Close
-            </Button>
-            <Button variant="primary" onClick={handleClose}>
-              Save Changes
             </Button>
           </Modal.Footer>
         </Modal>
