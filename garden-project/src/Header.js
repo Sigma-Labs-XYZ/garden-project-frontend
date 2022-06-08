@@ -28,7 +28,7 @@ export default function Header() {
 
   async function fetchUserID(sessionID) {
     const response = await fetch(
-      `https://garden-project.sigmalabs.co.uk/gardens`,
+      `https://garden-project.sigmalabs.co.uk/allGardens`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -54,7 +54,7 @@ export default function Header() {
 
   async function fetchGardensOfUser(userID) {
     const response = await fetch(
-      `https://garden-project.sigmalabs.co.uk/gardens/${userID}`
+      `https://garden-project.sigmalabs.co.uk/allGardens/${userID}`
     );
 
     const data = await response.json();
