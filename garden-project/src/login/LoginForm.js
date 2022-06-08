@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { Form, Stack, Button, Alert } from "react-bootstrap";
 import { useState } from "react";
 import "./login.css";
@@ -12,6 +12,8 @@ export default function LoginForm() {
 
   async function checkUserDetails(email, password) {
     const submittedUserDetails = { email: email, password: password };
+
+    let response;
     if (email === "" && password === "") {
       await updateError("Please enter a username and password");
     } else if (email === "") {
@@ -19,14 +21,12 @@ export default function LoginForm() {
     } else if (password === "") {
       await updateError("Please enter a password");
     } else {
-      const response = await fetch(
-        `https://garden-project.sigmalabs.co.uk/login`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(submittedUserDetails),
-        }
-      );
+      response = await fetch(`https://garden-project.sigmalabs.co.uk/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ submittedUserDetails }),
+      });
+
       const result = await response.json();
       return result;
     }
@@ -34,12 +34,12 @@ export default function LoginForm() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const result = await checkUserDetails(email, password);
+    const result = checkUserDetails(email, password);
 
-    if (result.cookie) {
-      navigate("/dashboard");
-    } else {
+    if (result.error) {
       updateError(result.error);
+    } else {
+      navigate("/dashboard");
     }
   }
 

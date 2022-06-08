@@ -10,6 +10,12 @@
   flex-direction: row;
   justify-content: space-around;
 }
+.container-planted-at {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+}
 
 .buttons {
   display: flex;
@@ -44,11 +50,11 @@
 
 .container-title {
   display: flex;
-  width: 50%;
+  width: 40%;
   align-items: center;
 }
 .container-check-box {
-  width: 30%;
+  width: 20%;
   align-items: end;
 }
 .container-remove-button {

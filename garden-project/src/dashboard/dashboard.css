@@ -39,16 +39,18 @@
 }
 .forecast-slide {
   height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 }
 .forecast-slide,
 .tips-slide,
 .notice-slide {
-  margin-left: 3%;
-  margin-right: 3%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
 }
 .carousel-control-next-icon {
   background-color: #54bba1 !important;
@@ -69,18 +71,26 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  margin: auto;
+  width: 80%;
 }
-#tips-h1 {
+#tip-h1 {
   text-align: center;
-  padding: 300px !important;
+  padding-bottom: 40px;
 }
 .tip-of-the-day {
-  text-align: center;
-  padding: 30px !important;
+  text-align: center !important;
   width: 50%;
+  margin: 0 !important;
 }
 .image-div {
   height: 100%;
+}
+.alert-primary {
+  display: flex;
+  justify-content: center;
+  text-align: center !important;
 }
 .carousel-item.active {
 }
