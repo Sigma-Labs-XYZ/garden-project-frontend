@@ -56,20 +56,12 @@ export default function Header() {
     navigate("/login");
   }
 
-  function featureDependingOnNumOfGardens(gardens, i) {
-    if (gardens.length === 1) {
-      return (
-        <Navbar.Brand href={gardens} key={i}>
-          My Garden
-        </Navbar.Brand>
-      );
-    } else if (gardens.length > 1) {
-      return (
-        <NavDropdown title="My Gardens" id="gardensDropdown">
-          {mappingGardenNameDropdown(usersGardens)}
-        </NavDropdown>
-      );
-    }
+  function featureDependingOnNumOfGardens(gardens) {
+    return (
+      <NavDropdown title={"My Garden" + (gardens.length > 1 ? "s" : "")} id="gardensDropdown">
+        {mappingGardenNameDropdown(usersGardens)}
+      </NavDropdown>
+    );
   }
 
   return (
