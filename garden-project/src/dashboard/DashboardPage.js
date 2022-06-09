@@ -16,6 +16,7 @@ export default function DashboardPage() {
     checkCookiesAndRedirect(navigate);
   }, []);
 
+
   useEffect(() => {
     async function fetchData() {
       await getUUID();
