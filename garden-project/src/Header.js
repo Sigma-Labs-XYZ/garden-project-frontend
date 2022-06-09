@@ -28,7 +28,7 @@ export default function Header() {
   function mappingGardenNameDropdown(gardens) {
     const gardenDropdown = gardens.map((garden, i) => {
       return (
-        <NavDropdown.Item onClick={() => handleNavToGarden(garden.id)} key={i}>
+        <NavDropdown.Item onClick={() => handleNavToGarden(garden.id, garden.garden_name, garden.location)} key={i}>
           {garden.garden_name}
         </NavDropdown.Item>
       );
@@ -36,8 +36,8 @@ export default function Header() {
     return gardenDropdown;
   }
 
-  function handleNavToGarden(gardenID) {
-    navigate("/garden", { state: { gardenID: gardenID } });
+  function handleNavToGarden(gardenID, gardenName, gardenLocation) {
+    navigate("/garden", { state: { gardenID, gardenName, gardenLocation } });
   }
 
   async function handleLogout() {

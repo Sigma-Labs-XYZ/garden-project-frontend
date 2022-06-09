@@ -16,6 +16,8 @@ export default function GardenPage() {
   const [remove, setRemove] = useState(false);
   const { state } = useLocation();
 
+  console.log(state);
+
   useEffect(() => {
     checkCookiesAndRedirect(navigate);
   }, []);
@@ -46,7 +48,10 @@ export default function GardenPage() {
       <div className="garden-page-wrapper">
         <Stack direction="vertical" gap={3}>
           <div className="title-button-wrapper">
-            <h2 id="garden-h2">**Garden name** @ **location** </h2>
+            <h2 id="garden-h2">
+              {state.gardenName}
+              <h4 id="garden-location-h4">{state.gardenLocation}</h4>
+            </h2>
 
             <Stack direction="horizontal" gap={3} className="buttons">
               <Link to="/plants-info">
