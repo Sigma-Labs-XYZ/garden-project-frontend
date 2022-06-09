@@ -10,7 +10,7 @@ export default function DashboardPage() {
 
   useEffect(() => {
     async function fetchData() {
-      await fetchGardenInfo(1); // hardcoded at the moment
+      await getUUID();
     }
     fetchData();
   }, []);
