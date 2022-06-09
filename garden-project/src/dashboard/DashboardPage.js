@@ -28,18 +28,21 @@ export default function DashboardPage() {
 
     const sessionID = cookies
       .split("; ")
-      .find(row => row.startsWith("session="))
+      .find((row) => row.startsWith("session="))
       .split("=")[1];
 
     await fetchUserID(sessionID);
   }
 
   async function fetchUserID(sessionID) {
-    const response = await fetch(`https://garden-project.sigmalabs.co.uk/allGardens`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ sessionID: sessionID }),
-    });
+    const response = await fetch(
+      `https://garden-project.sigmalabs.co.uk/allGardens`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sessionID: sessionID }),
+      }
+    );
     const data = await response.json();
 
     if (data.length) {
@@ -51,7 +54,9 @@ export default function DashboardPage() {
   }
 
   async function fetchGardenInfo(id) {
+
     const response = await fetch(`https://garden-project.sigmalabs.co.uk/allGardens/${id}`);
+
     const data = await response.json();
 
     checkIfGardenExists(data);

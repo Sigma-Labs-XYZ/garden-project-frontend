@@ -8,6 +8,11 @@ import { PlusCircleFill, ListTask } from "react-bootstrap-icons/";
 export default function PlantsInfo(props) {
   const [show, setShow] = useState(false);
   const [avoid, setAvoid] = useState([]);
+  const [usersGardens, setUsersGardens] = useState([]);
+
+  useEffect(() => {
+    setUsersGardens(props.getUsersGardenState);
+  }, []);
 
   const handleClose = () => {
     setShow(false);
@@ -25,16 +30,32 @@ export default function PlantsInfo(props) {
     culinary_hints,
   } = props.data;
 
-  async function handleAddToGarden() {
-    const gardenID = 1; // TEST VALUE: to be derived from session data in future
+  function displayGardenButtons(data) {
+    return data.map((gardens) => {
+      return (
+        <Button
+          className="add-to-garden"
+          onClick={() => handleAddToGarden(gardens.id)}
+          variant="primary"
+        >
+          {" "}
+          <Stack direction="horizontal" gap={2}>
+            <PlusCircleFill /> <span> {"Add to " + gardens.garden_name}</span>
+          </Stack>
+        </Button>
+      );
+    });
+  }
+
+  async function handleAddToGarden(gardenID) {
     await addPlantToGarden(id, gardenID);
     setAvoid(
       props.checkAvoidInstructions(props.index)
         ? props.checkAvoidInstructions(props.index)
         : []
     );
-    console.log(avoid);
   }
+
   async function handleAddToShoppingList() {
     const gardenID = 1;
     await addPlantToShoppingList(id, gardenID, 1);
@@ -120,18 +141,10 @@ export default function PlantsInfo(props) {
 
         <div id="buttons" className="d-flex justify-content-end">
           <Stack className="button-stack" direction="horizontal" gap={3}>
-            <Button
-              className="add-to-garden"
-              variant="info"
-              type="submit"
-              onClick={handleAddToGarden}
-            >
-              <Stack direction="horizontal" gap={2}>
-                <PlusCircleFill /> <span>Add to garden</span>
-              </Stack>
-            </Button>
+            {displayGardenButtons(usersGardens)}
             <Link to="/shopping-list">
               <Button
+                variant="info"
                 className="add-to-shopping-list"
                 type="submit"
                 onClick={handleAddToShoppingList}
