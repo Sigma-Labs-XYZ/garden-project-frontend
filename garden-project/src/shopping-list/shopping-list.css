@@ -7,13 +7,14 @@
   padding-top: 30px;
 }
 #shopping-list-h3 {
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(255, 252, 252);
+  color: #1d5346;
   border: solid 1px;
-  border-color: rgb(233, 233, 233);
+  border-color: rgb(229, 229, 229);
   border-radius: 30px;
   width: 35%;
   padding: 10px;
-  box-shadow: 0px 3px 5px 0px rgba(216, 231, 232, 1);
+  box-shadow: 1px 1px 1px 0px rgb(182, 182, 182);
 }
 .list-group-item {
   width: 100%;
@@ -46,7 +47,7 @@
 }
 .container-title {
   display: flex;
-  width: 50%;
+  width: 40%;
   align-items: center;
 }
 .container-check-box {
@@ -66,15 +67,42 @@ svg {
 }
 
 #shopping-list-h1 {
-  background-color: white;
+  background-color: rgb(255, 252, 252);
   width: 30%;
+  color: #1d5346;
   border: solid 1px;
-  border-color: rgb(233, 233, 233);
-  border-radius: 30px;
+  border-color: rgb(229, 229, 229);
+  border-radius: 40px;
   padding: 10px;
-  box-shadow: 0px 3px 5px 0px rgba(216, 231, 232, 1);
+  box-shadow: 1px 1px 1px 0px rgb(182, 182, 182);
 }
 .container-title {
   display: flex;
   align-items: center;
+}
+
+.arrow-up:hover {
+  color: #42927e;
+}
+
+.arrow-down:hover {
+  color: #42927e;
+}
+
+.arrow-up {
+  color: #54bba1;
+  width: 1.3em !important;
+  border: 1px solid;
+  border-color: #42927e;
+  height: 1.3em !important;
+  border-radius: 4px !important;
+  box-shadow: 1px 1px 1px 0px rgb(182, 182, 182) !important;
+}
+.arrow-down {
+  color: #54bba1;
+  border: 1px solid #42927e;
+  border-radius: 4px !important;
+  width: 1.3em !important;
+  height: 1.3em !important;
+  box-shadow: 1px 1px 1px 0px rgb(182, 182, 182) !important;
 }

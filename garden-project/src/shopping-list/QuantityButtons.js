@@ -1,4 +1,4 @@
-import { ArrowUpSquare, ArrowDownSquare } from "react-bootstrap-icons";
+import { ArrowUpSquareFill, ArrowDownSquareFill } from "react-bootstrap-icons";
 import { patchQuantity } from "./ShoppingListNetworking";
 
 export default function QuantityButtons(props) {
@@ -17,15 +17,17 @@ export default function QuantityButtons(props) {
   return (
     <div className="arrows-wrapper">
       <div className="up-arrow">
-        <ArrowUpSquare
+        <ArrowUpSquareFill
+          className="arrow-up"
           type="button"
           onClick={async () => handleQuantityChange("up")}
         />
       </div>
       {props.quantity}
       <div className="down-arrow">
-        <ArrowDownSquare
+        <ArrowDownSquareFill
           type="button"
+          className="arrow-down"
           onClick={async () => handleQuantityChange("down")}
         />
       </div>

@@ -19,7 +19,7 @@ export default function Tips() {
   }
   return (
     <div className="tips-slide">
-      <h1 id="tip-h1">
+      <h1 className="tip-h1">
         <Stack direction="horizontal" gap={3}>
           <Lightbulb /> <span>Tips today...</span>
         </Stack>

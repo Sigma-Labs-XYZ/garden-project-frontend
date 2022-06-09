@@ -48,7 +48,7 @@ export default function Weather() {
 
   async function fetchLocationOfUser(id) {
     const response = await fetch(
-      `http://garden-project.sigmalabs.co.uk/allGardens/${id}`
+      `https://garden-project.sigmalabs.co.uk/allGardens/${id}`
     ); //need to change once backend is pushed to heroku
 
     const data = await response.json();
@@ -198,12 +198,10 @@ export default function Weather() {
         </div>
       ) : (
         <div className="forecast-slide overflow-auto">
-
           <Stack id="weather-title" direction="horizontal" gap={2}>
             <h1> Hi {userName}! </h1>
             <CreateGardenForm />
           </Stack>
-
           {displayWeatherData()}{" "}
         </div>
       )}

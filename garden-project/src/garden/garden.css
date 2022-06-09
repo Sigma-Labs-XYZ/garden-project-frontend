@@ -86,23 +86,28 @@
   background-color: rgb(255, 252, 252);
   color: #1d5346;
   border: solid 1px;
-  border-color: rgb(233, 233, 233);
+  border-color: rgb(229, 229, 229);
   border-radius: 30px;
-  padding: 10px;
-  box-shadow: 0px 3px 5px 0px rgba(216, 231, 232, 1);
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  box-shadow: 1px 1px 1px 0px rgb(182, 182, 182);
+  width: 100%;
 }
 
 #garden-h3 {
   background-color: rgb(255, 252, 252);
   color: #1d5346;
   border: solid 1px;
-  border-color: rgb(233, 233, 233);
+  border-color: rgb(229, 229, 229);
   border-radius: 30px;
   width: 30%;
   padding: 10px;
-  box-shadow: 0px 3px 5px 0px rgba(216, 231, 232, 1);
+  box-shadow: 1px 1px 1px 0px rgb(182, 182, 182);
   text-align: center;
 }
+
 .collapse-text {
   padding-top: 30px;
 }
@@ -119,5 +124,16 @@
 
 #garden-location-h4 {
   color: grey;
-  text-align: right;
+  text-align: center;
+  background-color: rgb(255, 252, 252);
+  border: solid 1px;
+  border-color: rgb(229, 229, 229);
+  border-radius: 30px;
+  padding: 5px;
+  width: 100%;
+  box-shadow: 1px 1px 1px 0px rgb(182, 182, 182);
+}
+.location {
+  float: right;
+  width: 40%;
 }
