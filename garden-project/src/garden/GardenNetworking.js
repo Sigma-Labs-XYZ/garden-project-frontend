@@ -44,5 +44,6 @@ export async function addGarden(location, garden_name, sessionID) {
       body: JSON.stringify({ location, garden_name, sessionID }),
     }
   );
-  return response.json();
+  const res = await response.json();
+  return res;
 }

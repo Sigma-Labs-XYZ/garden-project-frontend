@@ -43,7 +43,7 @@ export default function LoginForm() {
 
   return (
     <div className="login-form-container">
-      <h1>Website Name</h1>
+      <h1>GRDN</h1>
       <Form className="login-form">
         <h2 id="login-h2">Login</h2>
         <Form.Group className="mb-3" controlId="formBasicEmail">

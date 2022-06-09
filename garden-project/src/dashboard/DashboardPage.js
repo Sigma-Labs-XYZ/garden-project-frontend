@@ -10,22 +10,60 @@ export default function DashboardPage() {
 
   useEffect(() => {
     async function fetchData() {
+
       await fetchGardenInfo(1); // hardcoded at the moment
+
     }
     fetchData();
   }, []);
 
-  async function fetchGardenInfo(id) {
-    const response = await fetch(`http://garden-project.sigmalabs.co.uk/allGardens/${id}`); //need to change once backend is pushed to heroku
+  async function getUUID() {
+    const cookies = await document.cookie;
+
+    const sessionID = cookies
+      .split("; ")
+      .find((row) => row.startsWith("session="))
+      .split("=")[1];
+
+    await fetchUserID(sessionID);
+  }
+
+  async function fetchUserID(sessionID) {
+    const response = await fetch(
+      `https://garden-project.sigmalabs.co.uk/allGardens`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sessionID: sessionID }),
+      }
+    );
     const data = await response.json();
+
+    if (data.length) {
+      await fetchGardenInfo(data[0].user_id);
+    } else {
+      setGardenExists(false);
+      setLoading(false);
+    }
+  }
+
+  async function fetchGardenInfo(id) {
+
+    const response = await fetch(`http://garden-project.sigmalabs.co.uk/allGardens/${id}`); 
+
+    const data = await response.json();
+
     checkIfGardenExists(data);
   }
 
   function checkIfGardenExists(data) {
     if (data.length) {
       setGardenExists(true);
-    } else setGardenExists(false);
-    setLoading(false);
+      setLoading(false);
+    } else {
+      setGardenExists(false);
+      setLoading(false);
+    }
   }
 
   return (
