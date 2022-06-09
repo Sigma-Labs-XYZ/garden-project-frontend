@@ -16,7 +16,9 @@ export default function PlantedCheckbox(props) {
 
   const handleClose = () => setShow(false);
   const handleShow = () => {
-    const plantedCheckbox = document.getElementById(`inline-planted-checkbox-${id}`);
+    const plantedCheckbox = document.getElementById(
+      `inline-planted-checkbox-${id}`
+    );
     if (plantedCheckbox.checked) {
       setShow(true);
     }
@@ -55,8 +57,8 @@ export default function PlantedCheckbox(props) {
               <Form.Label>When did you plant your {name}?</Form.Label>
               <Form.Control
                 type="datePlanted"
-                onChange={event => setDate(event.target.value)}
-                placeholder="TODO: make this a multiple select"
+                onChange={(event) => setDate(event.target.value)}
+                placeholder="Enter a date format YYYY-MM-DD"
               />
             </Form.Group>
 
@@ -64,8 +66,8 @@ export default function PlantedCheckbox(props) {
               <Form.Label>How many did you plant?</Form.Label>
               <Form.Control
                 type="quantity"
-                onChange={event => setQuantity(event.target.value)}
-                placeholder="*current quantity*"
+                onChange={(event) => setQuantity(event.target.value)}
+                placeholder="Quantity*"
               />
             </Form.Group>
           </Form>
@@ -73,7 +75,7 @@ export default function PlantedCheckbox(props) {
         <Modal.Footer>
           <Button
             variant="primary"
-            onClick={e => {
+            onClick={(e) => {
               e.preventDefault();
               handlePlant(id, quantity, date);
             }}
