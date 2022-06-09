@@ -18,9 +18,7 @@ export default function Header() {
   }, []);
 
   async function fetchGardenInfo(id) {
-    const response = await fetch(
-      `https://garden-project.sigmalabs.co.uk/allGardens/${id}`
-    );
+    const response = await fetch(`https://garden-project.sigmalabs.co.uk/allGardens/${id}`);
     const data = await response.json();
     setUsersGardens(data);
   }
@@ -28,12 +26,7 @@ export default function Header() {
   function mappingGardenNameDropdown(gardens) {
     const gardenDropdown = gardens.map((garden, i) => {
       return (
-        <NavDropdown.Item
-          onClick={() =>
-            handleNavToGarden(garden.id, garden.garden_name, garden.location)
-          }
-          key={i}
-        >
+        <NavDropdown.Item onClick={() => handleNavToGarden(garden.id, garden.garden_name, garden.location)} key={i}>
           {garden.garden_name}
         </NavDropdown.Item>
       );
@@ -49,7 +42,7 @@ export default function Header() {
     const cookies = document.cookie;
     const sessionID = cookies
       .split("; ")
-      .find((row) => row.startsWith("session="))
+      .find(row => row.startsWith("session="))
       .split("=")[1];
 
     await fetch("https://garden-project.sigmalabs.co.uk/logout", {
@@ -66,10 +59,7 @@ export default function Header() {
 
   function featureDependingOnNumOfGardens(gardens) {
     return (
-      <NavDropdown
-        title={"My Garden" + (gardens.length > 1 ? "s" : "")}
-        id="gardensDropdown"
-      >
+      <NavDropdown title={"My Garden" + (gardens.length > 1 ? "s" : "")} id="gardensDropdown">
         {mappingGardenNameDropdown(usersGardens)}
       </NavDropdown>
     );
@@ -82,13 +72,9 @@ export default function Header() {
         <Navbar.Brand href="plants-info">Plants</Navbar.Brand>
         {featureDependingOnNumOfGardens(gardenNames)}
         <NavDropdown title="Guides" id="navbarGuidesDropdown">
-          <NavDropdown.Item href="crop-rotation">
-            Crop Rotation
-          </NavDropdown.Item>
+          <NavDropdown.Item href="crop-rotation">Crop Rotation</NavDropdown.Item>
           <NavDropdown.Item href="weeding">Weeding</NavDropdown.Item>
-          <NavDropdown.Item href="planting-practices">
-            Planting Practices
-          </NavDropdown.Item>
+          <NavDropdown.Item href="planting-practices">Planting Practices</NavDropdown.Item>
           <NavDropdown.Item href="fertilisers">Fertilisers</NavDropdown.Item>
           <NavDropdown.Item href="composting">Composting</NavDropdown.Item>
         </NavDropdown>
