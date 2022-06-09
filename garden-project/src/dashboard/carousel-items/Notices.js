@@ -13,8 +13,7 @@ export default function Notices() {
 
   async function getImminentHarvests() {
     const userID = await getUserIDFromSession();
-    // const harvests = await fetch(`https://garden-project-website.sigmalabs.co.uk/harvest-dates/${userID}`, {
-    const harvests = await fetch(`http://localhost:8080/harvest-dates/${userID}`, {
+    const harvests = await fetch(`https://garden-project.sigmalabs.co.uk/harvest-dates/${userID}`, {
       headers: { "Content-Type": "application/json" },
     });
     setHarvests(await harvests.json());
