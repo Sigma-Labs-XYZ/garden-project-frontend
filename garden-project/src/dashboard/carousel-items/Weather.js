@@ -48,7 +48,7 @@ export default function Weather() {
 
   async function fetchLocationOfUser(id) {
     const response = await fetch(
-      `http://garden-project.sigmalabs.co.uk/allGardens/${id}`
+      `https://garden-project.sigmalabs.co.uk/allGardens/${id}`
     ); //need to change once backend is pushed to heroku
 
     const data = await response.json();

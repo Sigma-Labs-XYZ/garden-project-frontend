@@ -1,6 +1,6 @@
 export async function fetchShoppingList() {
   const response = await fetch(
-    "http://garden-project.sigmalabs.co.uk/shopping-list"
+    "https://garden-project.sigmalabs.co.uk/shopping-list"
   );
   const data = await response.json();
   return data;
@@ -8,7 +8,7 @@ export async function fetchShoppingList() {
 
 export async function deleteItem(id) {
   const response = await fetch(
-    `http://garden-project.sigmalabs.co.uk/shopping-list/${id}`,
+    `https://garden-project.sigmalabs.co.uk/shopping-list/${id}`,
     {
       method: "DELETE",
     }
@@ -19,7 +19,7 @@ export async function deleteItem(id) {
 
 export async function fetchPlantName(id) {
   const response = await fetch(
-    `http://garden-project.sigmalabs.co.uk/plants/${id}`
+    `https://garden-project.sigmalabs.co.uk/plants/${id}`
   );
   const name = await response.json();
   return name;
