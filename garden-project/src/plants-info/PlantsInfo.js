@@ -4,11 +4,13 @@ import "./plants-info.css";
 import { addPlantToGarden, addPlantToShoppingList } from "./PlantsNetworking";
 import { useState, useEffect } from "react";
 import { PlusCircleFill, ListTask } from "react-bootstrap-icons/";
+import { fetchGardenInfo } from "../garden/GardenNetworking";
 
 export default function PlantsInfo(props) {
   const [show, setShow] = useState(false);
   const [avoid, setAvoid] = useState([]);
   const [usersGardens, setUsersGardens] = useState([]);
+  const [gardenInfo, setGardenInfo] = useState([]);
 
   useEffect(() => {
     setUsersGardens(props.getUsersGardenState);
@@ -30,6 +32,31 @@ export default function PlantsInfo(props) {
     culinary_hints,
   } = props.data;
 
+  function checkAvoidInstructions(data) {
+    let listOfGardenPlants = [];
+    let avoidInstructions = avoid_instructions.split(":")[1];
+    let samePlants = [];
+    avoidInstructions = avoidInstructions.split(", ");
+
+    data.forEach((plant) => listOfGardenPlants.push(plant.name.split(", ")));
+
+    listOfGardenPlants = listOfGardenPlants.flat();
+    for (let i = 0; i < listOfGardenPlants.length; i++) {
+      for (let j = 0; j < avoidInstructions.length; j++) {
+        if (
+          listOfGardenPlants[i]
+            .toLowerCase()
+            .includes(avoidInstructions[j].toLowerCase())
+        ) {
+          samePlants.push(" " + listOfGardenPlants[i]);
+          samePlants.push(" or");
+        }
+      }
+    }
+
+    let noDuplicatesInSamePlantList = [...new Set(samePlants)];
+    return noDuplicatesInSamePlantList.shift();
+  }
   function displayGardenButtons(data) {
     return data.map((gardens) => {
       return (
@@ -48,13 +75,16 @@ export default function PlantsInfo(props) {
   }
 
   async function handleAddToGarden(gardenID) {
+    const gardenData = await fetchGardenInfo(gardenID);
+    // setGardenInfo(gardenData);
     await addPlantToGarden(id, gardenID);
     setAvoid(
-      props.checkAvoidInstructions(props.index)
-        ? props.checkAvoidInstructions(props.index)
+      checkAvoidInstructions(gardenData)
+        ? checkAvoidInstructions(gardenData)
         : []
     );
   }
+  console.log(gardenInfo);
 
   async function handleAddToShoppingList() {
     const gardenID = 1;

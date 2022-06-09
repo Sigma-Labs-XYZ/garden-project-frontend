@@ -7,14 +7,13 @@ import { checkCookiesAndRedirect } from "../networking";
 import { useNavigate } from "react-router-dom";
 import "./plants-info.css";
 import Header from "../Header";
-import { fetchGardenInfo } from "../garden/GardenNetworking";
-import { ListTask } from "react-bootstrap-icons/";
+
 import { getUserIDFromSession } from "../networking";
 
 export default function PlantsInfoPage() {
   const navigate = useNavigate();
   const [plantInfo, setPlantInfo] = useState([]);
-  const [gardenInfo, setGardenInfo] = useState([]);
+
   const [usersGardens, setUsersGardens] = useState([]);
 
   useEffect(() => {
@@ -39,45 +38,11 @@ export default function PlantsInfoPage() {
   }, []);
 
   function getUsersGardenState() {
-    // const gardenNames = [];
-    // usersGardens.map((garden) => {
-    //   return gardenNames.push(garden.garden_name);
-    // });
     return usersGardens;
   }
-  async function fetchInfo(id) {
+  async function fetchInfo() {
     const plantData = await fetchPlantInfo();
     setPlantInfo(plantData);
-    const gardenData = await fetchGardenInfo(id); // placeholder number
-    setGardenInfo(gardenData);
-  }
-
-  function checkAvoidInstructions(index) {
-    let listOfGardenPlants = [];
-    let avoidInstructions = plantInfo[index].avoid_instructions.split(":")[1];
-    let samePlants = [];
-    avoidInstructions = avoidInstructions.split(", ");
-
-    gardenInfo.forEach((plant) =>
-      listOfGardenPlants.push(plant.name.split(", "))
-    );
-
-    listOfGardenPlants = listOfGardenPlants.flat();
-    for (let i = 0; i < listOfGardenPlants.length; i++) {
-      for (let j = 0; j < avoidInstructions.length; j++) {
-        if (
-          listOfGardenPlants[i]
-            .toLowerCase()
-            .includes(avoidInstructions[j].toLowerCase())
-        ) {
-          samePlants.push(" " + listOfGardenPlants[i]);
-          samePlants.push(" or");
-        }
-      }
-    }
-
-    let noDuplicatesInSamePlantList = [...new Set(samePlants)];
-    return noDuplicatesInSamePlantList.shift();
   }
 
   function printPlantList() {
@@ -88,7 +53,6 @@ export default function PlantsInfoPage() {
           index={i}
           activeKey={i}
           data={plant}
-          checkAvoidInstructions={checkAvoidInstructions}
           getUsersGardenState={getUsersGardenState}
         />
       );
