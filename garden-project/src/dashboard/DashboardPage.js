@@ -10,7 +10,13 @@ export default function DashboardPage() {
 
   useEffect(() => {
     async function fetchData() {
+<<<<<<< HEAD
       await getUUID();
+=======
+
+      await getUUID();
+
+>>>>>>> 9b7b9ae86860ffdb711a6f32c3b34b137d7f8e21
     }
     fetchData();
   }, []);
