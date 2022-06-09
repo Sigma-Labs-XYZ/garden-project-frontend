@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Card, Stack } from "react-bootstrap";
 import CreateGardenForm from "../../garden/CreateNewGardenForm.js";
+import backupWeather from "./backupWeather.js";
 
 export default function Weather() {
   const [forecastData, setForecastData] = useState([]);
@@ -49,7 +50,7 @@ export default function Weather() {
   async function fetchLocationOfUser(id) {
     const response = await fetch(
       `https://garden-project.sigmalabs.co.uk/allGardens/${id}`
-    ); //need to change once backend is pushed to heroku
+    );
 
     const data = await response.json();
     await fetchWeatherData(data);
@@ -71,9 +72,15 @@ export default function Weather() {
     checkingForMultipleLocations(forecastForEachGarden);
   }
 
+  function returnRandomBackupWeather() {
+    const randomNumber = Math.floor(Math.random() * 4);
+    return backupWeather.backupWeather[randomNumber];
+  }
+
   async function checkingForMultipleLocations(gardenData) {
     const forecastForEachGarden = [];
     const cityOfEachGarden = [];
+    let forecastObject;
 
     for (let garden of gardenData) {
       cityOfEachGarden.push(garden.city);
@@ -86,11 +93,18 @@ export default function Weather() {
         `https://goweather.herokuapp.com/weather/${city}`
       );
 
-      const data = await response.json();
-      const forecastObject = { city: city, forecast: data };
-      forecastForEachGarden.push(forecastObject);
+      if (response.ok === true) {
+        const data = await response.json();
+        forecastObject = { city: city, forecast: data };
+        forecastForEachGarden.push(forecastObject);
+      } else {
+        forecastObject = {
+          city: city,
+          forecast: returnRandomBackupWeather(),
+        };
+        forecastForEachGarden.push(forecastObject);
+      }
     }
-
     await setForecastData(forecastForEachGarden);
   }
 
