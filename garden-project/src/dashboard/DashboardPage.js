@@ -10,7 +10,9 @@ export default function DashboardPage() {
 
   useEffect(() => {
     async function fetchData() {
-      await getUUID();
+
+      await fetchGardenInfo(1); // hardcoded at the moment
+
     }
     fetchData();
   }, []);
@@ -46,10 +48,8 @@ export default function DashboardPage() {
   }
 
   async function fetchGardenInfo(id) {
-    const response = await fetch(
-      `http://garden-project.sigmalabs.co.uk/allGardens/${id}`
 
-    ); //need to change once backend is pushed to heroku
+    const response = await fetch(`http://garden-project.sigmalabs.co.uk/allGardens/${id}`); 
 
     const data = await response.json();
 
