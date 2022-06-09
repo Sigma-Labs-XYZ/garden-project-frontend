@@ -21,7 +21,9 @@ export default function Notices() {
 
   function generateHarvestReminder() {
     const soonestHarvest = harvests[0];
-    return `Reminder: Your ${soonestHarvest.name} in the garden "${soonestHarvest.garden}" will be ready to harvest on ${soonestHarvest.estimatedHarvestDate}`;
+    console.log(soonestHarvest.estimatedHarvestDate);
+    const readableDate = new Date(soonestHarvest.estimatedHarvestDate).toString().split(" ").slice(0, 4).join(" ");
+    return `Reminder: Your ${soonestHarvest.name} in the garden "${soonestHarvest.garden}" will be ready to harvest on ${readableDate}`;
   }
 
   return (
