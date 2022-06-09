@@ -33,8 +33,6 @@ export default function EditGardenForm() {
   async function updateError(error) {
     setError(error);
   }
-
-  console.log(name, location);
   return (
     <div>
       <Button variant="primary" onClick={handleShow}>
@@ -50,7 +48,7 @@ export default function EditGardenForm() {
             <Form.Group className="mb-3" controlId="formName">
               <Form.Label>Garden name:</Form.Label>
               <Form.Control
-                onChange={(e) => {
+                onChange={e => {
                   setName(e.target.value);
                   updateError("");
                 }}
@@ -64,14 +62,12 @@ export default function EditGardenForm() {
               <Form.Control
                 type="location"
                 placeholder="{current garden location}"
-                onChange={(e) => {
+                onChange={e => {
                   setLocation(e.target.value);
                   updateError("");
                 }}
               />
-              <Form.Text className="text-muted">
-                Enter your postcode, zipcode or city
-              </Form.Text>
+              <Form.Text className="text-muted">Enter your postcode, zipcode or city</Form.Text>
               {error ? (
                 <Alert key="danger" variant="danger">
                   {" "}
