@@ -10,10 +10,40 @@ export default function DashboardPage() {
 
   useEffect(() => {
     async function fetchData() {
-      await fetchGardenInfo(40); // hardcoded at the moment
+      await getUUID();
     }
     fetchData();
   }, []);
+
+  async function getUUID() {
+    const cookies = await document.cookie;
+
+    const sessionID = cookies
+      .split("; ")
+      .find((row) => row.startsWith("session="))
+      .split("=")[1];
+
+    await fetchUserID(sessionID);
+  }
+
+  async function fetchUserID(sessionID) {
+    const response = await fetch(
+      `https://garden-project.sigmalabs.co.uk/allGardens`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sessionID: sessionID }),
+      }
+    );
+    const data = await response.json();
+
+    if (data.length) {
+      await fetchGardenInfo(data[0].user_id);
+    } else {
+      setGardenExists(false);
+      setLoading(false);
+    }
+  }
 
   async function fetchGardenInfo(id) {
     const response = await fetch(
@@ -22,17 +52,20 @@ export default function DashboardPage() {
     ); //need to change once backend is pushed to heroku
 
     const data = await response.json();
+
     checkIfGardenExists(data);
   }
 
   function checkIfGardenExists(data) {
     if (data.length) {
       setGardenExists(true);
-    } else setGardenExists(false);
-    setLoading(false);
+      setLoading(false);
+    } else {
+      setGardenExists(false);
+      setLoading(false);
+    }
   }
 
-  console.log(gardenExists);
   return (
     <div className="dashboard-wrapper">
       <Header />
