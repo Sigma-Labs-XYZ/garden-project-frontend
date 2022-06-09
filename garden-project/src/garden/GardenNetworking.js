@@ -34,7 +34,7 @@ export async function updateGarden(name, location, id) {
 
 export async function addGarden(location, garden_name, sessionID) {
   const response = await fetch(
-    "http://garden-project.sigmalabs.co.uk/new-garden",
+    "https://garden-project.sigmalabs.co.uk/new-garden",
     {
       method: "POST",
       headers: {
