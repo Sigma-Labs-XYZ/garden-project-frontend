@@ -3,20 +3,23 @@ import "./dashboard.css";
 import Header from "./../Header.js";
 import { useState, useEffect } from "react";
 import CreateGarden from "./CreateGarden.js";
+import { checkCookiesAndRedirect } from "../networking.js";
+import { useNavigate } from "react-router-dom";
 
 export default function DashboardPage() {
+  const navigate = useNavigate();
+
   const [gardenExists, setGardenExists] = useState();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    checkCookiesAndRedirect(navigate);
+  }, []);
+
+
+  useEffect(() => {
     async function fetchData() {
-<<<<<<< HEAD
       await getUUID();
-=======
-
-      await getUUID();
-
->>>>>>> 9b7b9ae86860ffdb711a6f32c3b34b137d7f8e21
     }
     fetchData();
   }, []);
@@ -53,9 +56,8 @@ export default function DashboardPage() {
 
   async function fetchGardenInfo(id) {
     const response = await fetch(
-      `https://garden-project.sigmalabs.co.uk/allGardens/${id}`
+      `http://garden-project.sigmalabs.co.uk/allGardens/${id}`
     );
-
     const data = await response.json();
 
     checkIfGardenExists(data);
