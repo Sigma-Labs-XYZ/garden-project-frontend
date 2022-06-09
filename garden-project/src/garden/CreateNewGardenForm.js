@@ -24,11 +24,9 @@ export default function CreateNewGardenForm() {
     if (gardenName === "" || location === "") {
       updateError("Name or location can't be empty");
     } else {
-      const result = await addGarden(location, gardenName, sessionID);
+      await addGarden(location, gardenName, sessionID);
+      window.location.reload(false);
       setShow(false);
-      if (result.response) {
-        navigate("/dashboard");
-      }
     }
   }
   async function updateError(error) {
