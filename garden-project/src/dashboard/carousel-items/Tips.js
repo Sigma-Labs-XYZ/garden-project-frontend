@@ -1,6 +1,7 @@
 import { listOfTips } from "./listOfTips.js";
 import "../dashboard.css";
 import Alert from "react-bootstrap/Alert";
+import Stack from "react-bootstrap/Stack";
 import { Lightbulb } from "react-bootstrap-icons";
 
 export default function Tips() {
@@ -19,12 +20,15 @@ export default function Tips() {
   return (
     <div className="tips-slide">
       <h1 id="tip-h1">
-        <Lightbulb /> Tips today...
+        <Stack direction="horizontal" gap={3}>
+          <Lightbulb /> <span>Tips today...</span>
+        </Stack>
       </h1>
-      <Alert key="info" variant="info">
+      <Alert key="warning" variant="warning">
         <p className="tip-of-the-day">{chooseRandomTip()}</p>
       </Alert>
-      <Alert key="info" variant="info">
+
+      <Alert key="warning" variant="warning">
         <p className="tip-of-the-day">{chooseRandomTipTwo()}</p>
       </Alert>
     </div>

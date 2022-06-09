@@ -30,6 +30,8 @@
   width: 100%;
   display: flex !important;
   justify-content: space-around;
+  border-radius: 10px !important;
+  background-color: rgb(255, 252, 252) !important;
 }
 .form {
   display: flex;
@@ -46,6 +48,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  border-color: transparent !important;
+}
+.list-group-item:first-child {
+  border-top-left-radius: 30px !important;
+  border-top-right-radius: 30px !important;
 }
 
 .container-title {
@@ -76,7 +83,8 @@
   padding-bottom: 30px;
 }
 #garden-h2 {
-  background-color: white;
+  background-color: rgb(255, 252, 252);
+  color: #1d5346;
   border: solid 1px;
   border-color: rgb(233, 233, 233);
   border-radius: 30px;
@@ -85,13 +93,15 @@
 }
 
 #garden-h3 {
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(255, 252, 252);
+  color: #1d5346;
   border: solid 1px;
   border-color: rgb(233, 233, 233);
   border-radius: 30px;
-  width: 35%;
+  width: 30%;
   padding: 10px;
   box-shadow: 0px 3px 5px 0px rgba(216, 231, 232, 1);
+  text-align: center;
 }
 .collapse-text {
   padding-top: 30px;
