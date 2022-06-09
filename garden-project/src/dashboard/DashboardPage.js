@@ -17,7 +17,7 @@ export default function DashboardPage() {
 
   async function fetchGardenInfo(id) {
     const response = await fetch(
-      `http://garden-project.sigmalabs.co.uk/gardens/${id}`
+      `http://garden-project.sigmalabs.co.uk/allGardens/${id}`
     ); //need to change once backend is pushed to heroku
     const data = await response.json();
     checkIfGardenExists(data);
