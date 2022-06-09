@@ -28,7 +28,7 @@ export default function GardenPage() {
     }
     getData();
     setRemove(false);
-  }, [remove]);
+  }, [remove, state]);
 
   async function fetchInfo() {
     const gardenID = state.gardenID;
