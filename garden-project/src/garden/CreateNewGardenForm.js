@@ -3,6 +3,7 @@ import { useState } from "react";
 import React from "react";
 import "../dashboard/create-garden-form.css";
 import { addGarden } from "./GardenNetworking";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateNewGardenForm() {
   const [show, setShow] = useState(false);
@@ -11,6 +12,7 @@ export default function CreateNewGardenForm() {
   const [error, setError] = useState("");
   const [gardenName, setGardenName] = useState("");
   const [location, setLocation] = useState("");
+  const navigate = useNavigate();
 
   async function createNewGarden() {
     const cookies = document.cookie;
@@ -22,8 +24,11 @@ export default function CreateNewGardenForm() {
     if (gardenName === "" || location === "") {
       updateError("Name or location can't be empty");
     } else {
-      await addGarden(location, gardenName, sessionID);
+      const result = await addGarden(location, gardenName, sessionID);
       setShow(false);
+      if (result.response) {
+        navigate("/dashboard");
+      }
     }
   }
   async function updateError(error) {
