@@ -2,7 +2,7 @@ import { Button, Stack, ListGroup } from "react-bootstrap";
 import "./garden.css";
 import PlantItem from "./PlantItem";
 import { checkCookiesAndRedirect } from "../networking";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { fetchGardenInfo } from "./GardenNetworking";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -14,6 +14,9 @@ export default function GardenPage() {
   const navigate = useNavigate();
   const [gardenInfo, setGardenInfo] = useState([]);
   const [remove, setRemove] = useState(false);
+  const { state } = useLocation();
+
+  console.log(state);
 
   useEffect(() => {
     checkCookiesAndRedirect(navigate);
@@ -25,18 +28,18 @@ export default function GardenPage() {
     }
     getData();
     setRemove(false);
-  }, [remove]);
+  }, [remove, state]);
 
   async function fetchInfo() {
-    const gardenData = await fetchGardenInfo(1); //placeholder number
+    const gardenID = state.gardenID;
+    console.log(gardenID);
+    const gardenData = await fetchGardenInfo(gardenID);
     setGardenInfo(gardenData);
   }
 
   function printGardenPlants() {
     return gardenInfo.map((plant, i) => {
-      return (
-        <PlantItem setRemove={setRemove} remove={remove} key={i} data={plant} />
-      );
+      return <PlantItem setRemove={setRemove} remove={remove} key={i} data={plant} />;
     });
   }
   return (
@@ -45,7 +48,10 @@ export default function GardenPage() {
       <div className="garden-page-wrapper">
         <Stack direction="vertical" gap={3}>
           <div className="title-button-wrapper">
-            <h2 id="garden-h2">**Garden name** @ **location** </h2>
+            <h2 id="garden-h2">
+              {state.gardenName}
+              <h4 id="garden-location-h4">{state.gardenLocation}</h4>
+            </h2>
 
             <Stack direction="horizontal" gap={3} className="buttons">
               <Link to="/plants-info">
