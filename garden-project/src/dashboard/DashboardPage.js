@@ -16,7 +16,6 @@ export default function DashboardPage() {
     checkCookiesAndRedirect(navigate);
   }, []);
 
-
   useEffect(() => {
     async function fetchData() {
       await getUUID();
@@ -55,9 +54,9 @@ export default function DashboardPage() {
   }
 
   async function fetchGardenInfo(id) {
-    const response = await fetch(
-      `http://garden-project.sigmalabs.co.uk/allGardens/${id}`
-    );
+
+    const response = await fetch(`https://garden-project.sigmalabs.co.uk/allGardens/${id}`);
+
     const data = await response.json();
 
     checkIfGardenExists(data);
