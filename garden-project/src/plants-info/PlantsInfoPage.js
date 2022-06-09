@@ -1,4 +1,4 @@
-import { Container, Accordion } from "react-bootstrap";
+import { Container, Accordion, Modal, Button } from "react-bootstrap";
 import { fetchPlantInfo } from "./PlantsNetworking";
 import { useState, useEffect } from "react";
 import PlantsInfo from "./PlantsInfo";
@@ -9,27 +9,46 @@ import "./plants-info.css";
 import Header from "../Header";
 import { fetchGardenInfo } from "../garden/GardenNetworking";
 import { ListTask } from "react-bootstrap-icons/";
+import { getUserIDFromSession } from "../networking";
 
 export default function PlantsInfoPage() {
   const navigate = useNavigate();
   const [plantInfo, setPlantInfo] = useState([]);
   const [gardenInfo, setGardenInfo] = useState([]);
+  const [usersGardens, setUsersGardens] = useState([]);
 
   useEffect(() => {
-    async function getData() {
-      await fetchInfo();
+    async function fetchData() {
+      const userID = await getUserIDFromSession();
+      await fetchAllGardensInfo(userID);
+      await fetchInfo(userID);
     }
-    getData();
+    fetchData();
   }, []);
+
+  async function fetchAllGardensInfo(id) {
+    const response = await fetch(
+      `https://garden-project.sigmalabs.co.uk/allGardens/${id}`
+    );
+    const data = await response.json();
+    setUsersGardens(data);
+  }
 
   useEffect(() => {
     checkCookiesAndRedirect(navigate);
   }, []);
 
-  async function fetchInfo() {
+  function getUsersGardenState() {
+    // const gardenNames = [];
+    // usersGardens.map((garden) => {
+    //   return gardenNames.push(garden.garden_name);
+    // });
+    return usersGardens;
+  }
+  async function fetchInfo(id) {
     const plantData = await fetchPlantInfo();
     setPlantInfo(plantData);
-    const gardenData = await fetchGardenInfo(1); // placeholder number
+    const gardenData = await fetchGardenInfo(id); // placeholder number
     setGardenInfo(gardenData);
   }
 
@@ -70,6 +89,7 @@ export default function PlantsInfoPage() {
           activeKey={i}
           data={plant}
           checkAvoidInstructions={checkAvoidInstructions}
+          getUsersGardenState={getUsersGardenState}
         />
       );
     });
