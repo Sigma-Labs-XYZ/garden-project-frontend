@@ -19,11 +19,17 @@ export default function Notices() {
     setHarvests(await harvests.json());
   }
 
-  function generateHarvestReminder() {
-    const soonestHarvest = harvests[0];
+  function generateHarvestReminderText(harvest) {
+    const soonestHarvest = harvest;
     console.log(soonestHarvest.estimatedHarvestDate);
     const readableDate = new Date(soonestHarvest.estimatedHarvestDate).toString().split(" ").slice(0, 4).join(" ");
     return `Reminder: Your ${soonestHarvest.name} in the garden "${soonestHarvest.garden}" will be ready to harvest on ${readableDate}`;
+  }
+
+  function generateHarvestReminders() {
+    return harvests.slice(0, 3).map(harvest => {
+      return <h4>{generateHarvestReminderText(harvest)}</h4>;
+    });
   }
 
   return (
@@ -35,7 +41,7 @@ export default function Notices() {
       </h1>
       <h4>Don't forget to water your plants!</h4>
       <br />
-      <h4>{generateHarvestReminder()}</h4>
+      <h4>{generateHarvestReminders()}</h4>
     </div>
   );
 }
