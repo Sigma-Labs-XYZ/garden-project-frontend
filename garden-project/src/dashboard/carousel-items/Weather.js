@@ -5,6 +5,7 @@ import CreateGardenForm from "../../garden/CreateNewGardenForm.js";
 export default function Weather() {
   const [forecastData, setForecastData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [userName, setUserName] = useState("");
 
   useEffect(() => {
     async function fetchData() {
@@ -34,8 +35,14 @@ export default function Weather() {
       }
     );
     const data = await response.json();
+
+    const capitalisedFirstName =
+      data[0].first_name.slice(0, 1).toUpperCase() +
+      data[0].first_name.slice(1);
+
     if (data.length) {
       await fetchLocationOfUser(data[0].user_id);
+      await setUserName(capitalisedFirstName);
     }
   }
 
@@ -192,7 +199,7 @@ export default function Weather() {
         </div>
       ) : (
         <div className="forecast-slide overflow-auto">
-          <h1> Hi *username* </h1>
+          <h1> Hi {userName}! </h1>
           <CreateGardenForm />
           {displayWeatherData()}{" "}
         </div>

@@ -4,6 +4,7 @@ import React from "react";
 import "../dashboard/create-garden-form.css";
 import { addGarden } from "./GardenNetworking";
 import { useNavigate } from "react-router-dom";
+
 export default function CreateNewGardenForm() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -19,12 +20,15 @@ export default function CreateNewGardenForm() {
       .split("; ")
       .find((row) => row.startsWith("session="))
       .split("=")[1];
+
     if (gardenName === "" || location === "") {
       updateError("Name or location can't be empty");
     } else {
       const result = await addGarden(location, gardenName, sessionID);
-      handleClose();
-      navigate("/garden");
+      setShow(false);
+      if (result.response) {
+        navigate("/dashboard");
+      }
     }
   }
   async function updateError(error) {
