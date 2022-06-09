@@ -1,18 +1,41 @@
 import Navbar from "react-bootstrap/Navbar";
 import { Container, NavDropdown } from "react-bootstrap";
-
-const gardenNames = ["My Garden 1", "My Garden 2", "My Garden 3"];
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { getUserIDFromSession } from "./networking";
 
 export default function Header() {
+  const [usersGardens, setUsersGardens] = useState([]);
+  const [gardenNames, setGardenNames] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    async function fetchData() {
+      const userID = await getUserIDFromSession();
+      await fetchGardenInfo(userID);
+    }
+    fetchData();
+  }, []);
+
+  async function fetchGardenInfo(id) {
+    const response = await fetch(`http://garden-project.sigmalabs.co.uk/allGardens/${id}`);
+    const data = await response.json();
+    setUsersGardens(data);
+  }
+
   function mappingGardenNameDropdown(gardens) {
     const gardenDropdown = gardens.map((garden, i) => {
       return (
-        <NavDropdown.Item href={garden} key={i}>
-          {garden}
+        <NavDropdown.Item onClick={() => handleNavToGarden(garden.id, garden.garden_name, garden.location)} key={i}>
+          {garden.garden_name}
         </NavDropdown.Item>
       );
     });
     return gardenDropdown;
+  }
+
+  function handleNavToGarden(gardenID, gardenName, gardenLocation) {
+    navigate("/garden", { state: { gardenID, gardenName, gardenLocation } });
   }
 
   async function handleLogout() {
@@ -29,28 +52,22 @@ export default function Header() {
         sessionID: sessionID,
       }),
     });
+    document.cookie = "session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    navigate("/login");
   }
 
-  function featureDependingOnNumOfGardens(gardens, i) {
-    if (gardens.length === 1) {
-      return (
-        <Navbar.Brand href={gardens} key={i}>
-          My Garden
-        </Navbar.Brand>
-      );
-    } else if (gardens.length > 1) {
-      return (
-        <NavDropdown title="My Gardens" id="gardensDropdown">
-          {mappingGardenNameDropdown(gardenNames)}
-        </NavDropdown>
-      );
-    }
+  function featureDependingOnNumOfGardens(gardens) {
+    return (
+      <NavDropdown title={"My Garden" + (gardens.length > 1 ? "s" : "")} id="gardensDropdown">
+        {mappingGardenNameDropdown(usersGardens)}
+      </NavDropdown>
+    );
   }
 
   return (
     <Navbar>
       <Container>
-        <Navbar.Brand href="dashboard">Logo/Name</Navbar.Brand>
+        <Navbar.Brand href="dashboard">GRDN</Navbar.Brand>
         <Navbar.Brand href="plants-info">Plants</Navbar.Brand>
         {featureDependingOnNumOfGardens(gardenNames)}
         <NavDropdown title="Guides" id="navbarGuidesDropdown">

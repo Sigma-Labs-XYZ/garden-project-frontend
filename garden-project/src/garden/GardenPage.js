@@ -1,21 +1,22 @@
-import Button from "react-bootstrap/Button";
-import Stack from "react-bootstrap/Stack";
+import { Button, Stack, ListGroup } from "react-bootstrap";
 import "./garden.css";
 import PlantItem from "./PlantItem";
-import ListGroup from "react-bootstrap/ListGroup";
 import { checkCookiesAndRedirect } from "../networking";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { fetchGardenInfo } from "./GardenNetworking";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import EditGardenForm from "./EditGardenForm";
 import Header from "../Header";
-import { propTypes } from "react-bootstrap/esm/Image";
+import { PinMap, PlusCircleFill, ListTask } from "react-bootstrap-icons/";
 
 export default function GardenPage() {
   const navigate = useNavigate();
   const [gardenInfo, setGardenInfo] = useState([]);
   const [remove, setRemove] = useState(false);
+  const { state } = useLocation();
+
+  console.log(state);
 
   useEffect(() => {
     checkCookiesAndRedirect(navigate);
@@ -27,10 +28,12 @@ export default function GardenPage() {
     }
     getData();
     setRemove(false);
-  }, [remove]);
+  }, [remove, state]);
 
   async function fetchInfo() {
-    const gardenData = await fetchGardenInfo(1); //placeholder number
+    const gardenID = state.gardenID;
+    console.log(gardenID);
+    const gardenData = await fetchGardenInfo(gardenID);
     setGardenInfo(gardenData);
   }
 
@@ -45,13 +48,26 @@ export default function GardenPage() {
       <div className="garden-page-wrapper">
         <Stack direction="vertical" gap={3}>
           <div className="title-button-wrapper">
-            <h1 id="garden-h1">Garden name</h1>
+            <h2 id="garden-h2">
+              {state.gardenName}
+              <h4 id="garden-location-h4">{state.gardenLocation}</h4>
+            </h2>
 
             <Stack direction="horizontal" gap={3} className="buttons">
               <Link to="/plants-info">
-                <Button variant="info">Add plants to garden</Button>
+                <Button className="add-to-garden" variant="info">
+                  <Stack direction="horizontal" gap={2}>
+                    <PlusCircleFill /> <span>Add to plants to garden</span>
+                  </Stack>
+                </Button>
               </Link>
-              <Button variant="info">View shopping list</Button>
+              <Link to="/shopping-list">
+                <Button className="add-to-shopping-list" variant="info">
+                  <Stack direction="horizontal" gap={2}>
+                    <ListTask /> <span>View shopping list </span>
+                  </Stack>
+                </Button>
+              </Link>
             </Stack>
           </div>
 

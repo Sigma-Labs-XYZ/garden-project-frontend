@@ -37,14 +37,15 @@
   }
 }
 .header-container {
-  height: 60px;
-  background-color: white;
+  height: 50px;
+  background-color: #54bba1;
 }
 .navbar {
-  background-color: white;
+  background-color: #e1f9f3;
+  border-bottom: 1.5px #54bba1 solid;
 }
 .nav-link {
-  color: #009456 !important;
+  color: #000000 !important;
 }
 
 .btn {
@@ -78,6 +79,10 @@
 }
 .lds-ring div:nth-child(1) {
   animation-delay: -0.45s;
+}
+svg {
+  box-shadow: none !important;
+  padding: none !important;
 }
 .lds-ring div:nth-child(2) {
   animation-delay: -0.3s;

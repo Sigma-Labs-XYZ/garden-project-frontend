@@ -1,7 +1,7 @@
 export async function validateSession(sessionID) {
   const response = await fetch("https://garden-project.sigmalabs.co.uk/validate-session", {
     method: "POST",
-    headers: { "Access-Control-Allow-Origin": "*", "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       sessionID: sessionID,
     }),
@@ -21,4 +21,15 @@ export async function checkCookiesAndRedirect(navigate) {
 
     if (!(await validateSession(sessionID))) navigate("/login");
   }
+}
+
+export async function getUserIDFromSession() {
+  const cookies = document.cookie;
+  const sessionID = cookies
+    .split("; ")
+    .find(row => row.startsWith("session="))
+    .split("=")[1];
+  const response = await fetch(`https://garden-project.sigmalabs.co.uk/get-user/${sessionID}`);
+  const userID = (await response.json()).userID;
+  return userID;
 }

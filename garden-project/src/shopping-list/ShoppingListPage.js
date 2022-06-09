@@ -1,26 +1,43 @@
 import ShoppingPlants from "./ShoppingPlants";
-import Stack from "react-bootstrap/Stack";
-import Button from "react-bootstrap/Button";
+import { fetchShoppingList } from "./ShoppingListNetworking";
+import { Stack, Button, ListGroup } from "react-bootstrap";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import ListGroup from "react-bootstrap/ListGroup";
 import { checkCookiesAndRedirect } from "../networking";
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { ArrowLeft } from "react-bootstrap-icons";
+
 import "./shopping-list.css";
 import Header from "../Header";
 
 export default function ShoppingListPage() {
+  const [shoppingList, setShoppingList] = useState([]);
+  const [change, setChange] = useState(false);
+
+  useEffect(() => {
+    async function getData() {
+      await fetchInfo();
+    }
+    getData();
+    setChange(false);
+  }, [change]);
+
+  async function fetchInfo() {
+    const shoppingData = await fetchShoppingList();
+    setShoppingList(shoppingData);
+  }
+  function printShoppingList() {
+    return shoppingList.map((plant, i) => {
+      return <ShoppingPlants key={i} data={plant} setChange={setChange} />;
+    });
+  }
+
   const navigate = useNavigate();
 
   useEffect(() => {
     checkCookiesAndRedirect(navigate);
   }, []);
 
-  //  function printShoppingListPlants() {
-  //     return gardenInfo.map((plant, i) => {
-  //       return <ShoppingPlants />;
-  //     });
-  // }
   return (
     <div className="header-container">
       {<Header />}
@@ -30,15 +47,17 @@ export default function ShoppingListPage() {
             <h1 id="shopping-list-h1">Shopping List</h1>
 
             <Link to="/garden">
-              <Button variant="info">Back to Garden</Button>
+              <Button variant="info">
+                <Stack direction="horizontal" gap={2}>
+                  <ArrowLeft /> Back to Garden
+                </Stack>
+              </Button>
             </Link>
           </div>
 
           <div className="shopping-items-wrapper">
-            <h3> What's in your shopping list... </h3>
-            <ListGroup variant="flush">
-              <ShoppingPlants />
-            </ListGroup>
+            <h3 id="shopping-list-h3"> What's in your shopping list... </h3>
+            <ListGroup variant="flush">{printShoppingList()}</ListGroup>
           </div>
         </Stack>
       </div>

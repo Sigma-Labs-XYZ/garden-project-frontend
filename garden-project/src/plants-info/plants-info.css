@@ -73,7 +73,8 @@ a:hover {
 
 #plant-list-h1 {
   background-color: white;
-  width: 30%;
+  margin: auto;
+  width: 60%;
   border: solid 1px;
   border-color: rgb(233, 233, 233);
   border-radius: 30px;
@@ -84,4 +85,10 @@ a:hover {
   display: flex;
   justify-content: space-between !important;
   align-self: center !important;
+}
+
+.remove-from-list {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
 }

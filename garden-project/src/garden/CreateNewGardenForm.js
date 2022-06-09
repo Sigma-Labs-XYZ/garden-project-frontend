@@ -1,9 +1,9 @@
-import Modal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import Alert from "react-bootstrap/Alert";
+import { Modal, Button, Form, Alert } from "react-bootstrap";
 import { useState } from "react";
 import React from "react";
+import "../dashboard/create-garden-form.css";
+import { addGarden } from "./GardenNetworking";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateNewGardenForm() {
   const [show, setShow] = useState(false);
@@ -12,22 +12,30 @@ export default function CreateNewGardenForm() {
   const [error, setError] = useState("");
   const [gardenName, setGardenName] = useState("");
   const [location, setLocation] = useState("");
+  const navigate = useNavigate();
 
   async function createNewGarden() {
+    const cookies = document.cookie;
+    const sessionID = cookies
+      .split("; ")
+      .find((row) => row.startsWith("session="))
+      .split("=")[1];
+
     if (gardenName === "" || location === "") {
       updateError("Name or location can't be empty");
-    } else if (gardenName === "" && location === "") {
-      updateError("Location and name can't be empty");
     } else {
-      // fetch request
+      const result = await addGarden(location, gardenName, sessionID);
       setShow(false);
+      if (result.response) {
+        navigate("/dashboard");
+      }
     }
   }
   async function updateError(error) {
     setError(error);
   }
   return (
-    <div>
+    <div className="create-garden-form-wrapper">
       <Button variant="primary" onClick={handleShow}>
         Create a new garden
       </Button>
@@ -54,15 +62,13 @@ export default function CreateNewGardenForm() {
               <Form.Label>Location</Form.Label>
               <Form.Control
                 type="location"
-                placeholder="{current garden location}"
+                placeholder="Enter a location"
                 onChange={(e) => {
                   setLocation(e.target.value);
                   updateError("");
                 }}
               />
-              <Form.Text className="text-muted">
-                Enter your postcode, zipcode or city
-              </Form.Text>
+              <Form.Text className="text-muted">Enter your city name</Form.Text>
               {error ? (
                 <Alert key="danger" variant="danger">
                   {" "}
