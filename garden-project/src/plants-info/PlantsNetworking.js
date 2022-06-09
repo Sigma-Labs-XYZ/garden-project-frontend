@@ -37,7 +37,7 @@ export async function fetchPlantInfo(
 }
 
 export async function addPlantToGarden(plantInfoID, gardenID) {
-  await fetch("http://garden-project.sigmalabs.co.uk/new-plant", {
+  await fetch("https://garden-project.sigmalabs.co.uk/new-plant", {
     method: "POST",
     headers: {
       "Access-Control-Allow-Origin": "*",
@@ -45,12 +45,11 @@ export async function addPlantToGarden(plantInfoID, gardenID) {
     },
     body: JSON.stringify({ plantInfoID, gardenID }),
   });
-
 }
 
 export async function addPlantToShoppingList(plantInfoID, gardenID, quantity) {
   console.log(plantInfoID, gardenID, quantity);
-  await fetch("http://garden-project.sigmalabs.co.uk/shopping-list", {
+  await fetch("https://garden-project.sigmalabs.co.uk/shopping-list", {
     method: "POST",
     headers: {
       "Access-Control-Allow-Origin": "*",

@@ -39,7 +39,9 @@ export default function GardenPage() {
 
   function printGardenPlants() {
     return gardenInfo.map((plant, i) => {
-      return <PlantItem setRemove={setRemove} remove={remove} key={i} data={plant} />;
+      return (
+        <PlantItem setRemove={setRemove} remove={remove} key={i} data={plant} />
+      );
     });
   }
   return (
@@ -48,10 +50,12 @@ export default function GardenPage() {
       <div className="garden-page-wrapper">
         <Stack direction="vertical" gap={3}>
           <div className="title-button-wrapper">
-            <h2 id="garden-h2">
-              {state.gardenName}
-              <h4 id="garden-location-h4">{state.gardenLocation}</h4>
-            </h2>
+            <div className="garden-name-location">
+              <h2 id="garden-h2">{state.gardenName}</h2>
+              <div className="location">
+                <h4 id="garden-location-h4">{state.gardenLocation}</h4>
+              </div>
+            </div>
 
             <Stack direction="horizontal" gap={3} className="buttons">
               <Link to="/plants-info">
