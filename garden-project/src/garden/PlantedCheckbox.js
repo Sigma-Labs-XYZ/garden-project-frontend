@@ -67,7 +67,7 @@ export default function PlantedCheckbox(props) {
               <Form.Control
                 type="quantity"
                 onChange={(event) => setQuantity(event.target.value)}
-                placeholder="Quantity*"
+                placeholder="Quantity"
               />
             </Form.Group>
           </Form>
