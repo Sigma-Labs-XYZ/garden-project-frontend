@@ -51,7 +51,7 @@ export default function CreateAccountForm() {
     );
 
     if (result.response) {
-      navigate("/dashboard");
+      navigate("/login");
     } else {
       setErrUsername(result.error);
     }
