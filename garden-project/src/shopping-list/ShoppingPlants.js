@@ -4,6 +4,7 @@ import BoughtCheckBox from "./BoughtCheckBox";
 import QuantityButtons from "./QuantityButtons";
 import { fetchPlantName, deleteItem } from "./ShoppingListNetworking";
 import image from "./shopping-list-images/icons8-buying-26.png";
+import { DashCircleFill } from "react-bootstrap-icons";
 
 export default function ShoppingPlants(props) {
   const [show, setShow] = useState(false);
@@ -49,7 +50,9 @@ export default function ShoppingPlants(props) {
 
       <div className="container-remove-button">
         <Button variant="outline-danger" onClick={handleShow}>
-          remove
+          <Stack direction="horizontal" gap={2}>
+            <DashCircleFill /> <span> Remove </span>
+          </Stack>
         </Button>
         <Modal show={show} onHide={handleClose}>
           <Modal.Body>

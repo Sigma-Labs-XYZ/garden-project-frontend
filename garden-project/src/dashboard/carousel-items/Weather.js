@@ -42,7 +42,6 @@ export default function Weather() {
   async function fetchLocationOfUser(id) {
     const response = await fetch(
       `http://garden-project.sigmalabs.co.uk/allGardens/${id}`
-
     ); //need to change once backend is pushed to heroku
 
     const data = await response.json();
@@ -112,7 +111,7 @@ export default function Weather() {
     return forecastData.map((garden) => {
       return (
         <Stack direction="vertical" gap={2}>
-          <h3>The weather in {garden.city} is...</h3>
+          <h3 id="weather-h3">The weather in {garden.city} is...</h3>
           <div className="forecast-card-mother">
             <div className="forecast-card day0">
               <Card style={{ width: "13rem" }}>
@@ -192,8 +191,10 @@ export default function Weather() {
         </div>
       ) : (
         <div className="forecast-slide overflow-auto">
-          <h1> Hi *username* </h1>
-          <CreateGardenForm />
+          <Stack id="weather-title" direction="horizontal" gap={2}>
+            <h1> Hi *username* </h1>
+            <CreateGardenForm />
+          </Stack>
           {displayWeatherData()}{" "}
         </div>
       )}

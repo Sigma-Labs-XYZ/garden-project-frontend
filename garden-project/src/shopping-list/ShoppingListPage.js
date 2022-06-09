@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { checkCookiesAndRedirect } from "../networking";
 import { useNavigate } from "react-router-dom";
+import { ArrowLeft } from "react-bootstrap-icons";
 
 import "./shopping-list.css";
 import Header from "../Header";
@@ -46,7 +47,11 @@ export default function ShoppingListPage() {
             <h1 id="shopping-list-h1">Shopping List</h1>
 
             <Link to="/garden">
-              <Button variant="info">Back to Garden</Button>
+              <Button variant="info">
+                <Stack direction="horizontal" gap={2}>
+                  <ArrowLeft /> Back to Garden
+                </Stack>
+              </Button>
             </Link>
           </div>
 
