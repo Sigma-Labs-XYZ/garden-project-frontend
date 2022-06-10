@@ -30,7 +30,7 @@ export default function Notices() {
       .split(" ")
       .slice(0, 4)
       .join(" ");
-    return ` Your ${soonestHarvest.name}s in the garden "${soonestHarvest.garden}" will be ready to harvest on ${readableDate}`;
+    return ` Your ${soonestHarvest.name} in the garden "${soonestHarvest.garden}" will be ready to harvest on ${readableDate}`;
   }
 
   function generateHarvestReminders() {

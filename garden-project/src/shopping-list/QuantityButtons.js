@@ -20,7 +20,7 @@ export default function QuantityButtons(props) {
         <ArrowUpSquareFill
           className="arrow-up"
           type="button"
-          onClick={async () => handleQuantityChange("up")}
+          onClick={() => handleQuantityChange("up")}
         />
       </div>
       {props.quantity}
@@ -28,7 +28,7 @@ export default function QuantityButtons(props) {
         <ArrowDownSquareFill
           type="button"
           className="arrow-down"
-          onClick={async () => handleQuantityChange("down")}
+          onClick={() => handleQuantityChange("down")}
         />
       </div>
       quantity

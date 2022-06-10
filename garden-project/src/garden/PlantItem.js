@@ -14,7 +14,7 @@ import plant from "./plant-images/icons8-sprout-30.png";
 export default function PlantItem(props) {
   const [show, setShow] = useState(false);
   const [harvestDisabled, setHarvestDisabled] = useState(props.data.planted_at == null || props.data.harvested);
-  const [reload, setReload] = useState(true);
+
   const enableHarvest = () => setHarvestDisabled(false);
   const disableHarvest = () => setHarvestDisabled(true);
   const handleClose = () => setShow(false);
