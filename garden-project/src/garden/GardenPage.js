@@ -18,15 +18,19 @@ export default function GardenPage() {
   const { state } = useLocation();
   const [currentState, setCurrentState] = useState(state);
 
-  console.log(state);
-
   useEffect(() => {
     checkCookiesAndRedirect(navigate);
   }, []);
 
   useEffect(() => {
+
     setCurrentState(state);
   }, [state]);
+
+    console.log(state);
+    if (!state) navigate("/dashboard");
+  }, []);
+
 
   useEffect(() => {
     async function getData() {
@@ -37,11 +41,14 @@ export default function GardenPage() {
   }, [remove, state, currentState]);
 
   async function fetchInfo() {
+
     const gardenID = state.gardenID;
 
     setGardenID(gardenID);
     const gardenData = await fetchGardenInfo(gardenID);
     setGardenInfo(gardenData);
+
+
   }
 
   function updateState(gardenID, gardenName, gardenLocation) {
@@ -50,12 +57,12 @@ export default function GardenPage() {
 
   function printGardenPlants() {
     return gardenInfo.map((plant, i) => {
-      return (
-        <PlantItem setRemove={setRemove} remove={remove} key={i} data={plant} />
-      );
+      return <PlantItem setRemove={setRemove} remove={remove} key={i} data={plant} />;
     });
   }
   return (
+  
+    state && (
     <div>
       <div className="header-container">{<Header />}</div>
       <div className="garden-page-wrapper">
@@ -65,26 +72,27 @@ export default function GardenPage() {
               <h2 id="garden-h2">{currentState.gardenName}</h2>
               <div className="location">
                 <h4 id="garden-location-h4">{currentState.gardenLocation}</h4>
+
               </div>
+
+              <Stack direction="horizontal" gap={3} className="buttons">
+                <Link to="/plants-info">
+                  <Button className="add-to-garden" variant="info">
+                    <Stack direction="horizontal" gap={2}>
+                      <PlusCircleFill /> <span>Add to plants to garden</span>
+                    </Stack>
+                  </Button>
+                </Link>
+                <Link to="/shopping-list">
+                  <Button className="add-to-shopping-list" variant="info">
+                    <Stack direction="horizontal" gap={2}>
+                      <ListTask /> <span>View shopping list </span>
+                    </Stack>
+                  </Button>
+                </Link>
+              </Stack>
             </div>
 
-            <Stack direction="horizontal" gap={3} className="buttons">
-              <Link to="/plants-info">
-                <Button className="add-to-garden" variant="info">
-                  <Stack direction="horizontal" gap={2}>
-                    <PlusCircleFill /> <span>Add to plants to garden</span>
-                  </Stack>
-                </Button>
-              </Link>
-              <Link to="/shopping-list">
-                <Button className="add-to-shopping-list" variant="info">
-                  <Stack direction="horizontal" gap={2}>
-                    <ListTask /> <span>View shopping list </span>
-                  </Stack>
-                </Button>
-              </Link>
-            </Stack>
-          </div>
 
           <div className="plant-items-wrapper">
             <h3 id="garden-h3" shadow-sm>
@@ -103,7 +111,10 @@ export default function GardenPage() {
             />
           </div>
         </Stack>
+
+        </div>
+
       </div>
-    </div>
+    )
   );
 }
