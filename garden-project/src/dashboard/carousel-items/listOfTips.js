@@ -1,4 +1,4 @@
-export const listOfTips = [
+export const listOfTipsOne = [
   `Healthy, rich soil is crucial for the successful growth of fruits and vegetables. A soil test will provide information on the pH and health of your soil, and what you can do to optimise the conditions for successful growth.`,
   `Location is key! Your plants will not grow if they don't get enough sunlight. Make sure you plant them where they will receive at least six hours a day. You should also place taller plants on the north or west side so they do not shadow your smaller plants.`,
   `Spacing and arrangement of plants is essential! You want to avoid crowding them in one area, and try giving them around 8-10 inches of space in between, and avoid planting them in square patterns or rows, as that can stunt their growth. Try triangles instead.`,
@@ -12,6 +12,8 @@ export const listOfTips = [
   `Choose vegetables that are appropriate for your region! Don't buy those that require plenty of sunlight and warmth if you cannot provide that for them.`,
   `If you're new to gardening, don't overdo it! Start with a small garden, and easy to grow vegetables. It's easier to work your way up through the seasons rather than starting off too ambitious and losing interest.`,
   `This may seem obvious, but choose fruits and vegetables that you will want to eat. Your efforts will go to waste if you choose to grow crops that you have no interest in eating, and you may not even be inclined to take care of it whilst it's growing!`,
+];
+export const listOfTipsTwo = [
   `It may be worth keeping a journal of your garden. This will help you look back and see what you could improve on, or which plants are not suitable for your garden.`,
   `It's better to water deeply than more frequently as drenching your plants can lead to nutrient-deficient soil. The frequency of watering will depend on the plants and the location (and weather) of your garden, but you should try watering mainly the base of your plants.`,
   `You should consider raised beds and containers! Raised beds can help you achieve a deep layer of fertile soil for effective growth of plants, whereas containers can make it much easier for weed-control and preventing pests. It is worth noting that, with containers, you may have to fertilise and water more often.`,
