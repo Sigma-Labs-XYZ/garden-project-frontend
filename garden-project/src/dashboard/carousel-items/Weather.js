@@ -136,7 +136,7 @@ export default function Weather() {
             <h3 id="weather-h3">The weather in {garden.city} is...</h3>
             <div className="forecast-card-mother">
               <div className="forecast-card day0">
-                <Card style={{ width: "13rem" }}>
+                <Card style={{ width: "14rem" }}>
                   {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
                   <Card.Body>
                     <Card.Title>Today:</Card.Title>
@@ -151,7 +151,7 @@ export default function Weather() {
                 </Card>
               </div>
               <div className="forecast-card day1">
-                <Card style={{ width: "13rem" }}>
+                <Card style={{ width: "14rem" }}>
                   {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
                   <Card.Body>
                     <Card.Title>Tomorrow:</Card.Title>
@@ -165,7 +165,7 @@ export default function Weather() {
                 </Card>
               </div>
               <div className="forecast-card day2">
-                <Card style={{ width: "13rem" }}>
+                <Card style={{ width: "14rem" }}>
                   {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
                   <Card.Body>
                     <Card.Title>{getTwoDaysLater()}:</Card.Title>
@@ -180,7 +180,7 @@ export default function Weather() {
               </div>
 
               <div className="forecast-card day3">
-                <Card style={{ width: "13rem" }}>
+                <Card style={{ width: "14rem" }}>
                   {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
                   <Card.Body>
                     <Card.Title>{getThreeDaysLater()}:</Card.Title>
