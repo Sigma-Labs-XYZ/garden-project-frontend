@@ -6,7 +6,7 @@ https://garden-project-website.sigmalabs.co.uk/sign-up
 
 # Description
 
-This project is a website built with React hat allows you to virtually recreate gardens and keep track of plants you have planted and harvested. The aim of this project is to bring together learning information about plants and keeping track of their garden.
+This project is a website built with React that allows you to virtually recreate gardens and keep track of plants you have planted and harvested. The aim of this project is to bring together learning information about plants and keeping track of their garden.
 
 # Dependencies
 
