@@ -23,14 +23,12 @@ export default function GardenPage() {
   }, []);
 
   useEffect(() => {
-
     setCurrentState(state);
   }, [state]);
 
-    console.log(state);
+  useEffect(() => {
     if (!state) navigate("/dashboard");
   }, []);
-
 
   useEffect(() => {
     async function getData() {
@@ -41,14 +39,10 @@ export default function GardenPage() {
   }, [remove, state, currentState]);
 
   async function fetchInfo() {
-
     const gardenID = state.gardenID;
-
     setGardenID(gardenID);
     const gardenData = await fetchGardenInfo(gardenID);
     setGardenInfo(gardenData);
-
-
   }
 
   function updateState(gardenID, gardenName, gardenLocation) {
@@ -57,24 +51,25 @@ export default function GardenPage() {
 
   function printGardenPlants() {
     return gardenInfo.map((plant, i) => {
-      return <PlantItem setRemove={setRemove} remove={remove} key={i} data={plant} />;
+      return (
+        <PlantItem setRemove={setRemove} remove={remove} key={i} data={plant} />
+      );
     });
   }
+
   return (
-  
     state && (
-    <div>
-      <div className="header-container">{<Header />}</div>
-      <div className="garden-page-wrapper">
-        <Stack direction="vertical" gap={3}>
-          <div className="title-button-wrapper">
-            <div className="garden-name-location">
-              <h2 id="garden-h2">{currentState.gardenName}</h2>
-              <div className="location">
-                <h4 id="garden-location-h4">{currentState.gardenLocation}</h4>
-
+      <div>
+        <div className="header-container">{<Header />}</div>
+        <div className="garden-page-wrapper">
+          <Stack direction="vertical" gap={3}>
+            <div className="title-button-wrapper">
+              <div className="garden-name-location">
+                <h2 id="garden-h2">{currentState.gardenName}</h2>
+                <div className="location">
+                  <h4 id="garden-location-h4">{currentState.gardenLocation}</h4>
+                </div>
               </div>
-
               <Stack direction="horizontal" gap={3} className="buttons">
                 <Link to="/plants-info">
                   <Button className="add-to-garden" variant="info">
@@ -93,27 +88,24 @@ export default function GardenPage() {
               </Stack>
             </div>
 
+            <div className="plant-items-wrapper">
+              <h3 id="garden-h3" shadow-sm>
+                {" "}
+                What's in your garden...{" "}
+              </h3>
+              <ListGroup variant="flush">{printGardenPlants()}</ListGroup>
+            </div>
 
-          <div className="plant-items-wrapper">
-            <h3 id="garden-h3" shadow-sm>
-              {" "}
-              What's in your garden...{" "}
-            </h3>
-            <ListGroup variant="flush">{printGardenPlants()}</ListGroup>
-          </div>
-
-          <div className="edit-garden-button">
-            <EditGardenForm
-              reload={updateState}
-              location={currentState.gardenLocation}
-              name={currentState.gardenName}
-              NamegardenID={gardenID}
-            />
-          </div>
-        </Stack>
-
+            <div className="edit-garden-button">
+              <EditGardenForm
+                reload={updateState}
+                location={currentState.gardenLocation}
+                name={currentState.gardenName}
+                NamegardenID={gardenID}
+              />
+            </div>
+          </Stack>
         </div>
-
       </div>
     )
   );
