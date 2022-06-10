@@ -13,22 +13,29 @@ export default function Notices() {
 
   async function getImminentHarvests() {
     const userID = await getUserIDFromSession();
-    const harvests = await fetch(`https://garden-project.sigmalabs.co.uk/harvest-dates/${userID}`, {
-      headers: { "Content-Type": "application/json" },
-    });
+    const harvests = await fetch(
+      `https://garden-project.sigmalabs.co.uk/harvest-dates/${userID}`,
+      {
+        headers: { "Content-Type": "application/json" },
+      }
+    );
     setHarvests(await harvests.json());
   }
 
   function generateHarvestReminderText(harvest) {
     const soonestHarvest = harvest;
     console.log(soonestHarvest.estimatedHarvestDate);
-    const readableDate = new Date(soonestHarvest.estimatedHarvestDate).toString().split(" ").slice(0, 4).join(" ");
-    return `Reminder: Your ${soonestHarvest.name} in the garden "${soonestHarvest.garden}" will be ready to harvest on ${readableDate}`;
+    const readableDate = new Date(soonestHarvest.estimatedHarvestDate)
+      .toString()
+      .split(" ")
+      .slice(0, 4)
+      .join(" ");
+    return ` Your ${soonestHarvest.name}s in the garden "${soonestHarvest.garden}" will be ready to harvest on ${readableDate}`;
   }
 
   function generateHarvestReminders() {
-    return harvests.slice(0, 3).map(harvest => {
-      return <h4>{generateHarvestReminderText(harvest)}</h4>;
+    return harvests.slice(0, 3).map((harvest) => {
+      return <h4 id="reminders-h4"> {generateHarvestReminderText(harvest)}</h4>;
     });
   }
 
@@ -39,9 +46,9 @@ export default function Notices() {
           <HourglassSplit /> <span>Reminders...</span>
         </Stack>
       </h1>
-      <h4>Don't forget to water your plants!</h4>
+
       <br />
-      <h4>{generateHarvestReminders()}</h4>
+      <div class="reminders-wrapper">{generateHarvestReminders()}</div>
     </div>
   );
 }
