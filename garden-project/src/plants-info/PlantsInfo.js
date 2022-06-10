@@ -120,9 +120,7 @@ export default function PlantsInfo(props) {
   }
 
   async function handleAddToShoppingList() {
-    const data = await fetchShoppingList(userID);
-    const gardenID = data[0].garden_id;
-    await addPlantToShoppingList(id, gardenID, 1);
+    await addPlantToShoppingList(id, usersGardens[0].id, 1);
   }
 
   useEffect(() => {
