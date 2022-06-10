@@ -27,7 +27,7 @@ export async function fetchPlantName(id) {
 
 export async function patchQuantity(quantity, id) {
   const response = await fetch(
-    "http://garden-project.sigmalabs.co.uk/update-quantity",
+    "https://garden-project.sigmalabs.co.uk/update-quantity",
     {
       method: "PATCH",
       headers: {
@@ -43,7 +43,7 @@ export async function patchQuantity(quantity, id) {
 
 export async function patchBought(bought, id) {
   const response = await fetch(
-    "http://garden-project.sigmalabs.co.uk/update-bought",
+    "https://garden-project.sigmalabs.co.uk/update-bought",
     {
       method: "PATCH",
       headers: {
