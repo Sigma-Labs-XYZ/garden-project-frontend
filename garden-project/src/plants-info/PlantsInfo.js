@@ -5,22 +5,32 @@ import { addPlantToGarden, addPlantToShoppingList } from "./PlantsNetworking";
 import { useState, useEffect } from "react";
 import { PlusCircleFill, ListTask } from "react-bootstrap-icons/";
 import { fetchGardenInfo } from "../garden/GardenNetworking";
+import { fetchShoppingList } from "../shopping-list/ShoppingListNetworking";
 
 export default function PlantsInfo(props) {
   const [show, setShow] = useState(false);
   const [avoid, setAvoid] = useState([]);
   const [usersGardens, setUsersGardens] = useState([]);
-  const [gardenInfo, setGardenInfo] = useState([]);
+  const [userID, setUserID] = useState();
 
   useEffect(() => {
     setUsersGardens(props.getUsersGardenState);
+  }, []);
+
+  useEffect(() => {
+    async function fetchData() {
+      await getUUID();
+    }
+    fetchData();
   }, []);
 
   const handleClose = () => {
     setShow(false);
     setAvoid([]);
   };
+
   const handleShow = () => setShow(true);
+
   const {
     id,
     name,
@@ -31,6 +41,30 @@ export default function PlantsInfo(props) {
     avoid_instructions,
     culinary_hints,
   } = props.data;
+
+  async function getUUID() {
+    const cookies = await document.cookie;
+
+    const sessionID = cookies
+      .split("; ")
+      .find((row) => row.startsWith("session="))
+      .split("=")[1];
+
+    await fetchUserID(sessionID);
+  }
+
+  async function fetchUserID(sessionID) {
+    const response = await fetch(
+      `https://garden-project.sigmalabs.co.uk/allGardens`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sessionID: sessionID }),
+      }
+    );
+    const data = await response.json();
+    await setUserID(data[0].user_id);
+  }
 
   function checkAvoidInstructions(data) {
     let listOfGardenPlants = [];
@@ -53,10 +87,10 @@ export default function PlantsInfo(props) {
         }
       }
     }
-
     let noDuplicatesInSamePlantList = [...new Set(samePlants)];
     return noDuplicatesInSamePlantList.shift();
   }
+
   function displayGardenButtons(data) {
     return data.map((gardens) => {
       return (
@@ -84,10 +118,10 @@ export default function PlantsInfo(props) {
         : []
     );
   }
-  console.log(gardenInfo);
 
   async function handleAddToShoppingList() {
-    const gardenID = 1;
+    const data = await fetchShoppingList(userID);
+    const gardenID = data[0].garden_id;
     await addPlantToShoppingList(id, gardenID, 1);
   }
 
@@ -172,18 +206,17 @@ export default function PlantsInfo(props) {
         <div id="buttons" className="d-flex justify-content-end">
           <Stack className="button-stack" direction="horizontal" gap={3}>
             {displayGardenButtons(usersGardens)}
-            <Link to="/shopping-list">
-              <Button
-                variant="info"
-                className="add-to-shopping-list"
-                type="submit"
-                onClick={handleAddToShoppingList}
-              >
-                <Stack direction="horizontal" gap={2}>
-                  <ListTask /> <span>Add to shopping list</span>
-                </Stack>
-              </Button>
-            </Link>
+
+            <Button
+              variant="info"
+              className="add-to-shopping-list"
+              type="submit"
+              onClick={() => handleAddToShoppingList()}
+            >
+              <Stack direction="horizontal" gap={2}>
+                <ListTask /> <span>Add to shopping list</span>
+              </Stack>
+            </Button>
           </Stack>
         </div>
 

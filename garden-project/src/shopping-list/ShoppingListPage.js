@@ -23,17 +23,6 @@ export default function ShoppingListPage() {
     setChange(false);
   }, [change]);
 
-  async function fetchInfo(userID) {
-    const shoppingData = await fetchShoppingList(userID);
-    setShoppingList(shoppingData);
-  }
-
-  function printShoppingList() {
-    return shoppingList.map((plant, i) => {
-      return <ShoppingPlants key={i} data={plant} setChange={setChange} />;
-    });
-  }
-
   async function getUUID() {
     const cookies = await document.cookie;
 
@@ -55,7 +44,18 @@ export default function ShoppingListPage() {
       }
     );
     const data = await response.json();
-    fetchInfo(data[0].user_id);
+    await fetchInfo(data[0].user_id);
+  }
+
+  async function fetchInfo(userID) {
+    const shoppingData = await fetchShoppingList(userID);
+    setShoppingList(shoppingData);
+  }
+
+  function printShoppingList() {
+    return shoppingList.map((plant, i) => {
+      return <ShoppingPlants key={i} data={plant} setChange={setChange} />;
+    });
   }
 
   useEffect(() => {
