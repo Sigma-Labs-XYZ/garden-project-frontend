@@ -10,11 +10,11 @@ This project is a website built with React hat allows you to virtually recreate 
 
 # Dependencies
 
-react 18.1.0
-react-bootstrap 2.4.0
-react-bootstrap-icons 1.8.2
-react-router-dom 6.3.0
-react-router-hash-link 2.4.3
+- react 18.1.0
+- react-bootstrap 2.4.0
+- react-bootstrap-icons 1.8.2
+- react-router-dom 6.3.0
+- react-router-hash-link 2.4.3
 
 # How it works
 
