@@ -1,6 +1,6 @@
-export async function fetchShoppingList() {
+export async function fetchShoppingList(id) {
   const response = await fetch(
-    "https://garden-project.sigmalabs.co.uk/shopping-list"
+    `https://garden-project.sigmalabs.co.uk/shopping-list/${id}`
   );
   const data = await response.json();
   return data;
