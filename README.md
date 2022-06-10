@@ -18,16 +18,16 @@ react-router-hash-link 2.4.3
 
 # How it works
 
-!(/login.png "Login")
+![Alt text](/login.png "Login")
 You can create an account and login through the login page.
 
-!(/create-garden.png "Create Garden")
+![Alt text](/create-garden.png "Create Garden")
 You'll then be directed to a page to create a garden
 
-!(/weather.png "Weather")
+![Alt text](/weather.png "Weather")
 Once you create a garden, you'll be redirected to the dashboard showing the weather in the location of your garden.
 
-!(/reminders.png "Reminders")
+![Alt text](/reminders.png "Reminders")
 The dashboard also contains reminders of when to harvest your plants, once you've planted them to your garden.
 
 ![Alt text](/search.png "Search Plants")
