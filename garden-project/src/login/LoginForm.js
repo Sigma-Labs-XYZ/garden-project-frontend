@@ -8,17 +8,17 @@ import "./login.css";
 export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const [error, setError] = useState(false);
+  const [error, setError] = useState(false);
   const navigate = useNavigate();
 
   async function checkUserDetails(email, password) {
     let response;
     if (email === "" && password === "") {
-      alert("Please enter a username and password");
+      setError("Please enter a username and password");
     } else if (email === "") {
-      alert("Please enter a username");
+      setError("Please enter a username");
     } else if (password === "") {
-      alert("Please enter a password");
+      setError("Please enter a password");
     } else {
       response = await fetch(`https://garden-project.sigmalabs.co.uk/login`, {
         method: "POST",
@@ -75,6 +75,7 @@ export default function LoginForm() {
         <div className="d-flex justify-content-between">
           <Stack id="login-btn-stack" direction="vertical" gap={3}>
             <Button
+              data-testid="login-test-btn"
               className="login-btn"
               variant="info"
               type="submit"
