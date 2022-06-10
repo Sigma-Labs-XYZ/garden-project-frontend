@@ -13,26 +13,50 @@ import Header from "../Header";
 export default function ShoppingListPage() {
   const [shoppingList, setShoppingList] = useState([]);
   const [change, setChange] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function getData() {
-      await fetchInfo();
+      await getUUID();
     }
     getData();
     setChange(false);
   }, [change]);
 
-  async function fetchInfo() {
-    const shoppingData = await fetchShoppingList();
+  async function fetchInfo(userID) {
+    const shoppingData = await fetchShoppingList(userID);
     setShoppingList(shoppingData);
   }
+
   function printShoppingList() {
     return shoppingList.map((plant, i) => {
       return <ShoppingPlants key={i} data={plant} setChange={setChange} />;
     });
   }
 
-  const navigate = useNavigate();
+  async function getUUID() {
+    const cookies = await document.cookie;
+
+    const sessionID = cookies
+      .split("; ")
+      .find((row) => row.startsWith("session="))
+      .split("=")[1];
+
+    await fetchUserID(sessionID);
+  }
+
+  async function fetchUserID(sessionID) {
+    const response = await fetch(
+      `https://garden-project.sigmalabs.co.uk/allGardens`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sessionID: sessionID }),
+      }
+    );
+    const data = await response.json();
+    fetchInfo(data[0].user_id);
+  }
 
   useEffect(() => {
     checkCookiesAndRedirect(navigate);
