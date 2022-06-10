@@ -1,22 +1,40 @@
-import { listOfTips } from "./listOfTips.js";
+import { listOfTipsOne, listOfTipsTwo } from "./listOfTips.js";
 import "../dashboard.css";
 import Alert from "react-bootstrap/Alert";
 import Stack from "react-bootstrap/Stack";
 import { Lightbulb } from "react-bootstrap-icons";
 
 export default function Tips() {
-  function chooseRandomTip() {
+  function chooseRandomTipOne() {
     const d = new Date();
     const n = d.getDate();
-    const tipOfTheDay = listOfTips[n - 1];
+    let tipOfTheDay;
+
+    if (n > 13) {
+      tipOfTheDay = listOfTipsOne[n - 14];
+    } else if (n > 26) {
+      tipOfTheDay = listOfTipsOne[n - 20];
+    } else {
+      tipOfTheDay = listOfTipsOne[n - 1];
+    }
     return tipOfTheDay;
   }
+
   function chooseRandomTipTwo() {
     const d = new Date();
     const n = d.getDate();
-    const tipOfTheDay = listOfTips[n];
+    let tipOfTheDay;
+
+    if (n > 13) {
+      tipOfTheDay = listOfTipsTwo[n - 14];
+    } else if (n > 26) {
+      tipOfTheDay = listOfTipsTwo[n - 20];
+    } else {
+      tipOfTheDay = listOfTipsTwo[n - 1];
+    }
     return tipOfTheDay;
   }
+
   return (
     <div className="tips-slide">
       <h1 className="tip-h1">
@@ -25,7 +43,7 @@ export default function Tips() {
         </Stack>
       </h1>
       <Alert key="warning" variant="warning">
-        <p className="tip-of-the-day">{chooseRandomTip()}</p>
+        <p className="tip-of-the-day">{chooseRandomTipOne()}</p>
       </Alert>
 
       <Alert key="warning" variant="warning">

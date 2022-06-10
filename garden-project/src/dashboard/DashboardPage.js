@@ -54,9 +54,7 @@ export default function DashboardPage() {
   }
 
   async function fetchGardenInfo(id) {
-
     const response = await fetch(`https://garden-project.sigmalabs.co.uk/allGardens/${id}`);
-
     const data = await response.json();
 
     checkIfGardenExists(data);
