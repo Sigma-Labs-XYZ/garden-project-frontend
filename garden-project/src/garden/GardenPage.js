@@ -14,7 +14,9 @@ export default function GardenPage() {
   const navigate = useNavigate();
   const [gardenInfo, setGardenInfo] = useState([]);
   const [remove, setRemove] = useState(false);
+  const [gardenID, setGardenID] = useState();
   const { state } = useLocation();
+  const [currentState, setCurrentState] = useState(state);
 
   console.log(state);
 
@@ -23,18 +25,27 @@ export default function GardenPage() {
   }, []);
 
   useEffect(() => {
+    setCurrentState(state);
+  }, [state]);
+
+  useEffect(() => {
     async function getData() {
       await fetchInfo();
     }
     getData();
     setRemove(false);
-  }, [remove, state]);
+  }, [remove, state, currentState]);
 
   async function fetchInfo() {
     const gardenID = state.gardenID;
-    console.log(gardenID);
+
+    setGardenID(gardenID);
     const gardenData = await fetchGardenInfo(gardenID);
     setGardenInfo(gardenData);
+  }
+
+  function updateState(gardenID, gardenName, gardenLocation) {
+    setCurrentState({ gardenID, gardenName, gardenLocation });
   }
 
   function printGardenPlants() {
@@ -51,9 +62,9 @@ export default function GardenPage() {
         <Stack direction="vertical" gap={3}>
           <div className="title-button-wrapper">
             <div className="garden-name-location">
-              <h2 id="garden-h2">{state.gardenName}</h2>
+              <h2 id="garden-h2">{currentState.gardenName}</h2>
               <div className="location">
-                <h4 id="garden-location-h4">{state.gardenLocation}</h4>
+                <h4 id="garden-location-h4">{currentState.gardenLocation}</h4>
               </div>
             </div>
 
@@ -82,11 +93,14 @@ export default function GardenPage() {
             </h3>
             <ListGroup variant="flush">{printGardenPlants()}</ListGroup>
           </div>
-          <div className="calendar-button">
-            <Button variant="info">View calendar</Button>
-          </div>
+
           <div className="edit-garden-button">
-            <EditGardenForm />
+            <EditGardenForm
+              reload={updateState}
+              location={currentState.gardenLocation}
+              name={currentState.gardenName}
+              NamegardenID={gardenID}
+            />
           </div>
         </Stack>
       </div>
