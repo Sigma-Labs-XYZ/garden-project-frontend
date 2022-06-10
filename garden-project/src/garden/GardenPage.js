@@ -16,10 +16,13 @@ export default function GardenPage() {
   const [remove, setRemove] = useState(false);
   const { state } = useLocation();
 
-  console.log(state);
-
   useEffect(() => {
     checkCookiesAndRedirect(navigate);
+  }, []);
+
+  useEffect(() => {
+    console.log(state);
+    if (!state) navigate("/dashboard");
   }, []);
 
   useEffect(() => {
@@ -31,65 +34,66 @@ export default function GardenPage() {
   }, [remove, state]);
 
   async function fetchInfo() {
-    const gardenID = state.gardenID;
-    console.log(gardenID);
-    const gardenData = await fetchGardenInfo(gardenID);
-    setGardenInfo(gardenData);
+    if (state) {
+      const gardenID = state.gardenID;
+      const gardenData = await fetchGardenInfo(gardenID);
+      setGardenInfo(gardenData);
+    }
   }
 
   function printGardenPlants() {
     return gardenInfo.map((plant, i) => {
-      return (
-        <PlantItem setRemove={setRemove} remove={remove} key={i} data={plant} />
-      );
+      return <PlantItem setRemove={setRemove} remove={remove} key={i} data={plant} />;
     });
   }
   return (
-    <div>
-      <div className="header-container">{<Header />}</div>
-      <div className="garden-page-wrapper">
-        <Stack direction="vertical" gap={3}>
-          <div className="title-button-wrapper">
-            <div className="garden-name-location">
-              <h2 id="garden-h2">{state.gardenName}</h2>
-              <div className="location">
-                <h4 id="garden-location-h4">{state.gardenLocation}</h4>
+    state && (
+      <div>
+        <div className="header-container">{<Header />}</div>
+        <div className="garden-page-wrapper">
+          <Stack direction="vertical" gap={3}>
+            <div className="title-button-wrapper">
+              <div className="garden-name-location">
+                <h2 id="garden-h2">{state.gardenName}</h2>
+                <div className="location">
+                  <h4 id="garden-location-h4">{state.gardenLocation}</h4>
+                </div>
               </div>
+
+              <Stack direction="horizontal" gap={3} className="buttons">
+                <Link to="/plants-info">
+                  <Button className="add-to-garden" variant="info">
+                    <Stack direction="horizontal" gap={2}>
+                      <PlusCircleFill /> <span>Add to plants to garden</span>
+                    </Stack>
+                  </Button>
+                </Link>
+                <Link to="/shopping-list">
+                  <Button className="add-to-shopping-list" variant="info">
+                    <Stack direction="horizontal" gap={2}>
+                      <ListTask /> <span>View shopping list </span>
+                    </Stack>
+                  </Button>
+                </Link>
+              </Stack>
             </div>
 
-            <Stack direction="horizontal" gap={3} className="buttons">
-              <Link to="/plants-info">
-                <Button className="add-to-garden" variant="info">
-                  <Stack direction="horizontal" gap={2}>
-                    <PlusCircleFill /> <span>Add to plants to garden</span>
-                  </Stack>
-                </Button>
-              </Link>
-              <Link to="/shopping-list">
-                <Button className="add-to-shopping-list" variant="info">
-                  <Stack direction="horizontal" gap={2}>
-                    <ListTask /> <span>View shopping list </span>
-                  </Stack>
-                </Button>
-              </Link>
-            </Stack>
-          </div>
-
-          <div className="plant-items-wrapper">
-            <h3 id="garden-h3" shadow-sm>
-              {" "}
-              What's in your garden...{" "}
-            </h3>
-            <ListGroup variant="flush">{printGardenPlants()}</ListGroup>
-          </div>
-          <div className="calendar-button">
-            <Button variant="info">View calendar</Button>
-          </div>
-          <div className="edit-garden-button">
-            <EditGardenForm />
-          </div>
-        </Stack>
+            <div className="plant-items-wrapper">
+              <h3 id="garden-h3" shadow-sm>
+                {" "}
+                What's in your garden...{" "}
+              </h3>
+              <ListGroup variant="flush">{printGardenPlants()}</ListGroup>
+            </div>
+            <div className="calendar-button">
+              <Button variant="info">View calendar</Button>
+            </div>
+            <div className="edit-garden-button">
+              <EditGardenForm />
+            </div>
+          </Stack>
+        </div>
       </div>
-    </div>
+    )
   );
 }
