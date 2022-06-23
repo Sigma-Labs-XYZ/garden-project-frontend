@@ -13,7 +13,9 @@ import plant from "./plant-images/icons8-sprout-30.png";
 
 export default function PlantItem(props) {
   const [show, setShow] = useState(false);
-  const [harvestDisabled, setHarvestDisabled] = useState(props.data.planted_at == null || props.data.harvested);
+  const [harvestDisabled, setHarvestDisabled] = useState(
+    props.data.planted_at == null || props.data.harvested
+  );
 
   const enableHarvest = () => setHarvestDisabled(false);
   const disableHarvest = () => setHarvestDisabled(true);
@@ -22,6 +24,7 @@ export default function PlantItem(props) {
 
   let { name, id, plant_info_id, planted_at } = props.data;
 
+  console.log(planted_at);
   function getPlantedAtDate() {
     if (planted_at) {
       const plantedAt = planted_at.toString().slice(0, 10);
@@ -66,7 +69,11 @@ export default function PlantItem(props) {
       </div>
       <div className="container-planted-at">{getPlantedAtDate()}</div>
       <div className="container-remove-button">
-        <Button className="remove-from-list" variant="outline-danger" onClick={handleShow}>
+        <Button
+          className="remove-from-list"
+          variant="outline-danger"
+          onClick={handleShow}
+        >
           <Stack direction="horizontal" gap={2}>
             <DashCircleFill /> <span> Remove </span>
           </Stack>

@@ -28,7 +28,6 @@ export default function PlantedCheckbox(props) {
     setDisabled(true);
     props.enableHarvest();
     setShow(false);
-    window.location.reload(false);
   };
 
   return (
