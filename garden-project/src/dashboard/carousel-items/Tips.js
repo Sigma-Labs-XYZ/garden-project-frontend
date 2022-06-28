@@ -10,10 +10,10 @@ export default function Tips() {
     const n = d.getDate();
     let tipOfTheDay;
 
-    if (n > 13) {
-      tipOfTheDay = listOfTipsOne[n - 14];
-    } else if (n > 26) {
-      tipOfTheDay = listOfTipsOne[n - 20];
+    if (n > 26) {
+      tipOfTheDay = listOfTipsOne[n - 17];
+    } else if (n > 13) {
+      tipOfTheDay = listOfTipsOne[n - 13];
     } else {
       tipOfTheDay = listOfTipsOne[n - 1];
     }
@@ -26,9 +26,9 @@ export default function Tips() {
     let tipOfTheDay;
 
     if (n > 13) {
-      tipOfTheDay = listOfTipsTwo[n - 14];
+      tipOfTheDay = listOfTipsTwo[n - 17];
     } else if (n > 26) {
-      tipOfTheDay = listOfTipsTwo[n - 20];
+      tipOfTheDay = listOfTipsTwo[n - 13];
     } else {
       tipOfTheDay = listOfTipsTwo[n - 1];
     }
