@@ -24,7 +24,6 @@ export default function PlantItem(props) {
 
   let { name, id, plant_info_id, planted_at } = props.data;
 
-  console.log(planted_at);
   function getPlantedAtDate() {
     if (planted_at) {
       const plantedAt = planted_at.toString().slice(0, 10);
