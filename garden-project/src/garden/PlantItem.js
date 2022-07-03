@@ -30,6 +30,7 @@ export default function PlantItem(props) {
       return "Planted at: " + plantedAt;
     }
   }
+
   name = name.split(", ")[0];
 
   async function handleDelete() {

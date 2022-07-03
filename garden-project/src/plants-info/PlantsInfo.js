@@ -110,7 +110,6 @@ export default function PlantsInfo(props) {
 
   async function handleAddToGarden(gardenID) {
     const gardenData = await fetchGardenInfo(gardenID);
-    // setGardenInfo(gardenData);
     await addPlantToGarden(id, gardenID);
     setAvoid(
       checkAvoidInstructions(gardenData)
