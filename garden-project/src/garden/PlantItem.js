@@ -36,7 +36,7 @@ export default function PlantItem(props) {
   async function handleDelete() {
     await deletePlant(id);
     setShow(false);
-    window.location.reload(false);
+    props.setRemove(true);
   }
 
   return (
